@@ -7,15 +7,17 @@ assignees: ''
 
 ---
 
+## User Story
+
 As a **role** I want to **capability** so that **received benefit**
 
-Acceptance Criteria:
+### Acceptance Criteria:
 
 - [ ] 	1
 - [ ] 	2
 - [ ] 	3
 
-Tasks:
+### Tasks:
 
 - [ ] 1
 - [ ] 2
