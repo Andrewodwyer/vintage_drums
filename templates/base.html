@@ -3,6 +3,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Required meta tags -->
 
     {% block meta %}
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -32,10 +33,11 @@
     <title>Vintage Drums {% block extra_title %}{% endblock %}</title>
   </head>
   <body>
-    <header class="container-fluid fixed-top"></header>
+    <header class="container-fluid fixed-top"></header> 
 
+<!-- if there is a message add it to this container -->
     {% if messages %}
-        <div class="message-container"></div>
+        <div class="message-container"></div> 
     {% endif %}
 
     {% block page_header %}
