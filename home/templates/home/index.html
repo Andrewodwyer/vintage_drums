@@ -10,18 +10,171 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container h-100">
-        <div class="row h-100">
-            <div class="col-7 col-md-6 my-auto">
-                <h1 class="display-4 logo-font text-black">
-                    Discover Vintage Drum Excellence. Curated collection of premium vintage drum kits and cymbals
-                </h1>
-                <div class="my-5">
-                    <h4>
-                        <a href="" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Explore Our Collection</a>
-                    </h4>
+    <!-- Hero Section -->
+    <div class="hero-image d-flex align-items-center justify-content-center text-center">
+        <div class="container-fluid">
+            <div class="row w-100 d-flex justify-content-center">
+                <div class="col-12 d-flex flex-column align-items-center p-4 pt-5 text-white">
+                    <h2 class="text-center logo-font">
+                        Discover Vintage Drum Excellence. Curated collection of premium vintage drum kits and cymbals
+                    </h2>
+                    <div class="mt-4">
+                        <a href="#" class="btn explore-button text-uppercase py-2 px-2">Explore Our Collection</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    
+    
+    
+
+    <!-- About Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Heading -->
+                <div class="col-12 col-lg-3 text-center text-lg-left mb-3 mb-lg-0">
+                    <h2 class="font-weight-bold">About Us</h2>
+                </div>
+                <!-- Text -->
+                <div class="col-12 col-lg-9">
+                    <p class="mb-3">
+                        We specialize in the timeless art of analogue acoustic drums, celebrating their unmatched tone and craftsmanship that resonate across all eras.
+                    </p>
+                    <p class="mb-0">
+                        Each drum is a testament to enduring quality, meticulously tuned and inspected to deliver authentic sound that continues to shine in any musical setting.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Featured Drum Kits Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center">Featured Drum Kits</h2>
+            <div class="row mt-4">
+                <div class="col-md-8 mb-4">
+                    <div class="card">
+                        <img src="{% static 'images/featured-drum.jpg' %}" class="card-img-top" alt="Featured Drum">
+                        <div class="card-body">
+                            <h4 class="card-title">Premium Vintage Drum Kit</h4>
+                            <p class="card-text">Experience the perfect blend of quality and history.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex flex-column">
+                    <div class="card mb-4">
+                        <img src="{% static 'images/drum1.jpg' %}" class="card-img-top" alt="Drum 1">
+                    </div>
+                    <div class="card mb-4">
+                        <img src="{% static 'images/drum2.jpg' %}" class="card-img-top" alt="Drum 2">
+                    </div>
+                    <div class="card">
+                        <img src="{% static 'images/drum3.jpg' %}" class="card-img-top" alt="Drum 3">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us Section -->
+    <section class="py-5 bg-light">
+        <div class="container text-center">
+            <h2>Why Choose Us</h2>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <h4>Vintage Excellence</h4>
+                    <p>Curated selection of premium vintage drums and cymbals.</p>
+                </div>
+                <div class="col-md-4">
+                    <h4>Installation</h4>
+                    <p>Your drum kit will be delivered and installed in your home my our experienced sound engineers.</p>
+                </div>
+                <div class="col-md-4">
+                    <h4>Authentic Sound</h4>
+                    <p>Experience the warm, rich tones of classic drum kits.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Cymbals Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center">Featured Cymbals</h2>
+            <div class="row mt-4">
+                <div class="col-md-8 mb-4">
+                    <div class="card">
+                        <img src="{% static 'images/featured-cymbal.jpg' %}" class="card-img-top" alt="Featured Cymbal">
+                        <div class="card-body">
+                            <h4 class="card-title">Vintage Cymbal Collection</h4>
+                            <p class="card-text">Premium sounds with historical charm.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex flex-column">
+                    <div class="card mb-4">
+                        <img src="{% static 'images/cymbal1.jpg' %}" class="card-img-top" alt="Cymbal 1">
+                    </div>
+                    <div class="card mb-4">
+                        <img src="{% static 'images/cymbal2.jpg' %}" class="card-img-top" alt="Cymbal 2">
+                    </div>
+                    <div class="card">
+                        <img src="{% static 'images/cymbal3.jpg' %}" class="card-img-top" alt="Cymbal 3">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Select by Brand Section -->
+    <section class="py-5 bg-light">
+        <div class="container text-center">
+            <h2>Select by Brand</h2>
+            <div class="container py-5">
+                <div class="row">
+                    <!-- DW Drums -->
+                    <div class="col-4 mb-4 text-center">
+                        <a href="#" class="btn btn-outline-dark p-0 w-100 h-100">
+                            <h5 class="text-brand mb-0">DW Drums</h5>
+                        </a>
+                    </div>
+                    <!-- Tama Drums -->
+                    <div class="col-4 mb-4 text-center">
+                        <a href="#" class="btn btn-outline-dark p-0 w-100 h-100">
+                            <h5 class="text-brand mb-0">Tama</h5>
+                        </a>
+                    </div>
+                    <!-- Ludwig Drums -->
+                    <div class="col-4 mb-4 text-center">
+                        <a href="#" class="btn btn-outline-dark p-0 w-100 h-100">
+                            <h5 class="text-brand mb-0">Ludwig</h5>
+                        </a>
+                    </div>
+                    <!-- Mapex Drums -->
+                    <div class="col-4 text-center">
+                        <a href="#" class="btn btn-outline-dark p-0 w-100 h-100">
+                            <h5 class="text-brand mb-0">Mapex</h5>
+                        </a>
+                    </div>
+                    <!-- Meinl Cymbals -->
+                    <div class="col-4 text-center">
+                        <a href="#" class="btn btn-outline-dark p-0 w-100 h-100">
+                            <h5 class="text-brand mb-0">Meinl</h5>
+                        </a>
+                    </div>
+                    <!-- Pearl Drums -->
+                    <div class="col-4 text-center">
+                        <a href="#" class="btn btn-outline-dark p-0 w-100 h-100">
+                            <h5 class="text-brand mb-0">Pearl</h5>
+                        </a>
+                    </div>
+                </div> 
+            </div>
+            
+        </div>
+    </section>
 {% endblock %}

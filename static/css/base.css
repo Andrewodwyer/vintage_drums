@@ -3,12 +3,20 @@ html {
 }
 
 body {
-    background: url('/media/vintage-drums-hero.webp') no-repeat center center fixed;
-    background-size: cover;
-    height: calc(100vh - 164px);
     color: #555;
     font-family: 'Roboto';
 }
+
+.hero-image {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+        url('/media/vintage-drums-hero.webp') no-repeat center center fixed;
+    background-size: cover;
+    height: calc(100vh - 164px); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 /* from Bulma */
 .icon {
@@ -27,8 +35,8 @@ body {
     width: fit-content;
 }
 
-.shop-now-button {
-    background: black;
+.explore-button {
+    background: #00A499;
     color: white;
     min-width: 260px;
 }
@@ -38,13 +46,13 @@ body {
     color: white;
 }
 
-.shop-now-button:hover,
-.shop-now-button:active,
-.shop-now-button:focus,
+.explore-button:hover,
+.explore-button:active,
+.explore-button:focus,
 .btn-black:hover,
 .btn-black:active,
 .btn-black:focus {
-    background: #222;
+    background: #00A499;
     color: white;
 }
 
@@ -52,8 +60,29 @@ body {
     color: #000 !important;
 }
 
+.text-thin {
+    font-family: Roboto;
+    font-weight: 100;
+}
+
+.text-brand {
+    font-weight: 300;
+    size: 2rem;
+}
+
 .border-black {
     border: 1px solid black !important;
+}
+
+/* bootstrap adds padding and the text was not centered */
+.hero-image .container-fluid,
+.hero-image .row {
+    padding: 0;
+    margin: 0;
+}
+
+.hero-image .col-12 {
+    margin: 0;
 }
 
 /* -------------------------------- Media Queries */
