@@ -4,18 +4,20 @@ from .models import Category, Product, DrumKitDetail, CymbalDetail, StandDetail,
 # @admin.register() was used on each model instead of admin.site.register(Category)
 
 # Category model
-@admin.register(Category)
+
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ("name", "friendly_name")
     search_fields = ("name",)
 
 # Product model
-@admin.register(Product)
+
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ("name", "sku", "category", "price", "updated_on")
+    list_display = ("name", "sku", "category", "price", "rating", "image", "updated_on")
     search_fields = ("name", "sku")
     list_filter = ("category",)
     readonly_fields = ("updated_on",)
+
+    ordering = ('sku',)
 
 # DrumKitDetail model
 @admin.register(DrumKitDetail)
@@ -42,3 +44,6 @@ class LikeAdmin(admin.ModelAdmin):
     list_display = ("user", "product", "date_created")
     search_fields = ("user__username", "product__name")
     list_filter = ("date_created",)
+
+admin.site.register(Product, ProductAdmin)
+admin.site.register(Category, CategoryAdmin)
