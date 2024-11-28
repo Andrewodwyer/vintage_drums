@@ -1,5 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
+
+# only there audio files can be used
+def validate_audio_file(file):
+    valid_extensions = ['.mp3', '.wav', '.ogg']
+    if not any(file.name.endswith(ext) for ext in valid_extensions):
+        raise ValidationError('Unsupported file extension. Allowed types: .mp3, .wav, .ogg')
+
 
 # Create your models here.
 
@@ -26,14 +34,14 @@ class Product(models.Model):
     sku = models.CharField(max_length=254, unique=True)
     name = models.CharField(max_length=254)
     description = models.TextField()
-    colour_option = models.CharField(max_length=254, blank=True)
     image_url = models.URLField(max_length=1024, blank=True)
     image = models.ImageField(upload_to="products/", blank=True, default="default.jpg")
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     link_to_official_page = models.URLField(max_length=1024, blank=True, null=True)
-    sound_recording = models.FileField(upload_to="sound_clips/", blank=True, null=True)
-    drum_kit_detail = models.OneToOneField("DrumKitDetail", on_delete=models.CASCADE, blank=True, null=True, related_name="product")
-    custom_initial = models.CharField(max_length=4, blank=True, default="")
+    sound_recording = models.FileField(upload_to="sound_clips/", blank=True, null=True, validators=[validate_audio_file])
+    drum_kit_detail = models.OneToOneField("DrumKitDetail", on_delete=models.CASCADE, blank=True, null=True, related_name="associated_product")
+    add_custom_initial = models.CharField(max_length=4, blank=True, default="")
     updated_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
@@ -41,23 +49,36 @@ class Product(models.Model):
 
 # Drum Kit Details Model
 class DrumKitDetail(models.Model):
-    product = models.OneToOneField("Product", on_delete=models.CASCADE, related_name="drum_kit_detail")
-    bass_drum_size = models.PositiveIntegerField(blank=True, null=True)  
+    product = models.OneToOneField("Product", on_delete=models.CASCADE, related_name="drum_detail")
+    bass_drum_size = models.PositiveIntegerField(blank=True, null=True) 
     snare_drum_size = models.PositiveIntegerField(blank=True, null=True)  
     rack_tom_1_size = models.PositiveIntegerField(blank=True, null=True)  
     rack_tom_2_size = models.PositiveIntegerField(blank=True, null=True)  
-    rack_tom_3_size = models.PositiveIntegerField(blank=True, null=True)  
-    floor_tom_1_size = models.PositiveIntegerField(blank=True, null=True)  
-    floor_tom_2_size = models.PositiveIntegerField(blank=True, null=True)  
+    rack_tom_3_size = models.PositiveIntegerField(blank=True, null=True)
+    floor_tom_1_size = models.PositiveIntegerField(blank=True, null=True)
+    floor_tom_2_size = models.PositiveIntegerField(blank=True, null=True)
+    colour = models.CharField(max_length=254, blank=True)
 
     def __str__(self):
         return f"DrumKitDetail for {self.product.name}"
 
 
+
+# Cymbal options
+CYMBAL_TYPES = [
+    ('ride', 'Ride'),
+    ('crash', 'Crash'),
+    ('hi-hat', 'Hi-Hat'),
+    ('splash', 'Splash'),
+]
+
 # Cymbal Model
+
 class CymbalDetail(models.Model):
     product = models.OneToOneField("Product", on_delete=models.CASCADE, related_name="cymbal_detail")
-    size = models.PositiveIntegerField()
+    size = models.PositiveIntegerField(blank=True, null=True)
+    type = models.CharField(max_length=254, choices=CYMBAL_TYPES, blank=True)
+
 
     def __str__(self):
         return f"CymbalDetail for {self.product.name}"
@@ -67,6 +88,7 @@ class CymbalDetail(models.Model):
 class StandDetail(models.Model):
     product = models.OneToOneField("Product", on_delete=models.CASCADE, related_name="stand_detail")
     size = models.PositiveIntegerField(blank=True, null=True) #optional size
+    type = models.CharField(max_length=254, blank=True)
 
     def __str__(self):
         return f"StandDetail for {self.product.name}"

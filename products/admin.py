@@ -1,3 +1,44 @@
 from django.contrib import admin
+from .models import Category, Product, DrumKitDetail, CymbalDetail, StandDetail, Like
 
-# Register your models here.
+# @admin.register() was used on each model instead of admin.site.register(Category)
+
+# Category model
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ("name", "friendly_name")
+    search_fields = ("name",)
+
+# Product model
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ("name", "sku", "category", "price", "updated_on")
+    search_fields = ("name", "sku")
+    list_filter = ("category",)
+    readonly_fields = ("updated_on",)
+
+# DrumKitDetail model
+@admin.register(DrumKitDetail)
+class DrumKitDetailAdmin(admin.ModelAdmin):
+    list_display = ("product", "bass_drum_size", "snare_drum_size", "rack_tom_1_size")
+    search_fields = ("product__name",)
+
+# CymbalDetail model
+@admin.register(CymbalDetail)
+class CymbalDetailAdmin(admin.ModelAdmin):
+    list_display = ("product", "type", "size")
+    search_fields = ("product__name", "type")
+    list_filter = ("type",)
+
+# StandDetail model
+@admin.register(StandDetail)
+class StandDetailAdmin(admin.ModelAdmin):
+    list_display = ("product", "type", "size")
+    search_fields = ("product__name", "type")
+
+# Like model
+@admin.register(Like)
+class LikeAdmin(admin.ModelAdmin):
+    list_display = ("user", "product", "date_created")
+    search_fields = ("user__username", "product__name")
+    list_filter = ("date_created",)
