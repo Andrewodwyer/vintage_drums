@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-6">
+            {% if product.image %}
+            <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+            {% else %}
+            <img class="img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            <h1>{{ product.name }}</h1>
+            <p class="lead">${{ product.price }}</p>
+            {% if product.rating %}
+            <p><i class="fas fa-star"></i> {{ product.rating }} / 5</p>
+            {% else %}
+            <p>No rating available</p>
+            {% endif %}
+            <hr>
+            <p>{{ product.description }}</p>
+            {% if product.sound_recording %}
+            <audio controls>
+                <source src="{{ product.sound_recording.url }}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            {% endif %}
+            <a href="#" class="btn btn-primary mt-3">Add to Cart</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

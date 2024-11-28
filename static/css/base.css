@@ -78,6 +78,16 @@ body {
     background: rgb(42, 42, 42) !important;
 }
 
+/* background for products page, -1 so it's behind the products */
+.overlay {
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+	background: white;
+	z-index: -1;
+}
 
 /* -------------------------------- Media Queries */
 
