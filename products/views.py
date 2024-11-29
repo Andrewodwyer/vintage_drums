@@ -24,11 +24,8 @@ def all_products(request):
 def product_detail(request, product_id):
     """ A view to show individual product details """
     product = get_object_or_404(Product, id=product_id)
-    # Check if the product is in the 'drum_kit' category
-    if product.category.name == 'drum_kit' and product.drum_kit_detail:
-        drum_kit_details = product.drum_kit_detail
-    else:
-        drum_kit_details = None
+    # Use the related_name drumkit_detail to fetch drum kit details
+    drum_kit_details = getattr(product, 'drumkit_detail', None)
 
     return render(request, 'products/product_detail.html', {
         'product': product,

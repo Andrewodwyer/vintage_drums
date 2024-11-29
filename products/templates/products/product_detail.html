@@ -21,12 +21,46 @@
             {% endif %}
             <hr>
             <p>{{ product.description }}</p>
+
             {% if product.sound_recording %}
             <audio controls>
                 <source src="{{ product.sound_recording.url }}" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
             {% endif %}
+            
+            <h3>Drum Kit Sizes</h3>
+            {% if drum_kit_details %}
+                <ul>
+                    {% if drum_kit_details.bass_drum_size %}
+                    <li>Bass Drum: {{ drum_kit_details.bass_drum_size }}"</li>
+                    {% endif %}
+                    {% if drum_kit_details.snare_drum_size %}
+                    <li>Snare Drum: {{ drum_kit_details.snare_drum_size }}"</li>
+                    {% endif %}
+                    {% if drum_kit_details.rack_tom_1_size %}
+                    <li>Rack Tom 1: {{ drum_kit_details.rack_tom_1_size }}"</li>
+                    {% endif %}
+                    {% if drum_kit_details.rack_tom_2_size %}
+                    <li>Rack Tom 2: {{ drum_kit_details.rack_tom_2_size }}"</li>
+                    {% endif %}
+                    {% if drum_kit_details.rack_tom_3_size %}
+                    <li>Rack Tom 3: {{ drum_kit_details.rack_tom_3_size }}"</li>
+                    {% endif %}
+                    {% if drum_kit_details.floor_tom_1_size %}
+                    <li>Floor Tom 1: {{ drum_kit_details.floor_tom_1_size }}"</li>
+                    {% endif %}
+                    {% if drum_kit_details.floor_tom_2_size %}
+                    <li>Floor Tom 2: {{ drum_kit_details.floor_tom_2_size }}"</li>
+                    {% endif %}
+                    {% if drum_kit_details.colour %}
+                    <li>Colour: {{ drum_kit_details.colour }}</li>
+                    {% endif %}
+                </ul>
+            {% else %}
+            <p>No drum kit details available.</p>
+            {% endif %}
+
             <a href="#" class="btn btn-primary mt-3">Add to Cart</a>
         </div>
     </div>

@@ -40,7 +40,6 @@ class Product(models.Model):
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     link_to_official_page = models.URLField(max_length=1024, blank=True, null=True)
     sound_recording = models.FileField(upload_to="sound_clips/", blank=True, null=True, validators=[validate_audio_file])
-    drum_kit_detail = models.OneToOneField("DrumKitDetail", on_delete=models.CASCADE, blank=True, null=True, related_name="associated_product")
     add_custom_initial = models.CharField(max_length=4, blank=True, default="")
     updated_on = models.DateTimeField(auto_now=True)
 
@@ -49,7 +48,7 @@ class Product(models.Model):
 
 # Drum Kit Details Model
 class DrumKitDetail(models.Model):
-    product = models.OneToOneField("Product", on_delete=models.CASCADE, related_name="drum_detail")
+    product = models.OneToOneField(Product, on_delete=models.CASCADE, related_name="drumkit_detail")
     bass_drum_size = models.PositiveIntegerField(blank=True, null=True) 
     snare_drum_size = models.PositiveIntegerField(blank=True, null=True)  
     rack_tom_1_size = models.PositiveIntegerField(blank=True, null=True)  
