@@ -12,9 +12,9 @@ class CategoryAdmin(admin.ModelAdmin):
 # Product model
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ("name", "sku", "category", "price", "rating", "image", "updated_on")
-    search_fields = ("name", "sku")
-    list_filter = ("category",)
+    list_display = ("name", "sku", "category", "price", "rating", "image", "updated_on", "brand")
+    search_fields = ("name", "sku", "brand") #allow to seach for name, sku or brand
+    list_filter = ("category", "brand") #filter by category or brand
     readonly_fields = ("updated_on",)
 
     ordering = ('sku',)

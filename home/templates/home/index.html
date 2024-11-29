@@ -51,31 +51,32 @@
     </section>
 
 
+ 
     <!-- Featured Drum Kits Section -->
     <section class="py-5">
         <div class="container">
             <h2 class="text-center">Featured Drum Kits</h2>
             <div class="row mt-4">
-                <div class="col-md-8 mb-4">
-                    <div class="card">
-                        <img src="{% static 'images/featured-drum.jpg' %}" class="card-img-top" alt="Featured Drum">
+                {% for product in featured_drum_kits %}
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100">
+                        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
                         <div class="card-body">
-                            <h4 class="card-title">Premium Vintage Drum Kit</h4>
-                            <p class="card-text">Experience the perfect blend of quality and history.</p>
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <p class="card-text">${{ product.price }}</p>
+                            <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">View Details</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 d-flex flex-column">
-                    <div class="card mb-4">
-                        <img src="{% static 'images/drum1.jpg' %}" class="card-img-top" alt="Drum 1">
-                    </div>
-                    <div class="card mb-4">
-                        <img src="{% static 'images/drum2.jpg' %}" class="card-img-top" alt="Drum 2">
-                    </div>
-                    <div class="card">
-                        <img src="{% static 'images/drum3.jpg' %}" class="card-img-top" alt="Drum 3">
+                {% empty %}
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">No Featured Drums Available</h5>
+                        </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -106,26 +107,26 @@
         <div class="container">
             <h2 class="text-center">Featured Cymbals</h2>
             <div class="row mt-4">
-                <div class="col-md-8 mb-4">
-                    <div class="card">
-                        <img src="{% static 'images/featured-cymbal.jpg' %}" class="card-img-top" alt="Featured Cymbal">
+                {% for product in featured_cymbals %}
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100">
+                        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
                         <div class="card-body">
-                            <h4 class="card-title">Vintage Cymbal Collection</h4>
-                            <p class="card-text">Premium sounds with historical charm.</p>
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <p class="card-text">${{ product.price }}</p>
+                            <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">View Details</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 d-flex flex-column">
-                    <div class="card mb-4">
-                        <img src="{% static 'images/cymbal1.jpg' %}" class="card-img-top" alt="Cymbal 1">
-                    </div>
-                    <div class="card mb-4">
-                        <img src="{% static 'images/cymbal2.jpg' %}" class="card-img-top" alt="Cymbal 2">
-                    </div>
-                    <div class="card">
-                        <img src="{% static 'images/cymbal3.jpg' %}" class="card-img-top" alt="Cymbal 3">
+                {% empty %}
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">No Featured Cymbals Available</h5>
+                        </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -136,45 +137,41 @@
             <h2>Select by Brand</h2>
             <div class="container py-5">
                 <div class="row">
-                    <!-- DW Drums -->
+                    <!-- Brand buttons like DW, Tama, etc. -->
                     <div class="col-4 mb-4 text-center">
                         <a href="#" class="btn btn-outline-dark p-0 w-100 h-100">
                             <h5 class="text-brand mb-0">DW Drums</h5>
                         </a>
                     </div>
-                    <!-- Tama Drums -->
                     <div class="col-4 mb-4 text-center">
                         <a href="#" class="btn btn-outline-dark p-0 w-100 h-100">
                             <h5 class="text-brand mb-0">Tama</h5>
                         </a>
                     </div>
-                    <!-- Ludwig Drums -->
                     <div class="col-4 mb-4 text-center">
                         <a href="#" class="btn btn-outline-dark p-0 w-100 h-100">
                             <h5 class="text-brand mb-0">Ludwig</h5>
                         </a>
                     </div>
-                    <!-- Mapex Drums -->
                     <div class="col-4 text-center">
                         <a href="#" class="btn btn-outline-dark p-0 w-100 h-100">
                             <h5 class="text-brand mb-0">Mapex</h5>
                         </a>
                     </div>
-                    <!-- Meinl Cymbals -->
                     <div class="col-4 text-center">
                         <a href="#" class="btn btn-outline-dark p-0 w-100 h-100">
                             <h5 class="text-brand mb-0">Meinl</h5>
                         </a>
                     </div>
-                    <!-- Pearl Drums -->
                     <div class="col-4 text-center">
                         <a href="#" class="btn btn-outline-dark p-0 w-100 h-100">
                             <h5 class="text-brand mb-0">Pearl</h5>
                         </a>
                     </div>
-                </div> 
+                </div>
             </div>
-            
         </div>
     </section>
+
+    
 {% endblock %}

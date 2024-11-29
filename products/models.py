@@ -42,6 +42,7 @@ class Product(models.Model):
     sound_recording = models.FileField(upload_to="sound_clips/", blank=True, null=True, validators=[validate_audio_file])
     add_custom_initial = models.CharField(max_length=4, blank=True, default="")
     updated_on = models.DateTimeField(auto_now=True)
+    brand = models.CharField(max_length=100, blank=True, null=True)  # New brand field
 
     def __str__(self):
         return self.name
