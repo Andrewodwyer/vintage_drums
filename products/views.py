@@ -4,7 +4,7 @@ from .models import Product
 
 class ProductListView(ListView):
     """A view to display paginated products."""
-    model = Product # fetch objects from the Product model
+    model = Product # get objects from the Product model
     template_name = 'products/products.html'  # which html to use
     context_object_name = 'products'  # Access the products in the template
     paginate_by = 6  # number of products per page
@@ -24,7 +24,7 @@ def all_products(request):
 def product_detail(request, product_id):
     """ A view to show individual product details """
     product = get_object_or_404(Product, id=product_id)
-    # Use the related_name drumkit_detail to fetch drum kit details
+    # Use the related_name drumkit_detail to get drum kit details
     drum_kit_details = getattr(product, 'drumkit_detail', None)
 
     return render(request, 'products/product_detail.html', {

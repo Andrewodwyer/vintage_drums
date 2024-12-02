@@ -8,5 +8,5 @@ from .views import ProductListView, product_detail
 
 urlpatterns = [
     path('', ProductListView.as_view(), name='all_products'),
-    path('<int:product_id>/', product_detail, name='product_detail'),  # Function-based view
+    path('<int:product_id>/', product_detail, name='product_detail'),  # Function-based view int as it is a number
 ]
