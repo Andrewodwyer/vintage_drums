@@ -12,12 +12,38 @@
 {% block content %}
     <div class="overlay"></div>
     <div class="container-fluid">
+        <!--  Heading -->
         <div class="row">
             <div class="col text-center mt-3">
                 <h2 class="logo-font">Explore Our Collection</h2>
                 <hr class="w-50 mb-1">
             </div>
         </div>
+
+        <!-- Sorting Options -->
+        <div class="row">
+            <div class="col-12 mb-3 text-right">
+                <form method="get">
+                    <!-- Preserve existing filters -->
+                    {% for key, value in request.GET.items %}
+                        {% if key != 'sort' %}
+                            <input type="hidden" name="{{ key }}" value="{{ value }}">
+                        {% endif %}
+                    {% endfor %}
+                    
+                    <label for="sort" class="mr-2">Sort by:</label>
+                    <select name="sort" id="sort" class="custom-select d-inline-block w-auto" onchange="this.form.submit()">
+                        <option value="">Default</option>
+                        <option value="price" {% if current_sort == 'price' %}selected{% endif %}>Price: Low to High</option>
+                        <option value="-price" {% if current_sort == '-price' %}selected{% endif %}>Price: High to Low</option>
+                        <option value="rating" {% if current_sort == 'rating' %}selected{% endif %}>Rating: Low to High</option>
+                        <option value="-rating" {% if current_sort == '-rating' %}selected{% endif %}>Rating: High to Low</option>
+                    </select>
+                </form>
+            </div>
+        </div>
+
+        <!-- Product Cards -->
         <div class="row">
             <div class="product-container col-10 offset-1">
                 <div class="row mt-1 mb-2"></div>

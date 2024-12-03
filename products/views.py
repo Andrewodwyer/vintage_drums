@@ -1,16 +1,9 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
-# from django.views.generic import ListView
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Product, Category
 
-# class ProductListView(ListView):
-#     """A view to display paginated products."""
-#     model = Product # get objects from the Product model
-#     template_name = 'products/products.html'  # which html to use
-#     context_object_name = 'products'  # Access the products in the template
-#     paginate_by = 6  # number of products per page
-#     ordering = ['name']  # ordering by name
 
 def all_products(request):
     """ A view to show all products, including sorting and search queries """
@@ -18,6 +11,7 @@ def all_products(request):
     products = Product.objects.all()
     query = None # prevents error when loading the pages, without a query
     categories = None
+    sort_key = None 
 
     if request.GET:
         if 'category' in request.GET:
@@ -37,11 +31,32 @@ def all_products(request):
 
             queries = Q(name__icontains=query) | Q(description__icontains=query) # pip is or and i before contains make it case insensitive
             products = products.filter(queries)
+        
+        # Sorting by price or rating
+        if 'sort' in request.GET:
+            sort_key = request.GET['sort']
+            if sort_key in ['price', '-price', 'rating', '-rating']:
+                products = products.order_by(sort_key)
+
+
+    # Pagination setup
+    paginator = Paginator(products, 6)  # 6 products per page
+    page = request.GET.get('page', 1)
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        products = paginator.page(1)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
+
 
     context = {
         'products': products,
         'search_term': query,
         'current_categories': categories,
+        'current_sort': sort_key,
+        'is_paginated': paginator.num_pages > 1,
+        'page_obj': products,
     }
 
     return render(request, 'products/products.html', context)
