@@ -17,3 +17,6 @@ def index(request):
         'featured_drum_kits': featured_drum_kits,
         'featured_cymbals': featured_cymbals,
     })
+
+
+

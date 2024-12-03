@@ -24,6 +24,10 @@ def all_products(request):
             categories = request.GET['category'].split(',')
             products = products.filter(category__name__in=categories)
             categories = Category.objects.filter(name__in=categories)
+        
+        if 'brand' in request.GET:
+            brand = request.GET['brand']
+            products = products.filter(brand__iexact=brand)
 
         if 'q' in request.GET:
             query = request.GET['q']
