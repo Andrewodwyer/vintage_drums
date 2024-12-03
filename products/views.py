@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
 # from django.views.generic import ListView
-from .models import Product
+from .models import Product, Category
 
 # class ProductListView(ListView):
 #     """A view to display paginated products."""
@@ -17,19 +17,27 @@ def all_products(request):
 
     products = Product.objects.all()
     query = None # prevents error when loading the pages, without a query
+    categories = None
 
-    if 'q' in request.GET:
-        query = request.GET['q']
-        if not query:
-            messages.error(request, "You didn't enter any search criteria!")
-            return redirect(reverse('all_products'))
+    if request.GET:
+        if 'category' in request.GET:
+            categories = request.GET['category'].split(',')
+            products = products.filter(category__name__in=categories)
+            categories = Category.objects.filter(name__in=categories)
 
-        queries = Q(name__icontains=query) | Q(description__icontains=query) # pip is or and i before contains make it case insensitive
-        products = products.filter(queries)
+        if 'q' in request.GET:
+            query = request.GET['q']
+            if not query:
+                messages.error(request, "You didn't enter any search criteria!")
+                return redirect(reverse('all_products'))
+
+            queries = Q(name__icontains=query) | Q(description__icontains=query) # pip is or and i before contains make it case insensitive
+            products = products.filter(queries)
 
     context = {
         'products': products,
         'search_term': query,
+        'current_categories': categories,
     }
 
     return render(request, 'products/products.html', context)
