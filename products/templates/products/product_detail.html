@@ -23,11 +23,43 @@
                 </a>
             </p>
             {% endif %}
+
             {% if product.rating %}
             <p><i class="fas fa-star"></i> {{ product.rating }} / 5</p>
             {% else %}
             <p>No rating available</p>
             {% endif %}
+
+            {% if user.is_authenticated %}
+                <div class="row mt-3">
+                    <div class="d-flex align-items-center mb-2">
+                        <form id="like-form" method="POST" action="{% url 'toggle_like' product.id %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="product_id" value="{{ product.id }}">
+                            <div id="like-container" class="d-flex align-items-center">
+                                <div id="like-icon" class="icon-circle {% if user_liked %}icon-success{% else %}icon-primary{% endif %}">
+                                    <i class="fa {% if user_liked %}fa-heart{% else %}fa-heart-o{% endif %}"></i>
+                                </div>
+                                <span id="like-text" class="ml-2 {% if user_liked %}text-success1{% else %}text-primary1{% endif %}">
+                                    {% if user_liked %}
+                                        Liked!
+                                    {% else %}
+                                        Like?
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </form>
+                        <p id="like-count">{{ product.likes.count }} Likes</p>                        
+                    </div>
+                </div>
+            {% else %}
+                <div class="row mt-3">
+                    <p class="ml-4"><i class="fa fa-heart-o"></i> <a href="{{ login_url }}">Sign in</a> to like this product.</p>
+                </div>
+            {% endif %}
+        
+            
+
             <hr>
             <p>{{ product.description }}</p>
 

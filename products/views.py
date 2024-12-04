@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Product, Category
+from .models import Product, Category, Like
 
 
 def all_products(request):
@@ -64,11 +67,41 @@ def all_products(request):
 def product_detail(request, product_id):
     """ A view to show individual product details """
     product = get_object_or_404(Product, id=product_id)
+
+    # for like if authenticated
+    user_liked = False
+    if request.user.is_authenticated:
+        user_liked = Like.objects.filter(product=product, user=request.user).exists()
+
     # Use the related_name drumkit_detail to get drum kit details
     drum_kit_details = getattr(product, 'drumkit_detail', None)
 
-    return render(request, 'products/product_detail.html', {
+    context = {
         'product': product,
         'drum_kit_details': drum_kit_details,
-    })
+        'user_liked': user_liked,
+    }
 
+    return render(request, 'products/product_detail.html', context)
+
+
+@login_required
+def toggle_like(request, product_id):
+    """Toggle like for a product via AJAX."""
+    product = get_object_or_404(Product, id=product_id)
+
+    # Toggle the like status
+    like, created = Like.objects.get_or_create(user=request.user, product=product)
+    if not created:
+        like.delete()  # Unlike the product
+        user_liked = False
+    else:
+        user_liked = True
+
+    # Get the updated like count
+    like_count = product.likes.count()
+
+    return JsonResponse({
+        'user_liked': user_liked,
+        'like_count': like_count,
+    })
