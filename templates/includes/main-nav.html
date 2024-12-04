@@ -1,18 +1,8 @@
 <div class="collapse navbar-collapse" id="main-nav">
     <ul class="navbar-nav w-auto mx-auto">
-        <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="all-products-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Our Collection
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
-                <a href="" class="dropdown-item ">By Rating</a>
-                <a href="" class="dropdown-item ">By Category</a>
-                <a href="{% url 'all_products' %}" class="dropdown-item">Our Collection</a>
-            </div>
-        </li>
 
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="drum-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="logo-font nav-link text-black mr-5" href="#" id="drum-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Drums
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="drum-link">
@@ -23,7 +13,7 @@
         </li>
 
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="cymbal-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="logo-font nav-link text-black mr-5" href="#" id="cymbal-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Cymbals
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="cymbal-link">
@@ -35,7 +25,7 @@
         </li>
 
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black" href="#" id="accessories" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="logo-font nav-link text-black" href="#" id="accessories" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Accessories
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="specials-link">
@@ -44,8 +34,23 @@
                 <a href="{% url 'all_products' %}?category=stands,sticks" class="dropdown-item">All Accessories</a>
             </div>
         </li>
+
+        <li class="nav-item dropdown">
+            <a class="logo-font nav-link text-black ml-5" href="#" id="brand-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Brands
+            </a>
+            <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
+                <a href="{% url 'all_products' %}?brand=DW Drums" class="dropdown-item ">DW Drums</a>
+                <a href="{% url 'all_products' %}?brand=Tama" class="dropdown-item ">Tama</a>
+                <a href="{% url 'all_products' %}?brand=Ludwig" class="dropdown-item">Ludwig</a>
+                <a href="{% url 'all_products' %}?brand=Mapex" class="dropdown-item">Mapex</a>
+                <a href="{% url 'all_products' %}?brand=Meinl" class="dropdown-item">Meinl</a>
+                <a href="{% url 'all_products' %}?brand=Pearl" class="dropdown-item">Pearl</a>
+            </div>
+        </li>
+        
         <li class="nav-item pl-5">
-            <a class="logo-font font-weight-bold nav-link text-black" href="#">About Us</a>
+            <a class="logo-font nav-link text-black" href="#">About Us</a>
         </li>
     </ul>
 </div>

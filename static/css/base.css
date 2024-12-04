@@ -78,6 +78,11 @@ body {
     background: rgb(42, 42, 42) !important;
 }
 
+a.category-badge > span.badge:hover {
+    background: #212529 !important;
+    color: #fff !important;
+}
+
 /* background for products page, -1 so it's behind the products */
 .overlay {
 	height: 100%;
