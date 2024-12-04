@@ -36,7 +36,7 @@ def all_products(request):
         if 'sort' in request.GET:
             sort_key = request.GET['sort']
             if sort_key in ['price', '-price', 'rating', '-rating']:
-                products = products.order_by(sort_key)
+                products = products.order_by(sort_key) #Django's order_by() method
 
 
     # Pagination setup

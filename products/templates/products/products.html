@@ -26,13 +26,18 @@
                 <form method="get">
                     <!-- Preserve existing filters -->
                     {% for key, value in request.GET.items %}
+                    <!-- .items returns key-value pairs of the GET query parameters. -->
                         {% if key != 'sort' %}
+                        <!-- skipping sort and generates hidden inputs for the other query parameters 
+                         hiding the parameters keeps the current parameters like category or q.
+                         adding sort='current value' -->
                             <input type="hidden" name="{{ key }}" value="{{ value }}">
                         {% endif %}
                     {% endfor %}
                     
                     <label for="sort" class="mr-2">Sort by:</label>
                     <select name="sort" id="sort" class="custom-select d-inline-block w-auto" onchange="this.form.submit()">
+                        <!-- onchange="" automatically submits the form -->
                         <option value="">Default</option>
                         <option value="price" {% if current_sort == 'price' %}selected{% endif %}>Price: Low to High</option>
                         <option value="-price" {% if current_sort == '-price' %}selected{% endif %}>Price: High to Low</option>
@@ -88,8 +93,14 @@
                             <ul class="pagination justify-content-center">
                                 <!-- Previous page link -->
                                 {% if page_obj.has_previous %}
+                                <!-- display button if there is a previous page -->
                                 <li class="page-item">
-                                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}">
+                                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}
+                                    {% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}
+                                    {% if request.GET.category %}&category={{ request.GET.category }}
+                                    {% endif %}">
+                                    <!-- if previous page retrieve it, if request is sort or category are in url query 
+                                     append &<key eg sort>=value to preserve the current filter -->
                                         Previous
                                     </a>
                                 </li>
@@ -101,7 +112,9 @@
                                     <li class="page-item active"><span class="page-link">{{ num }}</span></li>
                                     {% else %}
                                     <li class="page-item">
-                                        <a class="page-link" href="?page={{ num }}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}">
+                                        <!-- similar to has previous, but adding a number eg page=2&sort=price&category=drum_kit -->
+                                        <a class="page-link" href="?page={{ num }}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}
+                                        {% if request.GET.category %}&category={{ request.GET.category }}{% endif %}">
                                             {{ num }}
                                         </a>
                                     </li>
@@ -111,7 +124,9 @@
                                 <!-- Next page link -->
                                 {% if page_obj.has_next %}
                                 <li class="page-item">
-                                    <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}">
+                                    <!-- DTL href is needed due to sorting and category -->
+                                    <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.sort %}&sort={{ request.GET.sort }}
+                                    {% endif %}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}">
                                         Next
                                     </a>
                                 </li>
