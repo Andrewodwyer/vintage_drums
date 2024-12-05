@@ -28,11 +28,16 @@
                         {% endif %}
                         {% if item.product.category.name|lower in allowed_categories %}
                         <div class="d-flex align-items-center">
-                            <form action="{% url 'update_quantity' item_id=item.id %}" method="POST" class="d-inline-block">
+                            <form action="{% url 'update_quantity' item_id=item.item_id %}" method="POST">
                                 {% csrf_token %}
-                                <button type="submit" name="action" value="decrease" class="btn btn-outline-secondary btn-sm me-2">-</button>
-                                <span class="font-weight-bold">{{ item.quantity }}</span>
-                                <button type="submit" name="action" value="increase" class="btn btn-outline-secondary btn-sm ms-2">+</button>
+                                <input type="number" name="quantity" value="{{ item.quantity }}" min="0" class="form-control">
+                                {% if item.size %}
+                                    <input type="hidden" name="product_size" value="{{ item.size }}">
+                                {% endif %}
+                                {% if item.material %}
+                                    <input type="hidden" name="product_material" value="{{ item.material }}">
+                                {% endif %}
+                                <button type="submit" class="btn btn-primary">Update</button>
                             </form>
                         </div>
                         {% else %}
