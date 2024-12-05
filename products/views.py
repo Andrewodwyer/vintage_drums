@@ -65,31 +65,27 @@ def all_products(request):
 def product_detail(request, product_id):
     product = get_object_or_404(Product, id=product_id)
 
-    # Determine if the product's quantity can be modified
-    allowed_categories = ["sticks", "stands"]
-    can_modify_quantity = product.category.name.lower() in allowed_categories
-
-    # Access the current bag directly from the session
+    # Access the current bag from the session
     bag = request.session.get('bag', {})
-    product_in_bag = str(product_id) in bag  # Ensure product_id is a string for session compatibility
+    product_in_bag = str(product_id) in bag  # Check if this product is already in the bag
 
-    # For like if authenticated
+    # Like status for authenticated users
     user_liked = False
     if request.user.is_authenticated:
         user_liked = Like.objects.filter(product=product, user=request.user).exists()
 
-    # Use the related_name drumkit_detail to get drum kit details
+    # Fetch drum kit details if available
     drum_kit_details = getattr(product, 'drumkit_detail', None)
 
     context = {
         'product': product,
-        'can_modify_quantity': can_modify_quantity,
-        'product_in_bag': product_in_bag,
+        'product_in_bag': product_in_bag,  # Restriction applies per product
         'drum_kit_details': drum_kit_details,
         'user_liked': user_liked,
     }
 
     return render(request, 'products/product_detail.html', context)
+
 
 
 

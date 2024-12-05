@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product, DrumKitDetail, CymbalDetail, StandDetail, Like
+from .models import Category, Product, DrumKitDetail, CymbalDetail, StandDetail, StickDetail, Like
 
 # @admin.register() was used on each model instead of admin.site.register(Category)
 
@@ -36,6 +36,12 @@ class CymbalDetailAdmin(admin.ModelAdmin):
 @admin.register(StandDetail)
 class StandDetailAdmin(admin.ModelAdmin):
     list_display = ("product", "type", "size")
+    search_fields = ("product__name", "type")
+
+# StickDetail model
+@admin.register(StickDetail)
+class StickDetailAdmin(admin.ModelAdmin):
+    list_display = ("product", "material", "size")
     search_fields = ("product__name", "type")
 
 # Like model

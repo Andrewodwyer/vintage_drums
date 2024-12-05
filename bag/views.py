@@ -6,7 +6,7 @@ def view_bag(request):
     """ A view that renders the bag contents page """
     allowed_categories = ['sticks', 'stands']  # Categories with relaxed quantity limits
     return render(request, 'bag/bag.html', {
-        'allowed_categories': allowed_categories
+        'allowed_categories': allowed_categories,
     })
 
 

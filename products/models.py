@@ -93,6 +93,29 @@ class StandDetail(models.Model):
     def __str__(self):
         return f"StandDetail for {self.product.name}"
 
+# Stick Sizes and Materials
+class StickDetail(models.Model):
+    STICK_SIZES = [
+        ('7A', '7A'),
+        ('5A', '5A'),
+        ('5B', '5B'),
+        ('2B', '2B'),
+    ]
+
+    MATERIALS = [
+        ('maple', 'Maple'),
+        ('hickory', 'Hickory'),
+        ('oak', 'Oak'),
+        ('carbon_fiber', 'Carbon Fiber'),
+    ]
+
+    product = models.OneToOneField("Product", on_delete=models.CASCADE, related_name="stick_detail")
+    material = models.CharField(max_length=50, choices=MATERIALS, blank=True, null=True)
+    size = models.CharField(max_length=50, choices=STICK_SIZES, blank=True, null=True)
+
+    def __str__(self):
+        return f"StickDetail for {self.product.name}"
+
 # likes
 
 class Like(models.Model):
