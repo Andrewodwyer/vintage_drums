@@ -42,7 +42,7 @@
                     
                     <label for="sort" class="mr-2">Sort by:</label>
                     <select name="sort" id="sort" class="custom-select d-inline-block w-auto" onchange="this.form.submit()">
-                        <!-- onchange="" automatically submits the form -->
+                        <!-- onchange="" automatically submits the form, this to the parent form element-->
                         <option value="">Default</option>
                         <option value="price" {% if current_sort == 'price' %}selected{% endif %}>Price: Low to High</option>
                         <option value="-price" {% if current_sort == '-price' %}selected{% endif %}>Price: High to Low</option>
