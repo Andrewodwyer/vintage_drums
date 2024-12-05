@@ -75,6 +75,7 @@ TEMPLATES = [
                 'django.template.context_processors.request', # required by allauth
                 'django.contrib.auth.context_processors.auth', 
                 'django.contrib.messages.context_processors.messages',
+                'bag.contexts.bag_contents',
             ],
         },
     },
@@ -164,3 +165,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-andrewodwye-vintagedrum-l1ai7dd3ptj.ws.codeinstitute-ide.net',
 ]
+
+# Delivery rates by category
+DELIVERY_RATES = {
+    'sticks': 5,
+    'hi_hats': 25,
+    'crash_cymbal': 25,
+    'ride_cymbal': 30,
+    'drums': 40,
+    'stand': 30,
+}
+
+FREE_DELIVERY_THRESHOLD = 200  # Free delivery threshold
+DELIVERY_AND_INSTALLATION = 'drum_kit'

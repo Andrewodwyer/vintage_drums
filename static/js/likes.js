@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('like-container').addEventListener('click', function (e) {
         e.preventDefault(); // Prevent form submission
-        console.log('Like container clicked!');
         const formData = new FormData(likeForm);
 
         fetch(likeForm.action, {
