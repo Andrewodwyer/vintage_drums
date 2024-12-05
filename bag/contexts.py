@@ -4,14 +4,14 @@ from django.shortcuts import get_object_or_404
 from products.models import Product
 
 def bag_contents(request):
+    
     bag_items = []
     total = 0
     product_count = 0
     highest_delivery_rate = 0
     drum_kit_in_bag = False
 
-    # Retrieve the bag from the session
-    bag = request.session.get('bag', {})
+    bag = request.session.setdefault('bag', {})
 
     for item_id, item_data in bag.items():
         product = get_object_or_404(Product, pk=item_id)
@@ -35,6 +35,7 @@ def bag_contents(request):
                 'item_id': item_id,
                 'quantity': quantity,
                 'product': product,
+                'total_price': product.price * quantity,  
             })
         else:
             # Items with size differentiation
@@ -56,6 +57,7 @@ def bag_contents(request):
                     'quantity': quantity,
                     'product': product,
                     'size': size,
+                    'total_price': product.price * quantity, 
                 })
 
     # Determine delivery cost

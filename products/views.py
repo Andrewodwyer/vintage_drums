@@ -2,17 +2,16 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Product, Category, Like
-
+from bag.contexts import bag_contents  # Import the bag context
 
 def all_products(request):
     """ A view to show all products, including sorting and search queries """
 
     products = Product.objects.all()
-    query = None # prevents error when loading the pages, without a query
+    query = None  # prevents error when loading the pages, without a query
     categories = None
     sort_key = None 
 
@@ -21,7 +20,7 @@ def all_products(request):
             categories = request.GET['category'].split(',')
             products = products.filter(category__name__in=categories)
             categories = Category.objects.filter(name__in=categories)
-        
+
         if 'brand' in request.GET:
             brand = request.GET['brand']
             products = products.filter(brand__iexact=brand)
@@ -32,15 +31,14 @@ def all_products(request):
                 messages.error(request, "You didn't enter any search criteria!")
                 return redirect(reverse('all_products'))
 
-            queries = Q(name__icontains=query) | Q(description__icontains=query) # pip is or and i before contains make it case insensitive
+            queries = Q(name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
-        
+
         # Sorting by price or rating
         if 'sort' in request.GET:
             sort_key = request.GET['sort']
             if sort_key in ['price', '-price', 'rating', '-rating']:
-                products = products.order_by(sort_key) #Django's order_by() method
-
+                products = products.order_by(sort_key)
 
     # Pagination setup
     paginator = Paginator(products, 6)  # 6 products per page
@@ -51,7 +49,6 @@ def all_products(request):
         products = paginator.page(1)
     except EmptyPage:
         products = paginator.page(paginator.num_pages)
-
 
     context = {
         'products': products,
@@ -64,11 +61,19 @@ def all_products(request):
 
     return render(request, 'products/products.html', context)
 
+
 def product_detail(request, product_id):
-    """ A view to show individual product details """
     product = get_object_or_404(Product, id=product_id)
 
-    # for like if authenticated
+    # Determine if the product's quantity can be modified
+    allowed_categories = ["sticks", "stands"]
+    can_modify_quantity = product.category.name.lower() in allowed_categories
+
+    # Access the current bag directly from the session
+    bag = request.session.get('bag', {})
+    product_in_bag = str(product_id) in bag  # Ensure product_id is a string for session compatibility
+
+    # For like if authenticated
     user_liked = False
     if request.user.is_authenticated:
         user_liked = Like.objects.filter(product=product, user=request.user).exists()
@@ -78,11 +83,14 @@ def product_detail(request, product_id):
 
     context = {
         'product': product,
+        'can_modify_quantity': can_modify_quantity,
+        'product_in_bag': product_in_bag,
         'drum_kit_details': drum_kit_details,
         'user_liked': user_liked,
     }
 
     return render(request, 'products/product_detail.html', context)
+
 
 
 @login_required

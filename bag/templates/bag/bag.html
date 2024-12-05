@@ -10,32 +10,74 @@
 {% endblock %}
 
 {% block content %}
-    <div class="overlay"></div>
-    <div class="container mb-2">
-        <div class="row">
-            <div class="col">
-                <hr>
-                <h2 class="logo-font mb-4">Shopping Bag</h2>
-                <hr>
+<div class="container my-5">
+    <h1 class="text-center mb-5">Your Shopping Bag</h1>
+
+    <div class="row">
+        <!-- Shopping Bag Items -->
+        <div class="col-lg-8">
+            {% for item in bag_items %}
+            <div class="card mb-4">
+                <div class="card-body d-flex align-items-center">
+                    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="rounded me-4" style="width: 100px; height: 100px;">
+                    <div class="flex-grow-1">
+                        <h5 class="card-title">{{ item.product.name }}</h5>
+                        <p class="card-text">${{ item.product.price|floatformat:2 }}</p>
+                        {% if item.size %}
+                        <p class="small text-muted">Size: {{ item.size }}</p>
+                        {% endif %}
+                        {% if item.product.category.name|lower in allowed_categories %}
+                        <div class="d-flex align-items-center">
+                            <form action="{% url 'update_quantity' item_id=item.id %}" method="POST" class="d-inline-block">
+                                {% csrf_token %}
+                                <button type="submit" name="action" value="decrease" class="btn btn-outline-secondary btn-sm me-2">-</button>
+                                <span class="font-weight-bold">{{ item.quantity }}</span>
+                                <button type="submit" name="action" value="increase" class="btn btn-outline-secondary btn-sm ms-2">+</button>
+                            </form>
+                        </div>
+                        {% else %}
+                        <p class="text-danger">Quantity modification not allowed for this product.</p>
+                        {% endif %}
+                    </div>
+                    <div class="text-end">
+                        <p class="font-weight-bold">${{ item.total_price|floatformat:2 }}</p>  <!-- Use the calculated total price here -->
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <i class="bi bi-trash"></i> Remove
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
+            {% empty %}
+            <p>Your bag is currently empty.</p>
+            {% endfor %}
         </div>
 
-        <div class="row">
-            <div class="col">
-                {% if bag_items %}
-                    <div class="table-responsive rounded">
-                        {{ bag_items }}
-                    </div>
-                {% else %}
-                    <p class="lead mb-5">Your bag is empty.</p>
-                    <a href="{% url 'all_products' %}" class="btn btn-outline-black rounded-0 btn-lg">
-                        <span class="icon">
-                            <i class="fas fa-chevron-left"></i>
-                        </span>
-                        <span class="text-uppercase">Keep Shopping</span>
-                    </a>
-                {% endif %}
+        <!-- Order Summary -->
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Order Summary</h5>
+                    <ul class="list-unstyled">
+                        <li class="d-flex justify-content-between">
+                            <span>Subtotal</span>
+                            <span>${{ total|floatformat:2 }}</span>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                            <span>Shipping</span>
+                            <span>Free</span>
+                        </li>
+                        <li class="d-flex justify-content-between mt-3 font-weight-bold">
+                            <span>Total</span>
+                            <span>${{ total|floatformat:2 }}</span>
+                        </li>
+                    </ul>
+                    <a href="" class="btn btn-primary w-100">Proceed to Checkout</a>
+                </div>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
