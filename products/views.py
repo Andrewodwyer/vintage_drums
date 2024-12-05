@@ -65,7 +65,7 @@ def all_products(request):
 def product_detail(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     bag = request.session.get('bag', {})  # Bag from session
-    restricted_categories = ['sticks', 'stands']
+    restricted_categories = ['sticks', 'stand']
     
     product_category = product.category.name.lower()
     product_in_bag = str(product_id) in bag  # Check if product is already in bag
