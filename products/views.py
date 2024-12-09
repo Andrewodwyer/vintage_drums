@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from django.contrib import messages
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Product, Category, Like
+from .models import Product, Category, Like, DrumKitDetail
 from bag.contexts import bag_contents  # Import the bag context
 
 def all_products(request):
@@ -71,18 +71,20 @@ def product_detail(request, product_id):
     product_in_bag = str(product_id) in bag  # Check if product is already in bag
     allow_quantity_input = product_category in restricted_categories  # Check if category allows quantity input
 
+    drum_kit_details = getattr(product, 'drumkit_detail', None) 
+    
     user_liked = request.user.is_authenticated and Like.objects.filter(product=product, user=request.user).exists()
 
     context = {
         'product': product,
         'product_in_bag': product_in_bag,
+        'drum_kit_details': drum_kit_details,
         'allow_quantity_input': allow_quantity_input,
         'user_liked': user_liked,
         'restricted_categories': restricted_categories,
     }
 
     return render(request, 'products/product_detail.html', context)
-
 
 
 
