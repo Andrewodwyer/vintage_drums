@@ -13,7 +13,8 @@ def all_products(request):
     products = Product.objects.all()
     query = None  # prevents error when loading the pages, without a query
     categories = None
-    sort_key = None 
+    sort = None 
+    direction = None
 
     if request.GET:
         if 'category' in request.GET:
@@ -36,9 +37,20 @@ def all_products(request):
 
         # Sorting by price or rating
         if 'sort' in request.GET:
-            sort_key = request.GET['sort']
-            if sort_key in ['price', '-price', 'rating', '-rating']:
-                products = products.order_by(sort_key)
+            sortkey = request.GET['sort']
+            sort = sortkey
+            if sortkey == 'name':
+                sortkey = 'lower_name'
+                products = products.annotate(lower_name=Lower('name'))
+            if sortkey == 'category':
+                sortkey = 'category__name'
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortkey = f'-{sortkey}'
+            products = products.order_by(sortkey)
+    
+    current_sorting = f'{sort}_{direction}'
 
     # Pagination setup
     paginator = Paginator(products, 6)  # 6 products per page
@@ -54,7 +66,7 @@ def all_products(request):
         'products': products,
         'search_term': query,
         'current_categories': categories,
-        'current_sort': sort_key,
+        'current_sort': current_sorting,
         'is_paginated': paginator.num_pages > 1,
         'page_obj': products,
     }
@@ -63,8 +75,10 @@ def all_products(request):
 
 
 def product_detail(request, product_id):
+
     product = get_object_or_404(Product, id=product_id)
     bag = request.session.get('bag', {})  # Bag from session
+    
     restricted_categories = ['sticks', 'stand']
     
     product_category = product.category.name.lower()

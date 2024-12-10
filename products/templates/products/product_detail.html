@@ -19,7 +19,7 @@
                         <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
                     </a>
                 {% else %}
-                <img class="img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                    <img class="img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                 {% endif %}
             </div>
             <div class="col-md-6">
@@ -30,29 +30,13 @@
                         <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
                     </a>
                 </p>
-                {% if product.cymbal_detail %}
-                    <p>Size: {{ product.cymbal_detail.size }} inches</p>
-                    <p>Type: {{ product.cymbal_detail.get_type_display }}</p>
+
+                {% if product.size %}
+                    <p>Size: {{ product.size }}</p>
                 {% endif %}
-                {% if product.stick_detail %}
-                    <div class="col-12">
-                        <p><strong>Size:</strong></p>
-                        <select class="form-control w-50" name="product_size" id="id_product_size">
-                            {% for size, display in product.stick_detail.STICK_SIZES %}
-                                <option value="{{ size }}">{{ display }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                {% endif %}
-                {% if product.stick_detail %}
-                    <div class="col-12">
-                        <p><strong>Material:</strong></p>
-                        <select class="form-control w-50" name="product_material" id="id_product_material">
-                            {% for value, display in product.stick_detail.MATERIALS %}
-                                <option value="{{ value }}">{{ display }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
+
+                {% if product.material %}
+                    <p>Material: {{ product.material }}</p>
                 {% endif %}
 
                 <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
@@ -89,12 +73,11 @@
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     </div>
                 </form>
-                
-                
+
                 {% if product.rating %}
-                <p><i class="fas fa-star"></i> {{ product.rating }} / 5</p>
+                    <p><i class="fas fa-star"></i> {{ product.rating }} / 5</p>
                 {% else %}
-                <p>No rating available</p>
+                    <p>No rating available</p>
                 {% endif %}
 
                 {% if user.is_authenticated %}
@@ -116,7 +99,7 @@
                                     </span>
                                 </div>
                             </form>
-                            <p id="like-count">{{ product.likes.count }} Likes</p>                        
+                            <p id="like-count">{{ product.likes.count }} Likes</p>
                         </div>
                     </div>
                 {% else %}
@@ -124,22 +107,19 @@
                         <p class="ml-4"><i class="fa fa-heart-o"></i> <a href="{{ login_url }}">Sign in</a> to like this product.</p>
                     </div>
                 {% endif %}
-            
-                
 
                 <hr>
                 <p>{{ product.description }}</p>
 
                 {% if product.sound_recording %}
-                <audio controls>
-                    <source src="{{ product.sound_recording.url }}" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
+                    <audio controls>
+                        <source src="{{ product.sound_recording.url }}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
                 {% endif %}
 
-                {% if drum_kit_details %}               
-                <h3>Drum Kit Sizes</h3>
-
+                {% if drum_kit_details %}
+                    <h3>Drum Kit Sizes</h3>
                     <ul>
                         {% if drum_kit_details.bass_drum_size %}
                         <li>Bass Drum: {{ drum_kit_details.bass_drum_size }}"</li>
@@ -167,9 +147,6 @@
                         {% endif %}
                     </ul>
                 {% endif %}
-
-                <!-- <a href="#" class="btn btn-primary mt-3">Add to Cart</a> -->
-
             </div>
         </div>
     </div>

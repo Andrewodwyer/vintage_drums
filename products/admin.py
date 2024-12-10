@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product, DrumKitDetail, CymbalDetail, StandDetail, StickDetail, Like
+from .models import Category, Product, DrumKitDetail, Like
 
 # @admin.register() was used on each model instead of admin.site.register(Category)
 
@@ -25,24 +25,24 @@ class DrumKitDetailAdmin(admin.ModelAdmin):
     list_display = ("product", "bass_drum_size", "snare_drum_size", "rack_tom_1_size")
     search_fields = ("product__name",)
 
-# CymbalDetail model
-@admin.register(CymbalDetail)
-class CymbalDetailAdmin(admin.ModelAdmin):
-    list_display = ("product", "type", "size")
-    search_fields = ("product__name", "type")
-    list_filter = ("type",)
+# # CymbalDetail model
+# @admin.register(CymbalDetail)
+# class CymbalDetailAdmin(admin.ModelAdmin):
+#     list_display = ("product", "type", "size")
+#     search_fields = ("product__name", "type")
+#     list_filter = ("type",)
 
 # StandDetail model
-@admin.register(StandDetail)
-class StandDetailAdmin(admin.ModelAdmin):
-    list_display = ("product", "type", "size")
-    search_fields = ("product__name", "type")
+# @admin.register(StandDetail)
+# class StandDetailAdmin(admin.ModelAdmin):
+#     list_display = ("product", "type", "size")
+#     search_fields = ("product__name", "type")
 
 # StickDetail model
-@admin.register(StickDetail)
-class StickDetailAdmin(admin.ModelAdmin):
-    list_display = ("product", "material", "size")
-    search_fields = ("product__name", "type")
+# @admin.register(StickDetail)
+# class StickDetailAdmin(admin.ModelAdmin):
+#     list_display = ("product", "material", "size")
+#     search_fields = ("product__name", "type")
 
 # Like model
 @admin.register(Like)

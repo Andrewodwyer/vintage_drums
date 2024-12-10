@@ -44,6 +44,10 @@ class Product(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
     brand = models.CharField(max_length=100, blank=True, null=True)  # New brand field
 
+    material = models.CharField(max_length=50, blank=True, null=True)
+    size = models.CharField(max_length=50, blank=True, null=True)
+    size_option = models.BooleanField(default=False, null=True, blank=True)
+
     def __str__(self):
         return self.name
 
@@ -64,57 +68,57 @@ class DrumKitDetail(models.Model):
 
 
 
-# Cymbal options
-CYMBAL_TYPES = [
-    ('ride', 'Ride'),
-    ('crash', 'Crash'),
-    ('hi-hat', 'Hi-Hat'),
-    ('splash', 'Splash'),
-]
+# # Cymbal options
+# CYMBAL_TYPES = [
+#     ('ride', 'Ride'),
+#     ('crash', 'Crash'),
+#     ('hi-hat', 'Hi-Hat'),
+#     ('splash', 'Splash'),
+# ]
 
-# Cymbal Model
+# # Cymbal Model
 
-class CymbalDetail(models.Model):
-    product = models.OneToOneField("Product", on_delete=models.CASCADE, related_name="cymbal_detail")
-    size = models.PositiveIntegerField(blank=True, null=True)
-    type = models.CharField(max_length=254, choices=CYMBAL_TYPES, blank=True)
-
-
-    def __str__(self):
-        return f"CymbalDetail for {self.product.name}"
+# class CymbalDetail(models.Model):
+#     product = models.OneToOneField("Product", on_delete=models.CASCADE, related_name="cymbal_detail")
+#     size = models.PositiveIntegerField(blank=True, null=True)
+#     type = models.CharField(max_length=254, choices=CYMBAL_TYPES, blank=True)
 
 
-# Stand Model
-class StandDetail(models.Model):
-    product = models.OneToOneField("Product", on_delete=models.CASCADE, related_name="stand_detail")
-    size = models.PositiveIntegerField(blank=True, null=True) #optional size
-    type = models.CharField(max_length=254, blank=True)
+#     def __str__(self):
+#         return f"CymbalDetail for {self.product.name}"
 
-    def __str__(self):
-        return f"StandDetail for {self.product.name}"
 
-# Stick Sizes and Materials
-class StickDetail(models.Model):
-    STICK_SIZES = [
-        ('7A', '7A'),
-        ('5A', '5A'),
-        ('5B', '5B'),
-        ('2B', '2B'),
-    ]
+# # Stand Model
+# class StandDetail(models.Model):
+#     product = models.OneToOneField("Product", on_delete=models.CASCADE, related_name="stand_detail")
+#     size = models.PositiveIntegerField(blank=True, null=True) #optional size
+#     type = models.CharField(max_length=254, blank=True)
 
-    MATERIALS = [
-        ('maple', 'Maple'),
-        ('hickory', 'Hickory'),
-        ('oak', 'Oak'),
-        ('carbon_fiber', 'Carbon Fiber'),
-    ]
+#     def __str__(self):
+#         return f"StandDetail for {self.product.name}"
 
-    product = models.OneToOneField("Product", on_delete=models.CASCADE, related_name="stick_detail")
-    material = models.CharField(max_length=50, choices=MATERIALS, blank=True, null=True)
-    size = models.CharField(max_length=50, choices=STICK_SIZES, blank=True, null=True)
+# # Stick Sizes and Materials
+# class StickDetail(models.Model):
+#     STICK_SIZES = [
+#         ('7A', '7A'),
+#         ('5A', '5A'),
+#         ('5B', '5B'),
+#         ('2B', '2B'),
+#     ]
 
-    def __str__(self):
-        return f"StickDetail for {self.product.name}"
+#     MATERIALS = [
+#         ('maple', 'Maple'),
+#         ('hickory', 'Hickory'),
+#         ('oak', 'Oak'),
+#         ('carbon_fiber', 'Carbon Fiber'),
+#     ]
+
+#     product = models.OneToOneField("Product", on_delete=models.CASCADE, related_name="stick_detail")
+#     material = models.CharField(max_length=50, choices=MATERIALS, blank=True, null=True)
+#     size = models.CharField(max_length=50, choices=STICK_SIZES, blank=True, null=True)
+
+#     def __str__(self):
+#         return f"StickDetail for {self.product.name}"
 
 # likes
 
