@@ -56,25 +56,19 @@
                         </div>
                     </div>
                 </div>
-                {% empty %}
-                <!-- Empty message and keep shopping button -->
-                <p class="lead mb-5">Your bag is empty.</p>
-                <a href="{% url 'all_products' %}" class="btn btn-outline-black rounded-0 btn-lg">
-                    <span class="icon">
-                        <i class="fas fa-chevron-left"></i>
-                    </span>
-                    <span class="text-uppercase">Keep Shopping</span>
-                </a>
                 {% endfor %}
             {% else %}
+                <!-- Empty message and keep shopping button -->
                 <p class="lead mb-5">Your bag is empty.</p>
-                <a href="{% url 'all_products' %}" class="btn btn-outline-black rounded-0 btn-lg">
-                    <span class="icon">
-                        <i class="fas fa-chevron-left"></i>
-                    </span>
-                    <span class="text-uppercase">Keep Shopping</span>
-                </a>
             {% endif %}
+
+            <!-- Keep Shopping Button (shown in both cases) -->
+            <a href="{% url 'all_products' %}" class="btn btn-outline-black rounded-0 btn-lg mt-4">
+                <span class="icon">
+                    <i class="fas fa-chevron-left"></i>
+                </span>
+                <span class="text-uppercase">Keep Shopping</span>
+            </a>
         </div>
 
         <!-- Order Summary -->
