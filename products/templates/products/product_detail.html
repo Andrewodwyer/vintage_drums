@@ -42,6 +42,20 @@
                 <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
                     {% csrf_token %}
                     <div class="form-row">
+                        {% if product.size_option %}
+                            <!-- Only show the size dropdown if size_option is True -->
+                            <div class="col-12">
+                                <p><strong>Size:</strong></p>
+                                <select class="form-control rounded-0 w-50" name="product_size" id="id_product_size">
+                                    <option value="xs">XS</option>
+                                    <option value="s">S</option>
+                                    <option value="m" selected>M</option>
+                                    <option value="l">L</option>
+                                    <option value="xl">XL</option>
+                                </select>
+                            </div>
+                        {% endif %}
+
                         <div class="col-12">
                             {% if product_in_bag %}
                                 <p class="text-warning mt-3">This item is already in your bag.</p>
@@ -78,34 +92,6 @@
                     <p><i class="fas fa-star"></i> {{ product.rating }} / 5</p>
                 {% else %}
                     <p>No rating available</p>
-                {% endif %}
-
-                {% if user.is_authenticated %}
-                    <div class="row mt-3">
-                        <div class="d-flex align-items-center mb-2">
-                            <form id="like-form" method="POST" action="{% url 'toggle_like' product.id %}">
-                                {% csrf_token %}
-                                <input type="hidden" name="product_id" value="{{ product.id }}">
-                                <div id="like-container" class="d-flex align-items-center">
-                                    <div id="like-icon" class="icon-circle {% if user_liked %}icon-success{% else %}icon-primary{% endif %}">
-                                        <i class="fa {% if user_liked %}fa-heart{% else %}fa-heart-o{% endif %}"></i>
-                                    </div>
-                                    <span id="like-text" class="ml-2 {% if user_liked %}text-success1{% else %}text-primary1{% endif %}">
-                                        {% if user_liked %}
-                                            Liked!
-                                        {% else %}
-                                            Like?
-                                        {% endif %}
-                                    </span>
-                                </div>
-                            </form>
-                            <p id="like-count">{{ product.likes.count }} Likes</p>
-                        </div>
-                    </div>
-                {% else %}
-                    <div class="row mt-3">
-                        <p class="ml-4"><i class="fa fa-heart-o"></i> <a href="{{ login_url }}">Sign in</a> to like this product.</p>
-                    </div>
                 {% endif %}
 
                 <hr>

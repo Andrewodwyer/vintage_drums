@@ -27,16 +27,15 @@ def bag_contents(request):
             })
         else:
             # Item with size and/or material
-            for size, size_data in item_data['items_by_size'].items():
-                for material, quantity in size_data['items_by_material'].items():
+            if 'items_by_size' in item_data:
+                for size, quantity in item_data['items_by_size'].items():
                     total += quantity * product.price
                     product_count += quantity
                     bag_items.append({
-                        'item_id': f"{item_id}-{size}-{material}",
+                        'item_id': f"{item_id}-{size}",
                         'quantity': quantity,
                         'product': product,
                         'size': size,
-                        'material': material,
                         'total_price': quantity * product.price,
                     })
 
