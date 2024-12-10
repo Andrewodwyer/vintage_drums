@@ -16,48 +16,65 @@
     <div class="row">
         <!-- Shopping Bag Items -->
         <div class="col-lg-8">
-            {% for item in bag_items %}
-            <div class="card mb-4">
-                <div class="card-body d-flex align-items-center">
-                    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="rounded me-4" style="width: 100px; height: 100px;">
-                    <div class="flex-grow-1">
-                        <h5 class="card-title">{{ item.product.name }}</h5>
-                        <p class="card-text">${{ item.product.price }}</p>
-                        {% if item.size %}
-                        <p class="small text-muted">Size: {{ item.size }}</p>
-                        {% endif %}
-                        {% if item.product.category.name|lower in allowed_categories %}
-                        <div class="d-flex align-items-center">
-                            <form action="{% url 'update_quantity' item_id=item.item_id %}" method="POST">
+            {% if bag_items %}
+                {% for item in bag_items %}
+                <div class="card mb-4">
+                    <div class="card-body d-flex align-items-center">
+                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="rounded me-4" style="width: 100px; height: 100px;">
+                        <div class="flex-grow-1">
+                            <h5 class="card-title">{{ item.product.name }}</h5>
+                            <p class="card-text">${{ item.product.price }}</p>
+                            {% if item.size %}
+                            <p class="small text-muted">Size: {{ item.size }}</p>
+                            {% endif %}
+                            {% if item.product.category.name|lower in allowed_categories %}
+                            <div class="d-flex align-items-center">
+                                <form action="{% url 'update_quantity' item_id=item.item_id %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="number" name="quantity" value="{{ item.quantity }}" min="0" class="form-control">
+                                    {% if item.size %}
+                                        <input type="hidden" name="product_size" value="{{ item.size }}">
+                                    {% endif %}
+                                    {% if item.material %}
+                                        <input type="hidden" name="product_material" value="{{ item.material }}">
+                                    {% endif %}
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </form>
+                            </div>
+                            {% else %}
+                            <p class="">Your Item is Added!</p>
+                            {% endif %}
+                        </div>
+                        <div class="text-end">
+                            <p class="font-weight-bold">${{ item.total_price }}</p>
+                            <form action="" method="POST">
                                 {% csrf_token %}
-                                <input type="number" name="quantity" value="{{ item.quantity }}" min="0" class="form-control">
-                                {% if item.size %}
-                                    <input type="hidden" name="product_size" value="{{ item.size }}">
-                                {% endif %}
-                                {% if item.material %}
-                                    <input type="hidden" name="product_material" value="{{ item.material }}">
-                                {% endif %}
-                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <i class="bi bi-trash"></i> Remove
+                                </button>
                             </form>
                         </div>
-                        {% else %}
-                        <p class="">Your Item it's Added!</p>
-                        {% endif %}
-                    </div>
-                    <div class="text-end">
-                        <p class="font-weight-bold">${{ item.total_price }}</p>
-                        <form action="" method="POST">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-danger btn-sm">
-                                <i class="bi bi-trash"></i> Remove
-                            </button>
-                        </form>
                     </div>
                 </div>
-            </div>
-            {% empty %}
-            <p>Your bag is currently empty.</p>
-            {% endfor %}
+                {% empty %}
+                <!-- Empty message and keep shopping button -->
+                <p class="lead mb-5">Your bag is empty.</p>
+                <a href="{% url 'all_products' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                    <span class="icon">
+                        <i class="fas fa-chevron-left"></i>
+                    </span>
+                    <span class="text-uppercase">Keep Shopping</span>
+                </a>
+                {% endfor %}
+            {% else %}
+                <p class="lead mb-5">Your bag is empty.</p>
+                <a href="{% url 'all_products' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                    <span class="icon">
+                        <i class="fas fa-chevron-left"></i>
+                    </span>
+                    <span class="text-uppercase">Keep Shopping</span>
+                </a>
+            {% endif %}
         </div>
 
         <!-- Order Summary -->
