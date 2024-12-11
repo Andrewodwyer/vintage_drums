@@ -176,5 +176,5 @@ DELIVERY_RATES = {
     'stand': 30,
 }
 
-FREE_DELIVERY_THRESHOLD = 200  # Free delivery threshold
+FREE_DELIVERY_THRESHOLD = 500.00  # Free delivery threshold
 DELIVERY_AND_INSTALLATION = 'drum_kit'

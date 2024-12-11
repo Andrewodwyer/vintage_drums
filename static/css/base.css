@@ -76,6 +76,12 @@ body {
     size: 2rem;
 }
 
+.text-end {
+    text-align: right;
+    display: block; 
+}
+
+
 .border-black {
     border: 1px solid black !important;
 }
