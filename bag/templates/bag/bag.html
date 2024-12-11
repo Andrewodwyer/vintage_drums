@@ -2,11 +2,11 @@
 {% load static %}
 
 {% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
     </div>
+</div>
 {% endblock %}
 
 {% block content %}
@@ -25,34 +25,47 @@
                             <h5 class="card-title">{{ item.product.name }}</h5>
                             <p class="card-text">${{ item.product.price }}</p>
                             {% if item.size %}
-                            <p class="small text-muted">Size: {{ item.size }}</p>
+                                <p class="small text-muted">Size: {{ item.size }}</p>
                             {% endif %}
-                            {% if item.product.category.name|lower in allowed_categories %}
+                            
                             <div class="d-flex align-items-center">
-                                <form action="{% url 'update_quantity' item_id=item.item_id %}" method="POST">
+                                <form class="update-form" action="" method="POST">
                                     {% csrf_token %}
-                                    <input type="number" name="quantity" value="{{ item.quantity }}" min="0" class="form-control">
-                                    {% if item.size %}
-                                        <input type="hidden" name="product_size" value="{{ item.size }}">
+                                    {% if item.product.category.name|lower in allowed_categories %}
+                                        <!-- For allowed categories, include quantity update functionality -->
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <button type="button" class="decrement-qty btn btn-sm btn-black rounded-0" 
+                                                        data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
+                                                        <span><i class="fas fa-minus fa-ms"></i></span>
+                                                    </button>
+                                                </div>
+                                                <input class="form-control form-control-sm qty_input" type="number"
+                                                    name="quantity" value="{{ item.quantity }}" min="1" max="99"
+                                                    data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
+                                                <div class="input-group-append">
+                                                    <button type="button" class="increment-qty btn btn-sm btn-black rounded-0"
+                                                        data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
+                                                        <span><i class="fas fa-plus fa-sm"></i></span>
+                                                    </button>
+                                                </div>
+                                                {% if item.product.size_option %}
+                                                    <input type="hidden" name="product_size" value="{{ item.size }}">
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <button type="submit" name="action" value="update" class="btn btn-primary" 
+                                            id="update_{{ item.item_id }}" data-size="{{ item.size }}">Update</button>
                                     {% endif %}
-                                    {% if item.material %}
-                                        <input type="hidden" name="product_material" value="{{ item.material }}">
-                                    {% endif %}
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <!-- Remove button for all products -->
+                                    <button type="submit" name="action" value="remove" class="btn btn-danger ms-3" 
+                                        id="remove_{{ item.item_id }}" data-size="{{ item.size }}">Remove</button>
                                 </form>
                             </div>
-                            {% else %}
-                            <p class="">Your Item is Added!</p>
-                            {% endif %}
                         </div>
                         <div class="text-end">
                             <p class="font-weight-bold">${{ item.total_price }}</p>
-                            <form action="" method="POST">
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-danger btn-sm">
-                                    <i class="bi bi-trash"></i> Remove
-                                </button>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -64,9 +77,7 @@
 
             <!-- Keep Shopping Button (shown in both cases) -->
             <a href="{% url 'all_products' %}" class="btn btn-outline-black rounded-0 btn-lg mt-4">
-                <span class="icon">
-                    <i class="fas fa-chevron-left"></i>
-                </span>
+                <span class="icon"><i class="fas fa-chevron-left"></i></span>
                 <span class="text-uppercase">Keep Shopping</span>
             </a>
         </div>
@@ -96,4 +107,18 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+{% include 'products/includes/quantity_input_script.html' %}
+<script type="text/javascript">
+    // Update quantity on click
+    $('.decrement-qty, .increment-qty').click(function(e) {
+        var itemId = $(this).data('item_id');
+        $('#id_qty_' + itemId).val(function(i, oldVal) {
+            return $(this).hasClass('decrement-qty') ? Math.max(1, --oldVal) : Math.min(99, ++oldVal);
+        });
+    });
+</script>
 {% endblock %}

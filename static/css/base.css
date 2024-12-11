@@ -46,6 +46,12 @@ body {
     color: white;
 }
 
+.btn-link,
+.upper-link,
+.remove-item {
+    cursor: pointer;
+}
+
 .explore-button:hover,
 .explore-button:active,
 .explore-button:focus,
