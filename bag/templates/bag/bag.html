@@ -19,51 +19,56 @@
             {% if bag_items %}
                 {% for item in bag_items %}
                 <div class="card mb-4">
-                    <div class="card-body d-flex align-items-center">
-                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="rounded me-4" style="width: 100px; height: 100px;">
+                    <div class="card-body d-flex align-items-start">
+                        <!-- Product Image with Spacing -->
+                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" 
+                             class="rounded me-4" style="width: 100px; height: 100px; padding: 10px;">
                         <div class="flex-grow-1">
+                            <!-- Product Details -->
                             <h5 class="card-title">{{ item.product.name }}</h5>
                             <p class="card-text">${{ item.product.price }}</p>
                             {% if item.size %}
                                 <p class="small text-muted">Size: {{ item.size }}</p>
                             {% endif %}
-                            
-                            <div class="d-flex align-items-center">
-                                <form class="update-form" action="{% url 'adjust_bag' item.item_id %}" method="POST">
-                                    {% csrf_token %}
-                                    {% if item.product.category.name|lower in allowed_categories %}
-                                        <!-- For allowed categories, include quantity update functionality -->
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <button type="button" class="decrement-qty btn btn-sm btn-black rounded-0" 
-                                                        data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
-                                                        <span><i class="fas fa-minus fa-ms"></i></span>
-                                                    </button>
-                                                </div>
-                                                <input class="form-control form-control-sm qty_input" type="number"
-                                                    name="quantity" value="{{ item.quantity }}" min="1" max="99"
-                                                    data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
-                                                <div class="input-group-append">
-                                                    <button type="button" class="increment-qty btn btn-sm btn-black rounded-0"
-                                                        data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
-                                                        <span><i class="fas fa-plus fa-sm"></i></span>
-                                                    </button>
-                                                </div>
-                                                {% if item.product.size_option %}
-                                                    <input type="hidden" name="product_size" value="{{ item.size }}">
-                                                {% endif %}
-                                            </div>
-                                        </div>
-                                        <button type="submit" name="action" value="update" class="btn btn-primary" 
-                                            id="update_{{ item.item_id }}" data-size="{{ item.size }}">Update</button>
-                                    {% endif %}
-                                    <!-- Remove button for all products -->
-                                    <button type="submit" name="action" value="remove" class="btn btn-danger ms-3 remove-item" 
-                                        id="remove_{{ item.item_id }}" data-product_size="{{ item.size }}">Remove</button>
-                                </form>
+                
+                            {% if item.product.category.name|lower in allowed_categories %}
+                            <!-- Quantity Input and Update Button for allowed categories -->
+                            <form class="update-form" action="{% url 'adjust_bag' item.item_id %}" method="POST">
+                                {% csrf_token %}
+                                <div class="input-group-prepend">
+                                    <button type="button" class="decrement-qty btn btn-sm btn-black rounded-left" 
+                                            data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
+                                        <i class="fas fa-minus fa-sm"></i>
+                                    </button>
+                                    <input class="form-control form-control-sm qty_input text-center rounded-0 qty-input-long" 
+                                            type="number" name="quantity" value="{{ item.quantity }}" 
+                                            min="1" max="99" data-item_id="{{ item.item_id }}" 
+                                            id="id_qty_{{ item.item_id }}">
+                                    <button type="button" class="increment-qty btn btn-sm btn-black rounded-right" 
+                                            data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
+                                        <i class="fas fa-plus fa-sm"></i>
+                                    </button>
+                                </div>
+                                {% if item.product.size_option %}
+                                    <input type="hidden" name="product_size" value="{{ item.size }}">
+                                {% endif %}
+                            </form>
+                
+                            <!-- Update and Remove Buttons -->
+                            <div class="d-flex pt-2">
+                                <a class="update-link btn btn-primary btn-sm text-white me-2 mr-2" >Update</a>
+                                <a class="btn btn-danger btn-sm text-white remove-item" 
+                                   id="remove_{{ item.item_id }}" data-product_size="{{ item.size }}">Remove</a>
                             </div>
+                            {% else %}
+                            <!-- Remove button only for non-allowed categories -->
+                            <div class="d-flex">
+                                <a class="btn btn-danger btn-sm text-white remove-item" 
+                                   id="remove_{{ item.item_id }}" data-product_size="{{ item.size }}">Remove</a>
+                            </div>
+                            {% endif %}
                         </div>
+                        <!-- Total Price -->
                         <div class="text-end">
                             <p class="font-weight-bold">${{ item.total_price }}</p>
                         </div>
@@ -75,7 +80,7 @@
                 <p class="lead mb-5">Your bag is empty.</p>
             {% endif %}
 
-            <!-- Keep Shopping Button (shown in both cases) -->
+            <!-- Keep Shopping Button -->
             <a href="{% url 'all_products' %}" class="btn btn-outline-black rounded-0 btn-lg mt-4">
                 <span class="icon"><i class="fas fa-chevron-left"></i></span>
                 <span class="text-uppercase">Keep Shopping</span>
@@ -103,7 +108,6 @@
                                 {% endif %}
                             </span>
                         </li>
-                        
                         <li class="d-flex justify-content-between mt-3 font-weight-bold">
                             <span>Total</span>
                             <span>${{ grand_total|floatformat:2 }}</span>
@@ -123,9 +127,9 @@
 <script type="text/javascript">
     // Update quantity on click
     $('.update-link').click(function(e) {
-        var form = $(this).prev('.update-form');
-        form.submit();
-    })
+        e.preventDefault();
+        $(this).closest('.card-body').find('.update-form').submit();
+    });
 
     // Remove item and reload on click
     $('.remove-item').click(function(e) {
@@ -133,12 +137,16 @@
         var itemId = $(this).attr('id').split('remove_')[1];
         var size = $(this).data('product_size');
         var url = `/bag/remove/${itemId}/`;
-        var data = {'csrfmiddlewaretoken': csrfToken, 'product_size': size};
+
+        var data = {'csrfmiddlewaretoken': csrfToken};
+        if (size) {
+            data['product_size'] = size;
+        }
 
         $.post(url, data)
-         .done(function() {
-             location.reload();
-         });
+            .done(function() {
+                location.reload();
+            });
     })
 </script>
 {% endblock %}

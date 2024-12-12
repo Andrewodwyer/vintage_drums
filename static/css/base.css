@@ -17,6 +17,14 @@ body {
     justify-content: center;
 }
 
+.input-group .btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
 
 /* from Bulma */
 .icon {
@@ -81,6 +89,22 @@ body {
     display: block; 
 }
 
+/* ------------------------------- bootstrap rounded corners either side */
+.rounded-left {
+    border-radius: 10px 0 0 10px; /* Round top-left and bottom-left corners */
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.rounded-right {
+    border-radius: 0 10px 10px 0; /* Round top-right and bottom-right corners */
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.qty-input-long {
+    max-width: 80px; /* Adjust width as needed */
+}
 
 .border-black {
     border: 1px solid black !important;
@@ -123,6 +147,13 @@ a.category-badge > span.badge:hover {
     height: 2px;
 }
 
+/* -------------------------------- success wrapper */
+
+.bag-notification-wrapper {
+    height: 100px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
 
 /* -------------------------------- Media Queries */
 
