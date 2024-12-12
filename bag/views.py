@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse, HttpResponse, get_object_or_404
 from django.contrib import messages
+
 from products.models import Product
 
 def view_bag(request):
@@ -62,6 +63,7 @@ def add_to_bag(request, item_id):
         else:
             # Initialize entry for item without size/material
             bag[item_id] = quantity
+            # messages.success(request, f"Added {product.name} to your bag!")
 
     # Save the updated bag back into the session
     request.session['bag'] = bag

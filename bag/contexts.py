@@ -24,6 +24,7 @@ def bag_contents(request):
                 'item_id': item_id,
                 'quantity': item_data,
                 'product': product,
+                'total_price': item_data * product.price,  # Include total_price
             })
         elif 'items_by_size' in item_data:
             for size, quantity in item_data['items_by_size'].items():
