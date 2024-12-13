@@ -1,0 +1,36 @@
+.StripeElement,
+.stripe-style-input {
+  box-sizing: border-box;
+  height: 40px;
+  padding: 10px 12px;
+  border: 1px solid #444; /* Darker grey border */
+  border-radius: 2px;
+  background-color: white;
+  box-shadow: 0 1px 3px 0 #aaa; /* Adjusted shadow for better contrast */
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus,
+.stripe-style-input:focus,
+.stripe-style-input:active {
+  box-shadow: 0 1px 3px 0 #666; /* Darker shadow on focus */
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a; /* Red border for invalid fields */
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+.stripe-style-input::placeholder {
+  color: #aab7c4;
+}
+
+#payment-form .form-control,
+.card-border,
+#card-element {
+  color: #000;
+  border: 1px solid #c9c9c9; /* Ensure the form inputs match the updated styling */
+}
