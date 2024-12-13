@@ -4,7 +4,7 @@
   height: 40px;
   padding: 10px 12px;
   border: 1px solid #444; /* Darker grey border */
-  border-radius: 2px;
+  border-radius: 5px;
   background-color: white;
   box-shadow: 0 1px 3px 0 #aaa; /* Adjusted shadow for better contrast */
   transition: box-shadow 150ms ease;
@@ -29,8 +29,16 @@
 }
 
 #payment-form .form-control,
-.card-border,
 #card-element {
   color: #000;
-  border: 1px solid #c9c9c9; /* Ensure the form inputs match the updated styling */
+  border: 1px solid #c9c9c9; 
+}
+
+.order-items .row:not(:last-child) {
+  border-bottom: 1px solid #e6e6e6; /* Light grey border */
+}
+
+/* For Order Summary (Card) corners*/
+.card {
+  border-radius: 5px; 
 }

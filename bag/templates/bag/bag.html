@@ -87,36 +87,58 @@
             </a>
         </div>
 
-        <!-- Order Summary -->
-        <div class="col-lg-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Order Summary</h5>
-                    <ul class="list-unstyled">
-                        <li class="d-flex justify-content-between">
-                            <span>Subtotal</span>
-                            <span>${{ total|floatformat:2 }}</span>
-                        </li>
-                        <li class="d-flex justify-content-between align-items-start">
-                            <span>Shipping</span>
-                            <span class="text-end">
-                                {% if delivery == 0 %}
-                                    Free
-                                {% else %}
-                                    <span>${{ delivery|floatformat:2 }}</span><br>
-                                    <small class="text-muted">Spend ${{ free_delivery_delta|floatformat:2 }} more to qualify for free delivery.</small>
-                                {% endif %}
-                            </span>
-                        </li>
-                        <li class="d-flex justify-content-between mt-3 font-weight-bold">
-                            <span>Total</span>
-                            <span>${{ grand_total|floatformat:2 }}</span>
-                        </li>
-                    </ul>
-                    <a href="{% url 'checkout' %}" class="btn btn-primary w-100">Proceed to Checkout</a>
+        <div class="row">
+            <!-- Order Summary Section -->
+            <div class="col-12 col-lg-6 order-lg-last mb-5">
+                <h5 class="card-title section-title">Order Summary ({{ product_count }})</h5>
+                <div class="card shadow-sm card-border">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-7 offset-2">
+                                <p class="mb-1 mt-0 small text-muted">Item</p>
+                            </div>
+                            <div class="col-3 text-end">
+                                <p class="mb-1 mt-0 small text-muted">Subtotal</p>
+                            </div>
+                        </div>
+                        {% for item in bag_items %}
+                        <div class="row align-items-center py-2 border-bottom">
+                            <div class="col-2">
+                                <a href="{% url 'product_detail' item.product.id %}">
+                                    {% if item.product.image %}
+                                    <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                                    {% else %}
+                                    <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
+                                    {% endif %}
+                                </a>
+                            </div>
+                            <div class="col-7">
+                                <p class="mb-1"><strong>{{ item.product.name }}</strong></p>
+                                <p class="mb-0 small">Size: {% if item.product.has_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
+                                <p class="mb-0 small text-muted">Qty: {{ item.quantity }}</p>
+                            </div>
+                            <div class="col-3 text-end">
+                                <p class="mb-0 small text-muted">${{ item.product.price | calc_subtotal:item.quantity }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <hr>
+                        <div class="row py-2">
+                            <div class="col-6 text-start">
+                                <p class="mb-0">Order Total:</p>
+                                <p class="mb-0">Delivery:</p>
+                                <p class="mb-0">Grand Total:</p>
+                            </div>
+                            <div class="col-6 text-end">
+                                <p class="mb-0">${{ total | floatformat:2 }}</p>
+                                <p class="mb-0">${{ delivery | floatformat:2 }}</p>
+                                <p class="mb-0"><strong>${{ grand_total | floatformat:2 }}</strong></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        
     </div>
 </div>
 {% endblock %}

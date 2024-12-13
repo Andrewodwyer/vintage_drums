@@ -30,7 +30,7 @@
         <!-- Order Summary Section -->
         <div class="col-12 col-lg-6 order-lg-last mb-5">
             <div class="card shadow-sm">
-                <div class="card-body card-border">
+                <div class="card-body">
                     <h5 class="card-title text-muted">Order Summary ({{ product_count }})</h5>
                     <hr>
                     <div class="row">
@@ -41,27 +41,30 @@
                             <p class="mb-1 mt-0 small text-muted">Subtotal</p>
                         </div>
                     </div>
-                    {% for item in bag_items %}
-                    <div class="row align-items-center py-2 border-bottom">
-                        <div class="col-2">
-                            <a href="{% url 'product_detail' item.product.id %}">
-                                {% if item.product.image %}
-                                <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
-                                {% else %}
-                                <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
-                                {% endif %}
-                            </a>
+                    <div class="order-items">
+                        {% for item in bag_items %}
+                        <div class="row align-items-center py-2">
+                            <div class="col-2">
+                                <a href="{% url 'product_detail' item.product.id %}">
+                                    {% if item.product.image %}
+                                    <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                                    {% else %}
+                                    <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
+                                    {% endif %}
+                                </a>
+                            </div>
+                            <div class="col-7">
+                                <p class="mb-1"><strong>{{ item.product.name }}</strong></p>
+                                <p class="mb-0 small">Size: {% if item.product.has_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
+                                <p class="mb-0 small text-muted">Qty: {{ item.quantity }}</p>
+                            </div>
+                            <div class="col-3 text-end">
+                                <p class="mb-0 small text-muted">${{ item.product.price | calc_subtotal:item.quantity }}</p>
+                            </div>
                         </div>
-                        <div class="col-7">
-                            <p class="mb-1"><strong>{{ item.product.name }}</strong></p>
-                            <p class="mb-0 small">Size: {% if item.product.has_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
-                            <p class="mb-0 small text-muted">Qty: {{ item.quantity }}</p>
-                        </div>
-                        <div class="col-3 text-end">
-                            <p class="mb-0 small text-muted">${{ item.product.price | calc_subtotal:item.quantity }}</p>
-                        </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
+                    
                     <hr>
                     <div class="row py-2">
                         <div class="col-6 text-start">
