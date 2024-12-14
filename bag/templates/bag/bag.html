@@ -36,19 +36,21 @@
                             <!-- Quantity Input and Update Button for allowed categories -->
                             <form class="update-form" action="{% url 'adjust_bag' item.item_id %}" method="POST">
                                 {% csrf_token %}
-                                <div class="input-group-prepend">
-                                    <button type="button" class="decrement-qty btn btn-sm btn-black rounded-left" 
-                                            data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
-                                        <i class="fas fa-minus fa-sm"></i>
-                                    </button>
-                                    <input class="form-control form-control-sm qty_input text-center rounded-0 qty-input-long" 
-                                            type="number" name="quantity" value="{{ item.quantity }}" 
-                                            min="1" max="99" data-item_id="{{ item.item_id }}" 
-                                            id="id_qty_{{ item.item_id }}">
-                                    <button type="button" class="increment-qty btn btn-sm btn-black rounded-right" 
-                                            data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
-                                        <i class="fas fa-plus fa-sm"></i>
-                                    </button>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <button type="button" class="decrement-qty btn btn-sm btn-black rounded-left" 
+                                                data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
+                                            <i class="fas fa-minus fa-sm"></i>
+                                        </button>
+                                        <input class="qty_input form-control form-control-sm  text-center rounded-0 qty-input-long" 
+                                                type="number" name="quantity" value="{{ item.quantity }}" 
+                                                min="1" max="99" data-item_id="{{ item.item_id }}" 
+                                                id="id_qty_{{ item.item_id }}">
+                                        <button type="button" class="increment-qty btn btn-sm btn-black rounded-right" 
+                                                data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
+                                            <i class="fas fa-plus fa-sm"></i>
+                                        </button>
+                                    </div>
                                 </div>
                                 {% if item.product.size_option %}
                                     <input type="hidden" name="product_size" value="{{ item.size }}">
@@ -57,7 +59,7 @@
                 
                             <!-- Update and Remove Buttons -->
                             <div class="d-flex pt-2">
-                                <a class="update-link btn btn-primary btn-sm text-white me-2 mr-2" >Update</a>
+                                <a class="update-link btn btn-primary btn-sm text-white me-2 mr-2">Update</a>
                                 <a class="btn btn-danger btn-sm text-white remove-item" 
                                    id="remove_{{ item.item_id }}" data-product_size="{{ item.size }}">Remove</a>
                             </div>
@@ -132,6 +134,8 @@
         var form = $(this).prev('.update-form');
         form.submit();
     })
+
+
 
     // Remove item and reload on click
     $('.remove-item').click(function(e) {
