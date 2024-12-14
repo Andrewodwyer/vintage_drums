@@ -3,6 +3,7 @@ import uuid
 from django.db import models
 from django.db.models import Sum
 from django.conf import settings
+from decimal import Decimal
 
 from products.models import Product
 
@@ -29,18 +30,43 @@ class Order(models.Model):
         """
         return uuid.uuid4().hex.upper()
 
+
+
     def update_total(self):
         """
         Update grand total each time a line item is added,
         accounting for delivery costs.
         """
-        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum']
-        if self.order_total < settings.FREE_DELIVERY_THRESHOLD:
-            self.delivery_cost = self.order_total * settings.STANDARD_DELIVERY_PERCENTAGE / 100
+        from decimal import Decimal  # Ensure consistent handling of decimals
+
+        # Calculate the order total
+        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or Decimal('0.00')
+
+        # Check if the order qualifies for free delivery
+        free_delivery = (
+            self.order_total >= settings.FREE_DELIVERY_THRESHOLD or
+            any(lineitem.product.category.name == settings.DELIVERY_AND_INSTALLATION
+                for lineitem in self.lineitems.select_related('product'))
+        )
+
+        if free_delivery:
+            # Free delivery if the conditions are met
+            self.delivery_cost = Decimal('0.00')
         else:
-            self.delivery_cost = 0
+            # Calculate the highest delivery rate for the items in the order
+            highest_rate = max(
+                (settings.DELIVERY_RATES.get(lineitem.product.category.name, 0)
+                for lineitem in self.lineitems.select_related('product')),
+                default=0
+            )
+            self.delivery_cost = Decimal(highest_rate)
+
+        # Update grand total
         self.grand_total = self.order_total + self.delivery_cost
         self.save()
+
+
+
 
     def save(self, *args, **kwargs):
         """

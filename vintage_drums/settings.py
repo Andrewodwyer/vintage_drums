@@ -194,7 +194,7 @@ DELIVERY_RATES = {
 }
 
 
-FREE_DELIVERY_THRESHOLD = 500.00  # Free delivery threshold
+FREE_DELIVERY_THRESHOLD = 500  # Free delivery threshold
 DELIVERY_AND_INSTALLATION = 'drum_kit'
 
 # Stripe
