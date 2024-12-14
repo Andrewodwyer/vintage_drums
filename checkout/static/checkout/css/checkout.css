@@ -42,3 +42,10 @@
 .card {
   border-radius: 5px; 
 }
+
+#card-errors {
+  display: block !important;
+  color: #dc3545;
+  font-size: 14px;
+  margin-top: 10px;
+}

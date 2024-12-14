@@ -25,7 +25,7 @@
             <div class="col-md-6">
                 <h1>{{ product.name }}</h1>
                 <p class="lead">${{ product.price }}</p>
-                <p class="small mt-1 mb-0">
+                <p class="small my-1">
                     <a class="text-muted" href="{% url 'all_products' %}?category={{ product.category.name }}">
                         <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
                     </a>
@@ -86,7 +86,7 @@
                                         </div>
                                     </div>
                                     <!-- Add to Bag button (this button actually posts the form) -->
-                                    <input type="submit" class="btn btn-primary mt-3" value="Add to Bag">
+                                    <input type="submit" class="btn btn-primary mb-3" value="Add to Bag">
                                 {% endif %}
                             {% else %}
                                 {% if allow_quantity_input %}
@@ -114,10 +114,10 @@
                                         </div>
                                     </div>
                                 {% else %}
-                                    <p class="mt-3 text-muted">This item is limited to one per order.</p>
+                                    <p class="text-muted">This item is limited to one per order.</p>
                                 {% endif %}
                                 <!-- Add to Bag button (this button actually posts the form) -->
-                                <input type="submit" class="btn btn-primary mt-3" value="Add to Bag">
+                                <input type="submit" class="btn btn-primary mb-3" value="Add to Bag">
                             {% endif %}
                         </div>
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
@@ -130,6 +130,38 @@
                     <p>No rating available</p>
                 {% endif %}
 
+                {% if user.is_authenticated %}
+
+                    <div class="d-flex align-items-center mb-2">
+                        <form id="like-form" method="POST" action="{% url 'toggle_like' product.id %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="product_id" value="{{ product.id }}">
+                            <div id="like-container" class="d-flex align-items-center">
+                                <div id="like-icon" class="icon-circle {% if user_liked %}icon-success{% else %}icon-primary{% endif %}">
+                                    <i class="fa fa-heart"></i>
+                                </div>
+                                <span id="like-text" class="ml-2 {% if user_liked %}text-success{% else %}text-primary{% endif %}">
+                                    {% if user_liked %}
+                                        Liked!
+                                    {% else %}
+                                        Like?
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </form>
+                
+                        <!-- Like count aligned to the right -->
+                        <p id="like-count" class="mb-0 ml-3">{{ product.likes.count }} Likes</p>
+                    </div>
+
+                
+                {% else %}
+                    <div class="row mt-3">
+                        <p class="ml-4"><i class="fa fa-heart-o"></i> <a href="{{ login_url }}">Sign in</a> to like this product.</p>
+                    </div>
+                {% endif %}
+                
+                
                 <hr>
                 <p>{{ product.description }}</p>
 
