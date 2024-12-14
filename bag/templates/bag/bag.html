@@ -131,7 +131,8 @@
 <script type="text/javascript">
     // Update quantity on click
     $('.update-link').click(function(e) {
-        var form = $(this).prev('.update-form');
+        var form = $(this).closest('.card-body').find('.update-form');
+        console.log("form = ",form)
         form.submit();
     })
 
