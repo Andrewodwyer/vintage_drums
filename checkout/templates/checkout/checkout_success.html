@@ -6,37 +6,99 @@
 {% endblock %}
 
 {% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
+    <div class="container header-container text-center py-4">
+        <h2 class="col text-primary logo-font mb-0">Order Confirmation</h2>
     </div>
 {% endblock %}
 
 {% block content %}
     <div class="overlay"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <hr>
-                <h2 class="logo-font mb-4">Thank You</h2>
-                <hr>
-                <p class="text-black">Your order information is below. A confirmation email will be sent to <strong>{{ order.email }}</strong>.</p>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+                <div class="rounded shadow-lg p-4 bg-light">
+                    <h3 class="text-center text-success mb-4">Thank You for Your Order!</h3>
+                    <p class="text-muted text-center mb-4">
+                        A confirmation email has been sent to <strong>{{ order.email }}</strong>. Below are your order details.
+                    </p>
+                    
+                    <div class="rounded border p-3 mb-4 bg-white">
+                        <h5 class="text-secondary">Order Information</h5>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-muted">Order Number:</span>
+                            <span>{{ order.order_number }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-muted">Order Date:</span>
+                            <span>{{ order.date }}</span>
+                        </div>
+                    </div>
+
+                    <div class="rounded border p-3 mb-4 bg-white">
+                        <h5 class="text-secondary">Items Ordered</h5>
+                        {% for item in order.lineitems.all %}
+                        <div class="d-flex justify-content-between">
+                            <span class="text-black">
+                                {{ item.product.name }}{% if item.product_size %} - Size {{ item.product_size|upper }}{% endif %}
+                            </span>
+                            <span class="text-muted">{{ item.quantity }} × ${{ item.product.price }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="rounded border p-3 mb-4 bg-white">
+                        <h5 class="text-secondary">Delivery Details</h5>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-muted">Name:</span>
+                            <span>{{ order.full_name }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-muted">Address:</span>
+                            <span>{{ order.street_address1 }}{% if order.street_address2 %}, {{ order.street_address2 }}{% endif %}</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-muted">Town/City:</span>
+                            <span>{{ order.town_or_city }}</span>
+                        </div>
+                        {% if order.postcode %}
+                        <div class="d-flex justify-content-between">
+                            <span class="text-muted">Postal Code:</span>
+                            <span>{{ order.postcode }}</span>
+                        </div>
+                        {% endif %}
+                        <div class="d-flex justify-content-between">
+                            <span class="text-muted">Country:</span>
+                            <span>{{ order.country }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-muted">Phone:</span>
+                            <span>{{ order.phone_number }}</span>
+                        </div>
+                    </div>
+
+                    <div class="rounded border p-3 bg-white">
+                        <h5 class="text-secondary">Payment Summary</h5>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-muted">Subtotal:</span>
+                            <span>${{ order.order_total }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-muted">Delivery:</span>
+                            <span>${{ order.delivery_cost }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between font-weight-bold">
+                            <span class="text-black">Grand Total:</span>
+                            <span>${{ order.grand_total }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <a href="{% url 'all_products' %}?category=new_arrivals,deals,clearance" class="btn btn-primary rounded-pill px-4 py-2">
+                        <i class="fas fa-gifts mr-2"></i>Check Out the Latest Deals!
+                    </a>
+                </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-12 col-lg-7"></div>
-        </div>
-        <div class="row">
-			<div class="col-12 col-lg-7 text-right">
-				<a href="{% url 'all_products' %}?category=new_arrivals,deals,clearance" class="btn btn-black rounded-0 my-2">
-					<span class="icon mr-2">
-						<i class="fas fa-gifts"></i>
-					</span>
-					<span class="text-uppercase">Now check out the latest deals!</span>
-				</a>
-			</div>
-		</div>
     </div>
 {% endblock %}
