@@ -24,7 +24,7 @@
             </div>
             <div class="col-md-6">
                 <h1>{{ product.name }}</h1>
-                <p class="lead">${{ product.price }}</p>
+                <p class="lead">€{{ product.price }}</p>
                 <p class="small my-1">
                     <a class="text-muted" href="{% url 'all_products' %}?category={{ product.category.name }}">
                         <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}

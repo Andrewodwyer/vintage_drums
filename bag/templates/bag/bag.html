@@ -27,7 +27,7 @@
                         <div class="flex-grow-1">
                             <!-- Product Details -->
                             <h5 class="card-title">{{ item.product.name }}</h5>
-                            <p class="card-text">${{ item.product.price }}</p>
+                            <p class="card-text">€{{ item.product.price }}</p>
                             {% if item.size %}
                                 <p class="small text-muted">Size: {{ item.size }}</p>
                             {% endif %}
@@ -73,7 +73,7 @@
                         </div>
                         <!-- Total Price -->
                         <div class="text-end">
-                            <p class="font-weight-bold">${{ item.total_price }}</p>
+                            <p class="font-weight-bold">€{{ item.total_price }}</p>
                         </div>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
                     <ul class="list-unstyled">
                         <li class="d-flex justify-content-between">
                             <span>Subtotal</span>
-                            <span>${{ total|floatformat:2 }}</span>
+                            <span>€{{ total|floatformat:2 }}</span>
                         </li>
                         <li class="d-flex justify-content-between align-items-start">
                             <span>Shipping</span>
@@ -106,14 +106,14 @@
                                 {% if delivery == 0 %}
                                     Free
                                 {% else %}
-                                    <span>${{ delivery|floatformat:2 }}</span><br>
-                                    <small class="text-muted">Spend ${{ free_delivery_delta|floatformat:2 }} more to qualify for free delivery.</small>
+                                    <span>€{{ delivery|floatformat:2 }}</span><br>
+                                    <small class="text-muted">Spend €{{ free_delivery_delta|floatformat:2 }} more to qualify for free delivery.</small>
                                 {% endif %}
                             </span>
                         </li>
                         <li class="d-flex justify-content-between mt-3 font-weight-bold">
                             <span>Total</span>
-                            <span>${{ grand_total|floatformat:2 }}</span>
+                            <span>€{{ grand_total|floatformat:2 }}</span>
                         </li>
                     </ul>
                     <a href="{% url 'checkout' %}" class="btn btn-primary w-100">Proceed to Checkout</a>
