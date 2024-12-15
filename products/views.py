@@ -53,6 +53,7 @@ def all_products(request):
     current_sorting = f'{sort}_{direction}'
 
     # Pagination setup
+    products = Product.objects.all().order_by('updated_on')
     paginator = Paginator(products, 6)  # 6 products per page
     page = request.GET.get('page', 1)
     try:

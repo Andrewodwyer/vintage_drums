@@ -48,8 +48,6 @@ class Product(models.Model):
     size = models.CharField(max_length=50, blank=True, null=True)
     size_option = models.BooleanField(default=False, null=True, blank=True)
 
-    class Meta:
-        ordering = ['updated_on']
 
     def __str__(self):
         return self.name
