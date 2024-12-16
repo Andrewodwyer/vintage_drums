@@ -94,9 +94,21 @@
                 </div>
 
                 <div class="text-center mt-4">
-                    <a href="{% url 'all_products' %}?category=drum_kits,cymbal" class="btn btn-main rounded-pill px-4 py-2">
-                        <i class="fas fa-gifts mr-2"></i>Check Out These Drum Kits!
-                    </a>
+                    {% if from_profile %}
+                        <a href="{% url 'profile' %}" class="btn btn-black my-2">
+                            <span class="icon mr-2">
+                                <i class="fas fa-angle-left"></i>
+                            </span>
+                            <span class="text-uppercase">Back to Profile</span>
+                        </a>
+                    {% else %}
+                        <a href="{% url 'all_products' %}?category=drum_kits,cymbal" class="btn btn-main rounded-pill px-4 py-2">
+                            <span class="icon mr-2">
+                                <i class="fas fa-gifts"></i>
+                            </span>
+                            <span class="text-uppercase">Check Out These Drum Kits!</span>
+                        </a>
+                    {% endif %}
                 </div>
             </div>
         </div>
