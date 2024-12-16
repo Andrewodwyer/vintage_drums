@@ -256,51 +256,51 @@ input[name='q']::placeholder {
 .allauth-form-inner-content input[type='submit'] {
     /* Button Base Styles */
     display: inline-block;
-    font-weight: 600; /* Slightly bolder for emphasis */
-    color: #fff; /* White text */
+    font-weight: 600; 
+    color: #fff; 
     text-align: center;
     vertical-align: middle;
     user-select: none;
 
     /* Updated Background and Borders */
-    background-color: #00A499; /* Primary greenish teal */
+    background-color: #00A499;
     border: 1px solid #00A499;
     
     /* Spacing and Size */
-    padding: 0.5rem 1rem; /* Increased padding for better clickability */
-    font-size: 1.1rem; /* Slightly larger font for readability */
+    padding: 0.5rem 1rem; /* Increased padding */
+    font-size: 1.1rem; 
     line-height: 1.6;
-    border-radius: 5px; /* Subtle rounded corners */
+    border-radius: 5px; /* rounded corners */
 
-    /* Smooth Transitions */
+    /* Transitions */
     transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 /* Hover State for Buttons */
 .allauth-form-inner-content button:hover,
 .allauth-form-inner-content input[type='submit']:hover {
-    color: #fff; /* Keep white text */
-    background-color: #007366; /* Darker teal for hover */
-    border-color: #007366; /* Match background color */
+    color: #fff;
+    background-color: #007366; /* Darker colour */
+    border-color: #007366; 
 }
 
 /* Focus State for Buttons */
 .allauth-form-inner-content button:focus,
 .allauth-form-inner-content input[type='submit']:focus {
     outline: none;
-    box-shadow: 0 0 4px 2px rgba(0, 163, 153, 0.4); /* Subtle teal glow */
+    box-shadow: 0 0 4px 2px rgba(0, 163, 153, 0.4); /* colour glow */
 }
 
 /* Links */
 .allauth-form-inner-content a {
-    color: #007366; /* Updated teal link color */
-    text-decoration: none; /* No underline by default */
+    color: #007366; 
+    text-decoration: none; /* No underline */
     transition: color 0.2s ease, text-decoration 0.2s ease;
 }
 
 .allauth-form-inner-content a:hover {
-    color: #00A499; /* Brighter teal on hover */
-    text-decoration: underline; /* Add underline on hover */
+    color: #00A499; /* Brighter colour */
+    text-decoration: underline; /* Underline on hover */
 }
 
 /* fixed top navbar only on medium and up */
