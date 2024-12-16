@@ -19,7 +19,7 @@
                         Discover Vintage Drum Excellence. Curated collection of premium vintage drum kits and cymbals
                     </h2>
                     <div class="mt-4">
-                        <a href="{% url 'all_products' %}" class="btn explore-button text-uppercase py-2 px-2">Explore Our Collection</a>
+                        <a href="{% url 'all_products' %}" class="btn explore-button btn-main text-uppercase py-2 px-2">Explore Our Collection</a>
                     </div>
                 </div>
             </div>
@@ -64,7 +64,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ product.name }}</h5>
                             <p class="card-text">€{{ product.price }}</p>
-                            <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">View Details</a>
+                            <a href="{% url 'product_detail' product.id %}" class="btn btn-main">View Details</a>
                         </div>
                     </div>
                 </div>
@@ -114,7 +114,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ product.name }}</h5>
                             <p class="card-text">€{{ product.price }}</p>
-                            <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">View Details</a>
+                            <a href="{% url 'product_detail' product.id %}" class="btn btn-main">View Details</a>
                         </div>
                     </div>
                 </div>

@@ -86,7 +86,7 @@
                                         </div>
                                     </div>
                                     <!-- Add to Bag button (this button actually posts the form) -->
-                                    <input type="submit" class="btn btn-primary mb-3" value="Add to Bag">
+                                    <input type="submit" class="btn btn-main mb-3" value="Add to Bag">
                                 {% endif %}
                             {% else %}
                                 {% if allow_quantity_input %}
@@ -117,7 +117,7 @@
                                     <p class="text-muted">This item is limited to one per order.</p>
                                 {% endif %}
                                 <!-- Add to Bag button (this button actually posts the form) -->
-                                <input type="submit" class="btn btn-primary mb-3" value="Add to Bag">
+                                <input type="submit" class="btn btn-main mb-3" value="Add to Bag">
                             {% endif %}
                         </div>
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">

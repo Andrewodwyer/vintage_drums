@@ -43,11 +43,6 @@ body {
     width: fit-content;
 }
 
-.explore-button {
-    background: #00A499;
-    color: white;
-    min-width: 260px;
-}
 
 .btn-black {
     background: black;
@@ -60,15 +55,33 @@ body {
     cursor: pointer;
 }
 
-.explore-button:hover,
-.explore-button:active,
-.explore-button:focus,
-.btn-black:hover,
-.btn-black:active,
-.btn-black:focus {
-    background: #00A499;
-    color: white;
+.explore-button {
+    min-width: 260px;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+
 }
+/* ------------------------------- style button */
+
+.btn-main {
+  background-color: #00A499; /* main colour */
+  color: white; 
+  border: none; 
+  transition: background-color 0.3s ease, transform 0.1s ease; /* Smooth transitions */
+}
+
+.btn-main:hover {
+  background-color: #00897B; /* Darker */
+  color: white;
+}
+
+.btn-main:active {
+  background-color: #007366; /* Darker again */
+  transform: scale(0.98); /* shrink */
+  color: white;
+}
+
 
 .text-black {
     color: #000 !important;
@@ -88,6 +101,7 @@ body {
     text-align: right;
     display: block; 
 }
+
 
 /* ------------------------------- bootstrap rounded corners either side */
 .rounded-left {

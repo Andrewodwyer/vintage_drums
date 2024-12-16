@@ -29,7 +29,7 @@
                             <h5 class="card-title">{{ item.product.name }}</h5>
                             <p class="card-text">€{{ item.product.price }}</p>
                             {% if item.size %}
-                                <p class="small text-muted">Size: {{ item.size }}</p>
+                                <p class="text-muted">Size: {{ item.size }}</p>
                             {% endif %}
                 
                             {% if item.product.category.name|lower in allowed_categories %}
@@ -59,7 +59,7 @@
                 
                             <!-- Update and Remove Buttons -->
                             <div class="d-flex pt-2">
-                                <a class="update-link btn btn-primary btn-sm text-white me-2 mr-2">Update</a>
+                                <a class="update-link btn btn-main btn-sm text-white me-2 mr-2">Update</a>
                                 <a class="btn btn-danger btn-sm text-white remove-item" 
                                    id="remove_{{ item.item_id }}" data-product_size="{{ item.size }}">Remove</a>
                             </div>
@@ -116,7 +116,7 @@
                             <span>€{{ grand_total|floatformat:2 }}</span>
                         </li>
                     </ul>
-                    <a href="{% url 'checkout' %}" class="btn btn-primary w-100">Proceed to Checkout</a>
+                    <a href="{% url 'checkout' %}" class="btn btn-main w-100">Proceed to Checkout</a>
                 </div>
             </div>
         </div>
