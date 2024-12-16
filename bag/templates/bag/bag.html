@@ -22,8 +22,13 @@
                 <div class="card mb-4">
                     <div class="card-body d-flex align-items-start">
                         <!-- Product Image with Spacing -->
-                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" 
-                             class="rounded me-4" style="width: 100px; height: 100px; padding: 10px;">
+                        {% if item.product.image %}
+                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}"
+                            class="rounded me-4" style="width: 100px; height: 100px; padding: 10px;">
+                        {% else %}
+                        <img src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}"
+                            class="rounded me-4" style="width: 100px; height: 100px; padding: 10px;">
+                        {% endif %}
                         <div class="flex-grow-1">
                             <!-- Product Details -->
                             <h5 class="card-title">{{ item.product.name }}</h5>
