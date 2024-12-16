@@ -1,0 +1,26 @@
+Dear {{ order.full_name }},
+
+Thank you for choosing Vintage Drums! We're delighted to confirm your order. Below are the details:
+
+Order Summary
+Order Number: {{ order.order_number }}
+Order Date: {{ order.date|date:"F j, Y" }}
+Order Total: ${{ order.order_total }}
+Delivery Fee: ${{ order.delivery_cost }}
+Grand Total: ${{ order.grand_total }}
+
+Shipping Information
+Your order will be shipped to:
+{{ order.street_address1 }}
+{{ order.town_or_city }}, {{ order.country }}
+
+If we need to reach you, we’ll use the phone number you provided: {{ order.phone_number }}.
+
+Should you have any questions or need assistance, please don't hesitate to contact us at {{ contact_email }}.
+
+We truly appreciate your business and look forward to serving you again in the future.
+
+Warm regards,
+
+Vintage Drums
+
