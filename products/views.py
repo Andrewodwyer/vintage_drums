@@ -6,6 +6,8 @@ from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Product, Category, Like, DrumKitDetail
 from bag.contexts import bag_contents  # Import the bag context
+from .forms import ProductForm
+
 
 def all_products(request):
     """ A view to show all products, including sorting and search queries """
@@ -124,3 +126,13 @@ def toggle_like(request, product_id):
         'user_liked': user_liked,
         'like_count': like_count,
     })
+
+def add_product(request):
+    """ Add a product to the store """
+    form = ProductForm()
+    template = 'products/add_product.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
