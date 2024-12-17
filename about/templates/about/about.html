@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="about-section">
+    <div class="about-image" style="background-image: url('{{ about_content.profile_image.url }}');"></div>
+    <div class="about-text">
+        <h1>{{ about_content.title }}</h1>
+        <p>{{ about_content.content }}</p>
+        {% if user.is_superuser %}
+            <a href="{% url 'admin:about_about_change' about_content.id %}" class="btn btn-primary">Edit</a>
+        {% endif %}
+    </div>
+</div>
+
+<div class="reviews-section">
+    <h2>Reviews</h2>
+    <div class="reviews">
+        {% for review in reviews %}
+            <div class="review {% if not review.approved %}faded{% endif %}">
+                <p>{{ review.body }}</p>
+                <p>Rating: 
+                    {% for i in range(review.rating) %}★{% endfor %}
+                    {% for i in range(5|add:"-review.rating") %}☆{% endfor %}
+                </p>
+                <small>— {{ review.reviewer.username }}</small>
+            </div>
+        {% endfor %}
+    </div>
+
+    {% if user.is_authenticated %}
+        <h3>Leave a Review</h3>
+        <form method="POST">
+            {% csrf_token %}
+            {{ review_form.as_p }}
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+    {% else %}
+        <p><a href="{% url 'account_login' %}">Log in</a> to leave a review.</p>
+    {% endif %}
+</div>
+{% endblock %}

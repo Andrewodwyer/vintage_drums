@@ -173,6 +173,16 @@ input[name='q']::placeholder {
     overflow-y: auto;
 }
 
+/* -------------------------------- reviews in About */
+.review p {
+    font-size: 16px;
+    color: #FFD700; /* Gold star*/
+}
+.review p .empty {
+    color: #ccc; /
+}
+
+
 /* -------------------------------- like button */
 
 /* #like-container button {
