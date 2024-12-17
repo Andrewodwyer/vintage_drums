@@ -36,9 +36,10 @@
                             {% if item.size %}
                                 <p class="text-muted">Size: {{ item.size }}</p>
                             {% endif %}
-                
-                            {% if item.product.category.name|lower in allowed_categories %}
-                            <!-- Quantity Input and Update Button for allowed categories -->
+            
+                            <!-- Conditional Logic for Allowed Categories -->
+                            {% if item.product.category.name|lower == 'sticks' %}
+                            <!-- Quantity Input, Update, and Size for Sticks -->
                             <form class="update-form" action="{% url 'adjust_bag' item.item_id %}" method="POST">
                                 {% csrf_token %}
                                 <div class="input-group">
@@ -47,35 +48,62 @@
                                                 data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
                                             <i class="fas fa-minus fa-sm"></i>
                                         </button>
-                                        <input class="qty_input form-control form-control-sm  text-center rounded-0 qty-input-long" 
-                                                type="number" name="quantity" value="{{ item.quantity }}" 
-                                                min="1" max="99" data-item_id="{{ item.item_id }}" 
-                                                id="id_qty_{{ item.item_id }}">
+                                        <input class="qty_input form-control form-control-sm text-center rounded-0 qty-input-long" 
+                                            type="number" name="quantity" value="{{ item.quantity }}" 
+                                            min="1" max="99" data-item_id="{{ item.item_id }}" 
+                                            id="id_qty_{{ item.item_id }}">
                                         <button type="button" class="increment-qty btn btn-sm btn-black rounded-right" 
                                                 data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
                                             <i class="fas fa-plus fa-sm"></i>
                                         </button>
                                     </div>
                                 </div>
-                                {% if item.product.size_option %}
-                                    <input type="hidden" name="product_size" value="{{ item.size }}">
-                                {% endif %}
+                                <input type="hidden" name="product_size" value="{{ item.size }}">
                             </form>
-                
-                            <!-- Update and Remove Buttons -->
+            
                             <div class="d-flex pt-2">
                                 <a class="update-link btn btn-main btn-sm text-white me-2 mr-2">Update</a>
                                 <a class="btn btn-danger btn-sm text-white remove-item" 
-                                   id="remove_{{ item.item_id }}" data-product_size="{{ item.size }}">Remove</a>
+                                id="remove_{{ item.item_id }}" data-product_size="{{ item.size }}">Remove</a>
                             </div>
+            
+                            {% elif item.product.category.name|lower == 'stand' %}
+                            <!-- Quantity Input and Update for Stands -->
+                            <form class="update-form" action="{% url 'adjust_bag' item.item_id %}" method="POST">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <button type="button" class="decrement-qty btn btn-sm btn-black rounded-left" 
+                                                data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
+                                            <i class="fas fa-minus fa-sm"></i>
+                                        </button>
+                                        <input class="qty_input form-control form-control-sm text-center rounded-0 qty-input-long" 
+                                            type="number" name="quantity" value="{{ item.quantity }}" 
+                                            min="1" max="99" data-item_id="{{ item.item_id }}" 
+                                            id="id_qty_{{ item.item_id }}">
+                                        <button type="button" class="increment-qty btn btn-sm btn-black rounded-right" 
+                                                data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
+                                            <i class="fas fa-plus fa-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+            
+                            <div class="d-flex pt-2">
+                                <a class="update-link btn btn-main btn-sm text-white me-2 mr-2">Update</a>
+                                <a class="btn btn-danger btn-sm text-white remove-item" 
+                                id="remove_{{ item.item_id }}">Remove</a>
+                            </div>
+            
                             {% else %}
-                            <!-- Remove button only for non-allowed categories -->
+                            <!-- Remove button only for other categories -->
                             <div class="d-flex">
                                 <a class="btn btn-danger btn-sm text-white remove-item" 
-                                   id="remove_{{ item.item_id }}" data-product_size="{{ item.size }}">Remove</a>
+                                id="remove_{{ item.item_id }}">Remove</a>
                             </div>
                             {% endif %}
                         </div>
+            
                         <!-- Total Price -->
                         <div class="text-end">
                             <p class="font-weight-bold">€{{ item.total_price }}</p>
@@ -84,9 +112,9 @@
                 </div>
                 {% endfor %}
             {% else %}
-                <!-- Empty message and keep shopping button -->
-                <p class="lead mb-5">Your bag is empty.</p>
+            <p>Your bag is empty.</p>
             {% endif %}
+            
 
             <!-- Keep Shopping Button -->
             <a href="{% url 'all_products' %}" class="btn btn-outline-black rounded-0 btn-lg mt-4">

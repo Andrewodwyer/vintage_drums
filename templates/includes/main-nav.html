@@ -5,7 +5,7 @@
             <a class="logo-font nav-link text-black mr-5" href="#" id="drum-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Drums
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="drum-link">
+            <div class="dropdown-menu" aria-labelledby="drum-link">
                 <a href="{% url 'all_products' %}?category=drum_kits" class="dropdown-item">Drums Kits</a>
                 <a href="{% url 'all_products' %}?category=drums" class="dropdown-item">Drums</a>
                 <a href="{% url 'all_products' %}?category=drum_kits,drums" class="dropdown-item">All drums</a>
@@ -16,7 +16,7 @@
             <a class="logo-font nav-link text-black mr-5" href="#" id="cymbal-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Cymbals
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="cymbal-link">
+            <div class="dropdown-menu" aria-labelledby="cymbal-link">
                 <a href="{% url 'all_products' %}?category=hi_hats" class="dropdown-item">Hi-Hats</a>
                 <a href="{% url 'all_products' %}?category=crash_cymbal" class="dropdown-item">Crash Cymbals</a>
                 <a href="{% url 'all_products' %}?category=ride_cymbal" class="dropdown-item">Ride Cymbals</a>
@@ -28,10 +28,10 @@
             <a class="logo-font nav-link text-black" href="#" id="accessories" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Accessories
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="specials-link">
-                <a href="{% url 'all_products' %}?category=stands" class="dropdown-item">Drum Stands</a>
+            <div class="dropdown-menu" aria-labelledby="specials-link">
+                <a href="{% url 'all_products' %}?category=stand" class="dropdown-item">Drum Stands</a>
                 <a href="{% url 'all_products' %}?category=sticks" class="dropdown-item">Drum Sticks</a>
-                <a href="{% url 'all_products' %}?category=stands,sticks" class="dropdown-item">All Accessories</a>
+                <a href="{% url 'all_products' %}?category=stand,sticks" class="dropdown-item">All Accessories</a>
             </div>
         </li>
 
