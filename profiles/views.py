@@ -6,6 +6,8 @@ from .forms import UserProfileForm
 
 from checkout.models import Order
 
+from products.models import Product
+
 @login_required
 def profile(request):
     """ Display the user's profile. """
@@ -20,13 +22,18 @@ def profile(request):
             messages.error(request, 'Update failed. Please ensure the form is valid.')
     else:
         form = UserProfileForm(instance=profile)
+
     orders = profile.orders.all()
+
+    # Get liked products from the Like model
+    liked_products = Product.objects.filter(likes__user=request.user)
 
     template = 'profiles/profile.html'
     context = {
         'form': form,
         'orders': orders,
-        'on_profile_page': True
+        'on_profile_page': True,
+        'liked_products': liked_products,
     }
 
     return render(request, template, context)

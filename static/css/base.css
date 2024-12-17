@@ -217,39 +217,34 @@ input[name='q']::placeholder {
     color: #aab7c4;
 }
 
-/* .allauth-form-inner-content button,
-.allauth-form-inner-content input[type='submit'] {
+/* Product Form */
 
-	display: inline-block;
-    font-weight: 400;
-    color: #fff;
-    text-align: center;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-color: #000;
-    border: 1px solid #000;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.custom-checkbox .custom-control-label::before {
     border-radius: 0;
-
-
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    border-color: #dc3545;
 }
 
-.allauth-form-inner-content button:hover,
-.allauth-form-inner-content input[type='submit']:hover {	
-	color: #fff;
-    background-color: #222;
-    border-color: #222;
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    border-radius: 0;
 }
 
-.allauth-form-inner-content a {
-	color: #17a2b8; 
-} */
 
 /* Buttons and Submit Inputs */
 .allauth-form-inner-content button,
@@ -275,6 +270,8 @@ input[name='q']::placeholder {
     /* Transitions */
     transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
+
+
 
 /* Hover State for Buttons */
 .allauth-form-inner-content button:hover,

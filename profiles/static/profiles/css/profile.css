@@ -19,3 +19,15 @@
 #id_default_country option:first-child {
     color: #aab7c4;
 }
+
+.list-group-item {
+    padding: 10px 15px; /*  padding */
+    font-size: 0.95rem; 
+}
+.list-group-item a {
+    font-weight: bold; 
+    text-decoration: none; 
+}
+.list-group-item a:hover {
+    text-decoration: underline; /* underline on hover */
+}
