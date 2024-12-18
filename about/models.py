@@ -23,4 +23,4 @@ class Review(models.Model):
         ordering = ["created_on"]
 
     def __str__(self):
-        return f"Review by {self.reviewer} with rating {self.rating}"
+        return f"Review by {self.reviewer} - {self.rating} Stars"

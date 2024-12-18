@@ -256,6 +256,34 @@ input[name='q']::placeholder {
 }
 
 
+/* ------------------------- about page hero image */
+.about-hero-image {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    height: 30vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-hero-image .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent black */
+    z-index: 1; /* Places the overlay above the background */
+}
+
+.about-hero-image .container-fluid {
+    position: relative;
+    z-index: 2; /* Ensures content appears above the overlay */
+}
+
+
+
 /* Buttons and Submit Inputs */
 .allauth-form-inner-content button,
 .allauth-form-inner-content input[type='submit'] {
@@ -321,17 +349,28 @@ input[name='q']::placeholder {
     }
 
     .header-container {
-        padding-top: 164px;
+        padding-top: 140px;
     }
+    /* .about-hero-image {
+        height: 30vh;
+    } */
 }
 
 /* pad the top for smaller screens */
 @media (max-width: 991px) {
     .header-container {
-        padding-top: 116px;
+        padding-top: 76px;
     }
 
     body {
         height: calc(100vh - 116px);
     }
+    .about-hero-image {
+        height: 40vh; 
+    }
+}
+
+/* Medium screen, 40% of the viewport height */
+@media (min-width: 768px) {
+
 }
