@@ -31,7 +31,8 @@ SECRET_KEY = 'django-insecure-$mfk(h!-388ghco(s4fqv0u!f3zsr0h2mxe0$!gi6kp$r3s%=&
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '8000-andrewodwye-vintagedrum-l1ai7dd3ptj.ws.codeinstitute-ide.net'
+    '8000-andrewodwye-vintagedrum-l1ai7dd3ptj.ws.codeinstitute-ide.net',
+    'vintage-drum-store.herokuapp.com'
 ]
 
 
@@ -128,13 +129,18 @@ WSGI_APPLICATION = 'vintage_drums.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
