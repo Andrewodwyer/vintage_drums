@@ -1,1 +1,1 @@
-web: gunicorn vintage-drum-store.wsgi:application
+web: gunicorn vintage_drums.wsgi:application
