@@ -359,7 +359,7 @@ input[name='q']::placeholder {
 /* pad the top for smaller screens */
 @media (max-width: 991px) {
     .header-container {
-        padding-top: 76px;
+        padding-top: 66px;
     }
 
     body {
@@ -368,6 +368,27 @@ input[name='q']::placeholder {
     .about-hero-image {
         height: 40vh; 
     }
+    .logo-font {
+        font-size: 1.5
+        rem;
+    }
+    .nav-link {
+        padding: 0.13rem;
+    }
+
+    .nav-link i.fa-lg {
+        font-size: 1rem;
+    }
+
+    .navbar-toggler {
+        padding: .6rem .6rem;
+        font-size: 1rem;
+    }
+
+    .text-brand {
+        font-size: 1rem; 
+    }
+
 }
 
 /* Medium screen, 40% of the viewport height */
