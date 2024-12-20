@@ -34,7 +34,8 @@ DEBUG = True #'DEVELOPMENT' in os.environ
 
 ALLOWED_HOSTS = [
     '8000-andrewodwye-vintagedrum-l1ai7dd3ptj.ws.codeinstitute-ide.net',
-    'vintage-drum-store.herokuapp.com'
+    'vintage-drum-store.herokuapp.com',
+    'vintage-drum-store-6ce105a1b74f.herokuapp.com',
 ]
 
 
