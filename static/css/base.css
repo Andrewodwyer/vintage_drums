@@ -18,13 +18,29 @@ body {
 }
 
 .input-group .btn {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 14px;
 }
+
+/* --------------- image size for checkout */
+.sm-image {
+    width: 150px;
+    height: 150px;
+    padding: 10px;
+}
+
+/* ---------------- flex-direction (row for larger screens) */
+.custom-flex {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+}
+
+
 
 /* from Bulma */
 .icon {
@@ -391,7 +407,14 @@ input[name='q']::placeholder {
 
 }
 
-/* Medium screen, 40% of the viewport height */
-@media (min-width: 768px) {
-
+/* --------------- image size for checkout */
+@media (max-width: 320px) {
+    .custom-flex {
+        flex-direction: column;
+    }
+    .sm-image {
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+    }
 }
