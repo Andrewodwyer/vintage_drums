@@ -1,18 +1,18 @@
 from django.contrib import admin
 from .models import About, Review
 
-class ReviewInline(admin.TabularInline):
-    model = Review
-    extra = 1
 
+@admin.register(About)
 class AboutAdmin(admin.ModelAdmin):
-    list_display = ('title', 'updated_on')
-    inlines = [ReviewInline]
+    list_display = ['title', 'updated_on']
 
+
+@admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = ('review', 'reviewer', 'rating', 'approved', 'created_on')
-    list_filter = ('approved', 'rating')
-    search_fields = ('reviewer__username', 'body')
+    list_display = ['reviewer', 'rating', 'approved', 'created_on']
+    list_filter = ['approved', 'rating']
+    search_fields = ['reviewer__username', 'body']
+    actions = ['approve_reviews']
 
-admin.site.register(About, AboutAdmin)
-admin.site.register(Review, ReviewAdmin)
+    def approve_reviews(self, request, queryset):
+        queryset.update(approved=True)
