@@ -198,6 +198,12 @@ input[name='q']::placeholder {
     color: #ccc; /
 }
 
+.review-card-line {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;     /* Adds '...' for overflow text */
+}
+
 
 /* -------------------------------- like button */
 
@@ -297,6 +303,29 @@ input[name='q']::placeholder {
     position: relative;
     z-index: 2; /* Ensures content appears above the overlay */
 }
+
+/* ------------------------- carousel-control */
+
+.carousel {
+    overflow: visible;  /* Ensure nothing is cut off */
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    z-index: 10;
+    width: auto;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5);  /* Dark background for visibility */
+    border-radius: 50%;
+    padding: 1em;
+    background-size: 110% 110%;  /* Shrinks the arrow icon */
+    width: 30px;               /* Keeps the clickable area larger */
+    height: 30px;
+}
+
 
 
 
