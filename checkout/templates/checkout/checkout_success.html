@@ -39,7 +39,7 @@
                         {% for item in order.lineitems.all %}
                         <div class="d-flex justify-content-between">
                             <span class="text-black">
-                                {{ item.product.name }}{% if item.product_size %} - Size {{ item.product_size|upper }}{% endif %}
+                                {{ item.product.name }}{% if item.size_option %} - Size {{ item.size_option|upper }}{% endif %}
                             </span>
                             <span class="text-muted">{{ item.quantity }} × €{{ item.product.price }}</span>
                         </div>

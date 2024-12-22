@@ -58,13 +58,13 @@
                                         </button>
                                     </div>
                                 </div>
-                                <input type="hidden" name="product_size" value="{{ item.size }}">
+                                <input type="hidden" name="size_option" value="{{ item.size }}">
                             </form>
             
                             <div class="d-flex pt-2">
                                 <a class="update-link btn btn-main btn-sm text-white me-2 mr-2">Update</a>
                                 <a class="btn btn-danger btn-sm text-white remove-item" 
-                                id="remove_{{ item.item_id }}" data-product_size="{{ item.size }}">Remove</a>
+                                id="remove_{{ item.item_id }}" data-size_option="{{ item.size }}">Remove</a>
                             </div>
             
                             {% elif item.product.category.name|lower == 'stand' %}
@@ -175,9 +175,9 @@
     $('.remove-item').click(function(e) {
         var csrfToken = "{{ csrf_token }}";
         var itemId = $(this).attr('id').split('remove_')[1];
-        var size = $(this).data('product_size');
+        var size = $(this).data('size_option');
         var url = `/bag/remove/${itemId}/`;
-        var data = {'csrfmiddlewaretoken': csrfToken, 'product_size': size};
+        var data = {'csrfmiddlewaretoken': csrfToken, 'size_option': size};
 
         $.post(url, data)
          .done(function() {

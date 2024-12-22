@@ -16,7 +16,7 @@ def add_to_bag(request, item_id):
     product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity', 1))
     redirect_url = request.POST.get('redirect_url')  # URL to redirect back
-    size = request.POST.get('product_size', None)  # Size for sticks if size_option is enabled
+    size = request.POST.get('size_option', None)  # Size for sticks if size_option is enabled
     
     # Get or initialize the shopping bag from the session
     bag = request.session.get('bag', {})
@@ -80,8 +80,8 @@ def adjust_bag(request, item_id):
     product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
     size = None
-    if 'product_size' in request.POST:
-        size = request.POST['product_size']
+    if 'size_option' in request.POST:
+        size = request.POST['size_option']
     bag = request.session.get('bag', {})
 
     if size:
@@ -111,8 +111,8 @@ def remove_from_bag(request, item_id):
     try:
         product = get_object_or_404(Product, pk=item_id)
         size = None
-        if 'product_size' in request.POST:
-            size = request.POST['product_size']
+        if 'size_option' in request.POST:
+            size = request.POST['size_option']
         bag = request.session.get('bag', {})
 
         if size:
