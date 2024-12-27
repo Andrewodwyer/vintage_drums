@@ -6,8 +6,8 @@ from .forms import ReviewForm
 
 
 def about_page(request):
-    about = About.objects.first()  # Assuming a single "About" entry
-    reviews = Review.objects.filter(approved=True, review=about)  # Correct field name here is 'review', not 'about'
+    about = About.objects.first()  # A single "About" entry
+    reviews = Review.objects.filter(approved=True, review=about)
     user_reviews = Review.objects.filter(reviewer=request.user) if request.user.is_authenticated else []
 
     if request.method == "POST":
@@ -33,11 +33,14 @@ def about_page(request):
 @login_required
 def edit_review(request, pk):
     review = get_object_or_404(Review, pk=pk, reviewer=request.user)
+    
     if request.method == "POST":
         form = ReviewForm(request.POST, instance=review)
         if form.is_valid():
-            form.save()
-            messages.success(request, "Review updated.")
+            review = form.save(commit=False)
+            review.approved = False  # Set the review as unapproved when it is edited
+            review.save()
+            messages.success(request, "Review updated and requires admin approval.")
             return redirect("about")
     else:
         form = ReviewForm(instance=review)
