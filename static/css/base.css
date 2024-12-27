@@ -283,7 +283,7 @@ input[name='q']::placeholder {
     position: relative;
     background-size: cover;
     background-position: center;
-    height: 30vh; 
+    height: 30vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -303,6 +303,12 @@ input[name='q']::placeholder {
     position: relative;
     z-index: 2; /* Ensures content appears above the overlay */
 }
+
+/*  background image*/
+.about-hero-image-custom {
+    background-image: url('/media/cymbal-top.png');
+}
+
 
 /* ------------------------- carousel-control */
 
