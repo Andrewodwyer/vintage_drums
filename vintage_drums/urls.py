@@ -31,4 +31,4 @@ urlpatterns = [
     path('about/', include('about.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-# handler404 = 'vintage-drums.views.handler404'
+handler404 = 'vintage_drums.views.handler404'
