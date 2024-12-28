@@ -54,3 +54,7 @@ def delete_review(request, pk):
     review.delete()
     messages.success(request, "Review deleted.")
     return redirect("about")
+    
+
+def custom_404(request, exception=None):
+    return render(request, 'about/404.html', status=404)
