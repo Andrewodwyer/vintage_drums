@@ -18,8 +18,8 @@ body {
 }
 
 .input-group .btn {
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    /* height: 38px; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -206,13 +206,13 @@ input[name='q']::placeholder {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;     /* Adds '...' for overflow text */
-    font-size: 0.8rem;  /* Smaller text size */
-    line-height: 1.4;  /* Adjust line spacing */
+    font-size: 0.9rem;  /* Small text size */
+    line-height: 1.4;  /* line spacing */
     min-height: 4.2em;  /* Ensure the height stays the same (3 lines x line-height) */
 }
 
 .small-txt {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 }
 
 
