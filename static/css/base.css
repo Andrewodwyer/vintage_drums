@@ -192,16 +192,27 @@ input[name='q']::placeholder {
 /* -------------------------------- reviews in About */
 .review p {
     font-size: 16px;
-    color: #FFD700; /* Gold star*/
+    color: #FFD700; /* Gold star */
 }
+
 .review p .empty {
-    color: #ccc; /
+    color: #ccc;
 }
 
 .review-card-line {
-    white-space: nowrap;
+    color: #616b76;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;  /* Limit text to 3 lines */
+    -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;     /* Adds '...' for overflow text */
+    font-size: 0.8rem;  /* Smaller text size */
+    line-height: 1.4;  /* Adjust line spacing */
+    min-height: 4.2em;  /* Ensure the height stays the same (3 lines x line-height) */
+}
+
+.small-txt {
+    font-size: 0.8rem;
 }
 
 

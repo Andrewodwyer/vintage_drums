@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import About, Review
-from .forms import ReviewForm
+from .forms import ReviewForm, AboutForm
 
 
 def about_page(request):
@@ -55,6 +55,25 @@ def delete_review(request, pk):
     messages.success(request, "Review deleted.")
     return redirect("about")
     
+
+@login_required
+def edit_about(request):
+    if not request.user.is_superuser:
+        return redirect('about')
+    
+    about = About.objects.first()
+    
+    if request.method == "POST":
+        form = AboutForm(request.POST, instance=about)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "About section updated successfully.")
+            return redirect('about')
+    else:
+        form = AboutForm(instance=about)
+
+    return render(request, "about/edit_about.html", {"form": form})
+
 
 def custom_404(request, exception=None):
     return render(request, 'about/404.html', status=404)
