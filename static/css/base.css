@@ -332,7 +332,13 @@ input[name='q']::placeholder {
     height: 30px;
 }
 
-
+/* ------------------------- error-image */
+.error-image {
+    background: url('/media/404-drum.png') no-repeat center center;
+    background-size: contain;
+    width: 400px;  /* Adjust based on your needs */
+    height: 300px; /* Adjust based on your image ratio */
+}
 
 
 /* Buttons and Submit Inputs */
