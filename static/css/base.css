@@ -343,6 +343,25 @@ input[name='q']::placeholder {
     height: 30px;
 }
 
+
+
+/* ------------------------- about link on home page */
+.about-link {
+    color: #474747;  /* Default text color */
+    text-decoration: none; /* No underline by default */
+    text-decoration: underline;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.about-link:hover {
+    color: #b8860b;
+}
+
+.about-link:active {
+    color: #8b6914;  /* Darker gold when clicked */
+}
+
+
 /* ------------------------- error-image */
 
 .error-image-container {
@@ -413,6 +432,11 @@ input[name='q']::placeholder {
     }
 }
 
+/* ------------------------- long numer break */
+.order-number {
+    word-break: break-word;
+    font-weight: bold;
+}
 
 /* Buttons and Submit Inputs */
 .allauth-form-inner-content button,

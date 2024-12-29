@@ -33,7 +33,7 @@
         <p>{{ about.content|safe }}</p>
     
         {% if user.is_superuser %}
-            <a href="{% url 'edit_about' %}" class="btn btn-primary">
+            <a href="{% url 'edit_about' %}" class="btn btn-main">
                 Edit About Section
             </a>
         {% endif %}
@@ -104,7 +104,7 @@
                 {% if user_reviews %}
                     {% for review in user_reviews %}
                         <div class="border p-3 mb-3 rounded shadow-sm">
-                            <strong class="text-secondary small-txt">{{ review.reviewer }}</strong>
+                            <strong class="text-secondary small-txt">By: {{ review.reviewer }}</strong>
                             <p class="small-txt">{{ review.body }}</p>
                             <p class="text-warning">{{ review.rating|render_stars }}</p>
                             
@@ -124,7 +124,7 @@
                 <form method="post" class="border p-4 rounded shadow-sm">
                     {% csrf_token %}
                     {{ form|crispy }}
-                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                    <button type="submit" class="btn btn-main">Submit Review</button>
                 </form>
             </div>
 
