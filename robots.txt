@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /accounts/
+Disallow: /bag/
+Sitemap: https://vintage-drum-store-6ce105a1b74f.herokuapp.com/sitemap.xml
