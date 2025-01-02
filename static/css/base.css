@@ -61,8 +61,15 @@ body {
 
 
 .btn-black {
-    background: black;
+    background: #343a40;
     color: white;
+}
+
+.btn-black:hover,
+.btn-black:active {
+    background: #00897B;
+    color: white;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
 .btn-link,
@@ -101,6 +108,15 @@ body {
 
 .text-black {
     color: #000 !important;
+}
+
+.text-black:hover {
+    color: #343a40 !important;
+    text-decoration: underline !important;
+}
+
+.text-black:active {
+    color: #343a40 !important;
 }
 
 .text-thin {
@@ -566,7 +582,7 @@ input[name='q']::placeholder {
     }
 
     .header-container {
-        padding-top: 140px;
+        padding-top: 126px;
     }
     /* .about-hero-image {
         height: 30vh;
@@ -586,8 +602,7 @@ input[name='q']::placeholder {
         height: 40vh; 
     }
     .logo-font {
-        font-size: 1.5
-        rem;
+        font-size: 1.5rem;
     }
     .nav-link {
         padding: 0.13rem;
@@ -609,7 +624,7 @@ input[name='q']::placeholder {
 }
 
 /* --------------- image size for checkout */
-@media (max-width: 320px) {
+@media (max-width: 375px) {
     .custom-flex {
         flex-direction: column;
     }

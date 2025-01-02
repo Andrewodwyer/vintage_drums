@@ -4,8 +4,9 @@ from django.http import JsonResponse
 from django.contrib import messages
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models.functions import Lower
 from .models import Product, Category, Like, DrumKitDetail
-from bag.contexts import bag_contents  # Import the bag context
+from bag.contexts import bag_contents
 from .forms import ProductForm
 
 
@@ -55,7 +56,6 @@ def all_products(request):
     current_sorting = f'{sort}_{direction}'
 
     # Pagination setup
-    # products = Product.objects.all().order_by('updated_on')
     paginator = Paginator(products, 6)  # 6 products per page
     page = request.GET.get('page', 1)
     try:
@@ -65,6 +65,23 @@ def all_products(request):
     except EmptyPage:
         products = paginator.page(paginator.num_pages)
 
+    # Prepare pagination URLs for previous and next
+    base_url = request.path  # current path
+    current_params = request.GET.copy()  # Get existing query parameters from the request
+    
+    prev_url = None
+    next_url = None
+
+    # If there's a previous page, generate the previous page URL
+    if products.has_previous():
+        current_params['page'] = products.previous_page_number()
+        prev_url = f"{base_url}?{current_params.urlencode()}"
+
+    # If there's a next page, generate the next page URL
+    if products.has_next():
+        current_params['page'] = products.next_page_number()
+        next_url = f"{base_url}?{current_params.urlencode()}"
+
     context = {
         'products': products,
         'search_term': query,
@@ -72,6 +89,8 @@ def all_products(request):
         'current_sort': current_sorting,
         'is_paginated': paginator.num_pages > 1,
         'page_obj': products,
+        'prev_url': prev_url,
+        'next_url': next_url,
     }
 
     return render(request, 'products/products.html', context)
