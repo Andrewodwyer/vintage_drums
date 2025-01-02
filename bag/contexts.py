@@ -3,18 +3,19 @@ from django.conf import settings
 from django.shortcuts import get_object_or_404
 from products.models import Product
 
+
 def bag_contents(request):
 
     bag_items = []
     total = Decimal('0.00')
-    product_count = 0     
+    product_count = 0
     drum_kit_in_bag = False
     highest_delivery_rate = Decimal('0.00')
 
     bag = request.session.get('bag', {})
 
     for item_id, item_data in bag.items():
-        product = get_object_or_404(Product, pk=item_id)      
+        product = get_object_or_404(Product, pk=item_id)
         category = product.category.name.lower()  # Ensure case-insensitivity
 
         if isinstance(item_data, int):
@@ -24,7 +25,7 @@ def bag_contents(request):
                 'item_id': item_id,
                 'quantity': item_data,
                 'product': product,
-                'total_price': item_data * product.price,  # Include total_price
+                'total_price': item_data * product.price,
             })
         elif 'items_by_size' in item_data:
             for size, quantity in item_data['items_by_size'].items():
@@ -35,12 +36,16 @@ def bag_contents(request):
                     'quantity': quantity,
                     'product': product,
                     'size': size,
-                    'total_price': quantity * product.price, #for subtotal of each item
+                    'total_price': quantity * product.price,
                 })
 
         # Update highest delivery rate
-        category_delivery_rate = Decimal(settings.DELIVERY_RATES.get(category, 0))
-        highest_delivery_rate = max(highest_delivery_rate, category_delivery_rate)
+        category_delivery_rate = Decimal(
+            settings.DELIVERY_RATES.get(category, 0)
+            )
+        highest_delivery_rate = max(
+            highest_delivery_rate, category_delivery_rate
+            )
 
         # Check if drum kit is in the bag
         if category == settings.DELIVERY_AND_INSTALLATION:
@@ -52,7 +57,9 @@ def bag_contents(request):
         free_delivery_delta = Decimal('0.00')
     else:
         delivery = highest_delivery_rate
-        free_delivery_delta = Decimal(settings.FREE_DELIVERY_THRESHOLD) - total
+        free_delivery_delta = Decimal(
+            settings.FREE_DELIVERY_THRESHOLD
+            ) - total
 
     grand_total = total + delivery
 

@@ -11,7 +11,8 @@ class ReviewForm(forms.ModelForm):
             'body': forms.Textarea(attrs={'rows': 4}),
         }
 
+
 class AboutForm(forms.ModelForm):
     class Meta:
         model = About
-        fields = ['title', 'content'] 
+        fields = ['title', 'content']

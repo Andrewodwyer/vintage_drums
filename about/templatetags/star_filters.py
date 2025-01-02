@@ -2,6 +2,7 @@ from django import template
 
 register = template.Library()
 
+
 @register.filter
 def render_stars(rating):
     """Render stars based on the rating."""
