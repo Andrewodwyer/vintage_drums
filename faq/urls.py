@@ -3,4 +3,5 @@ from . import views
 
 urlpatterns = [
     path('', views.faq_list, name='faq_list'),
+    path('privacy-policy/', views.privacy_policy, name='privacy_policy'),
 ]

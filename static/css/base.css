@@ -346,19 +346,18 @@ input[name='q']::placeholder {
 
 
 /* ------------------------- about link on home page */
-.about-link {
+.links-hover {
     color: #474747;  /* Default text color */
     text-decoration: none; /* No underline by default */
-    text-decoration: underline;
     transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
-.about-link:hover {
-    color: #b8860b;
+.links-hover:hover {
+    color: #b8860b !important;
 }
 
-.about-link:active {
-    color: #8b6914;  /* Darker gold when clicked */
+.links-hover:active {
+    color: #8b6914 !important;  /* Darker gold when clicked */
 }
 
 
@@ -438,7 +437,71 @@ input[name='q']::placeholder {
     font-weight: bold;
 }
 
-/* Buttons and Submit Inputs */
+/* ------------------ mailchimp */
+
+/* 1. Make the div #mc_embed_shell transparent */
+.transparent-shell {
+    background: transparent !important;
+}
+
+/* 2. Style the main form container */
+#mc_embed_signup {
+    clear: left;
+    font: 14px; /* You can adjust the font if needed */
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* 3. Style the email input field */
+#mc_embed_signup input[type="email"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+/* 4. Style the submit button */
+#mc_embed_signup .button {
+    background-color: white !important; /* White background */
+    color: black !important; /* Black text */
+    border: 1px solid black !important; /* Black border */
+    padding: 10px;
+    font-size: 16px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Smooth transitions */
+}
+
+/* 5. Hover and active states for the subscribe button */
+#mc_embed_signup .button:hover,
+#mc_embed_signup .button:active {
+    background-color: #00A499 !important; /* Teal background */
+    color: white !important; /* White text on hover/active */
+    border: 1px solid #00A499; /* Teal border */
+}
+
+/* 6. Style the label text and the '*' symbol */
+.mc-field-group label {
+    color: white; /* Label text color */
+}
+
+.mc-field-group label .asterisk {
+    color: white; /* '*' color */
+}
+
+/* 7. Optional styles for the "indicates-required" text */
+.indicates-required {
+    font-size: 12px;
+    color: #888;
+}
+
+/* 8. Hide response messages */
+.response {
+    display: none;
+}
+
+
+
+/* ------------------ Buttons and Submit Inputs */
 .allauth-form-inner-content button,
 .allauth-form-inner-content input[type='submit'] {
     /* Button Base Styles */
