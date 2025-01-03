@@ -15,4 +15,4 @@ class ReviewForm(forms.ModelForm):
 class AboutForm(forms.ModelForm):
     class Meta:
         model = About
-        fields = ['title', 'content', 'profile_image']
+        fields = ['title', 'content']
