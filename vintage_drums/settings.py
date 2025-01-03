@@ -18,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
-DEBUG = 'DEVELOPMENT' in os.environ 
+DEBUG = 'DEVELOPMENT' in os.environ
 
 ALLOWED_HOSTS = [
     '8000-andrewodwye-vintagedrum-l1ai7dd3ptj.ws.codeinstitute-ide.net',
@@ -79,8 +79,8 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request', # required by allauth
-                'django.contrib.auth.context_processors.auth', 
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
                 'bag.contexts.bag_contents',
@@ -105,13 +105,17 @@ AUTHENTICATION_BACKENDS = (
 
 SITE_ID = 1
 
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email' #user can use either username or email
-ACCOUNT_EMAIL_REQUIRED = True # user needs to add email
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+# user can use either username or email
+ACCOUNT_EMAIL_REQUIRED = True
+# user needs to add email
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
-LOGIN_URL = '/accounts/login/' # this is the login url
-LOGIN_REDIRECT_URL = '/' # directed to home page
+LOGIN_URL = '/accounts/login/'
+# this is the login url
+LOGIN_REDIRECT_URL = '/'
+# directed to home page
 
 WSGI_APPLICATION = 'vintage_drums.wsgi.application'
 

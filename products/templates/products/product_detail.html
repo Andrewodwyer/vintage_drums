@@ -15,9 +15,7 @@
         <div class="row">
             <div class="col-md-6">
                 {% if product.image %}
-                    <a href="{{ product.image.url }}" target="_blank">
-                        <img class="img-fluid" src="{{ product.image.url }}" alt="Image of {{ product.name }}">
-                    </a>
+                    <img class="img-fluid" src="{{ product.image.url }}" alt="Image of {{ product.name }}">
                 {% else %}
                     <img class="img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="No image available for {{ product.name }}">
                 {% endif %}
