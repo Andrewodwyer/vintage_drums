@@ -1,4 +1,6 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import (
+    render, redirect, reverse,
+    get_object_or_404, HttpResponse)
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
@@ -14,16 +16,19 @@ from bag.contexts import bag_contents
 import stripe
 import json
 
+
 @require_POST
 def cache_checkout_data(request):
     """
-    Caches the checkout data in the Stripe PaymentIntent metadata. This is used to save
-    information about the shopping bag, the user, and whether the user wants to save
-    their information for future orders.
+    Caches the checkout data in the Stripe PaymentIntent metadata.
+    This is used to save information about the shopping bag,
+    the user, and whether the user wants to save their information
+    for future orders.
 
     **Context**
     - ``pid``: The Stripe PaymentIntent ID.
-    - ``request.POST``: Contains the client secret, save_info flag, and user information.
+    - ``request.POST``: Contains the client secret, save_info flag,
+    and user information.
 
     **Template**
     :template:  HTTP response.
@@ -45,14 +50,16 @@ def cache_checkout_data(request):
 
 def checkout(request):
     """
-    Displays the checkout page where the user can review their order details
-    and submit their shipping information. Processes the payment via Stripe and
-    creates an order in the database.
+    Displays the checkout page where the user can review their
+    order details and submit their shipping information.
+    Processes the payment via Stripe and creates an order
+    in the database.
 
     **Context**
     - ``order_form``: A form containing the user's shipping information.
     - ``stripe_public_key``: The Stripe public key for client-side integration.
-    - ``client_secret``: The client secret from Stripe used to confirm the payment.
+    - ``client_secret``: The client secret from Stripe used to confirm
+    the payment.
 
     **Template**
     :template: `checkout/checkout.html`
@@ -102,21 +109,26 @@ def checkout(request):
                             order_line_item.save()
                 except Product.DoesNotExist:
                     messages.error(request, (
-                        "One of the products in your bag wasn't found in our database. "
+                        "One of the products in your bag wasn't found \
+                        in our database. "
                         "Please call us for assistance!")
                     )
                     order.delete()
                     return redirect(reverse('view_bag'))
 
             request.session['save_info'] = 'save-info' in request.POST
-            return redirect(reverse('checkout_success', args=[order.order_number]))
+            return redirect(
+                reverse('checkout_success', args=[order.order_number])
+            )
         else:
             messages.error(request, 'There was an error with your form. \
                 Please double check your information.')
     else:
         bag = request.session.get('bag', {})
         if not bag:
-            messages.error(request, "There's nothing in your bag at the moment")
+            messages.error(
+                request, "There's nothing in your bag at the moment"
+            )
             return redirect(reverse('all_products'))
 
         current_bag = bag_contents(request)
@@ -147,7 +159,6 @@ def checkout(request):
         else:
             order_form = OrderForm()
 
-
     if not stripe_public_key:
         messages.warning(request, 'Stripe public key is missing. \
             Did you forget to set it in your environment?')
@@ -169,7 +180,8 @@ def checkout_success(request, order_number):
 
     **Context**
     - ``order``: The order object containing all the details of the order.
-    - ``save_info``: Whether the user wants to save their profile information for future orders.
+    - ``save_info``: Whether the user wants to save their profile information
+    for future orders.
 
     **Template**
     :template: `checkout/checkout_success.html`

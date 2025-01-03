@@ -16,8 +16,8 @@ def view_bag(request):
     the allowed categories and the items in the user's shopping bag.
 
     **Context**
-    - ``allowed_categories``: A list of product categories that have specific rules
-    (e.g., 'sticks', 'stand').
+    - ``allowed_categories``: A list of product categories that have
+    specific rules (e.g., 'sticks', 'stand').
 
     **Template**
     :template: `bag/bag.html`
@@ -30,15 +30,17 @@ def view_bag(request):
 
 def add_to_bag(request, item_id):
     """
-    Adds a specified quantity of a product to the shopping bag. Handles size options
-    for products in specific categories (e.g., 'sticks') and updates the session with the new quantity.
+    Adds a specified quantity of a product to the shopping bag.
+    Handles size options for products in specific categories
+    (e.g., 'sticks') and updates the session with the new quantity.
 
     **Context**
     - ``product``: The product being added to the shopping bag.
     - ``quantity``: The quantity of the product to add to the bag.
     - ``redirect_url``: The URL to redirect to after the product is added.
     - ``size``: The size option selected for the product, if applicable.
-    - ``allowed_categories``: A list of product categories (e.g., 'sticks') that have specific handling rules.
+    - ``allowed_categories``: A list of product categories (e.g., 'sticks')
+    that have specific handling rules.
 
     **Template**
     redirects after
@@ -120,8 +122,9 @@ def add_to_bag(request, item_id):
 
 def adjust_bag(request, item_id):
     """
-    Adjusts the quantity of a specified product in the shopping bag. If the quantity
-    is set to 0, the product (or size) is removed from the bag.
+    Adjusts the quantity of a specified product in the shopping bag.
+    If the quantity is set to 0, the product (or size) is removed
+    from the bag.
 
     **Context**
     - ``product``: The product whose quantity is being adjusted.

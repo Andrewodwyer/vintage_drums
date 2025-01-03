@@ -3,6 +3,10 @@ from django.contrib.auth.models import User
 
 
 class About(models.Model):
+    """
+    Represents the content of the "About" page, including title,
+    image, and content.
+    """
     title = models.CharField(max_length=200, unique=True)
     profile_image = models.ImageField(
         upload_to="about/", blank=True, default="default.jpg"
@@ -15,6 +19,10 @@ class About(models.Model):
 
 
 class Review(models.Model):
+    """
+    Represents a review for the "About" section, linked to
+    both the `About` page and a `User`.
+    """
     review = models.ForeignKey(
         About, on_delete=models.CASCADE, related_name="reviews"
         )

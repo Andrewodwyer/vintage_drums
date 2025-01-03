@@ -9,12 +9,15 @@ def validate_audio_file(file):
         raise ValidationError('Unsupported file extension. Allowed types: .mp3, .wav, .ogg')
 
 
-# Create your models here.
-
-
-# Category
 
 class Category(models.Model):
+    """
+    Represents a product category.
+
+    Attributes:
+        name (str): The name of the category.
+        friendly_name (str): An optional friendly name for the category.
+    """
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, blank=True, null=True) #optional friendly name
 
@@ -27,9 +30,11 @@ class Category(models.Model):
     def get_friendly_name(self):
         return self.friendly_name
 
-# Product
 
 class Product(models.Model):
+    """
+    Represents a product in the store.
+    """
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name="products")
     sku = models.CharField(max_length=254, unique=True)
     name = models.CharField(max_length=254)
@@ -52,8 +57,11 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-# Drum Kit Details Model
+
 class DrumKitDetail(models.Model):
+    """
+    Represents specific details for a drum kit product.
+    """
     product = models.OneToOneField(Product, on_delete=models.CASCADE, related_name="drumkit_detail")
     bass_drum_size = models.PositiveIntegerField(blank=True, null=True) 
     snare_drum_size = models.PositiveIntegerField(blank=True, null=True)  
@@ -68,62 +76,14 @@ class DrumKitDetail(models.Model):
         return f"DrumKitDetail for {self.product.name}"
 
 
-
-# # Cymbal options
-# CYMBAL_TYPES = [
-#     ('ride', 'Ride'),
-#     ('crash', 'Crash'),
-#     ('hi-hat', 'Hi-Hat'),
-#     ('splash', 'Splash'),
-# ]
-
-# # Cymbal Model
-
-# class CymbalDetail(models.Model):
-#     product = models.OneToOneField("Product", on_delete=models.CASCADE, related_name="cymbal_detail")
-#     size = models.PositiveIntegerField(blank=True, null=True)
-#     type = models.CharField(max_length=254, choices=CYMBAL_TYPES, blank=True)
-
-
-#     def __str__(self):
-#         return f"CymbalDetail for {self.product.name}"
-
-
-# # Stand Model
-# class StandDetail(models.Model):
-#     product = models.OneToOneField("Product", on_delete=models.CASCADE, related_name="stand_detail")
-#     size = models.PositiveIntegerField(blank=True, null=True) #optional size
-#     type = models.CharField(max_length=254, blank=True)
-
-#     def __str__(self):
-#         return f"StandDetail for {self.product.name}"
-
-# # Stick Sizes and Materials
-# class StickDetail(models.Model):
-#     STICK_SIZES = [
-#         ('7A', '7A'),
-#         ('5A', '5A'),
-#         ('5B', '5B'),
-#         ('2B', '2B'),
-#     ]
-
-#     MATERIALS = [
-#         ('maple', 'Maple'),
-#         ('hickory', 'Hickory'),
-#         ('oak', 'Oak'),
-#         ('carbon_fiber', 'Carbon Fiber'),
-#     ]
-
-#     product = models.OneToOneField("Product", on_delete=models.CASCADE, related_name="stick_detail")
-#     material = models.CharField(max_length=50, choices=MATERIALS, blank=True, null=True)
-#     size = models.CharField(max_length=50, choices=STICK_SIZES, blank=True, null=True)
-
-#     def __str__(self):
-#         return f"StickDetail for {self.product.name}"
-
-# likes
-
 class Like(models.Model):
+    """
+    Represents a 'like' action from a user on a product.
+    Attributes:
+        user (User): The user who liked the product.
+        product (Product): The product that was liked.
+        date_created (datetime): The timestamp when the like was created.
+    """
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="liked_products")
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="likes")
     date_created = models.DateTimeField(auto_now_add=True)

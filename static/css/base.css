@@ -28,7 +28,7 @@ form {
 
 .hero-image {
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-        url('/media/vintage-drums-hero.webp') no-repeat center center fixed;
+        url('/media/vintage-drums-hero.png') no-repeat center center fixed;
     background-size: cover;
     height: calc(100vh - 164px); 
     display: flex;
