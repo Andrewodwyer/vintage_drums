@@ -11,7 +11,17 @@ from products.models import Product
 
 
 def view_bag(request):
-    """ A view that renders the bag contents page """
+    """
+    Displays the contents of the shopping bag. This includes information about
+    the allowed categories and the items in the user's shopping bag.
+
+    **Context**
+    - ``allowed_categories``: A list of product categories that have specific rules
+    (e.g., 'sticks', 'stand').
+
+    **Template**
+    :template: `bag/bag.html`
+    """
     allowed_categories = ['sticks', 'stand']  # quantity limits
     return render(request, 'bag/bag.html', {
         'allowed_categories': allowed_categories,
@@ -19,8 +29,20 @@ def view_bag(request):
 
 
 def add_to_bag(request, item_id):
-    """ Add a quantity of the specified product to
-    the shopping bag """
+    """
+    Adds a specified quantity of a product to the shopping bag. Handles size options
+    for products in specific categories (e.g., 'sticks') and updates the session with the new quantity.
+
+    **Context**
+    - ``product``: The product being added to the shopping bag.
+    - ``quantity``: The quantity of the product to add to the bag.
+    - ``redirect_url``: The URL to redirect to after the product is added.
+    - ``size``: The size option selected for the product, if applicable.
+    - ``allowed_categories``: A list of product categories (e.g., 'sticks') that have specific handling rules.
+
+    **Template**
+    redirects after
+    """
     product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity', 1))
     redirect_url = request.POST.get('redirect_url')
@@ -98,7 +120,16 @@ def add_to_bag(request, item_id):
 
 def adjust_bag(request, item_id):
     """
-    Adjust the quantity of the specified product to the specified amount
+    Adjusts the quantity of a specified product in the shopping bag. If the quantity
+    is set to 0, the product (or size) is removed from the bag.
+
+    **Context**
+    - ``product``: The product whose quantity is being adjusted.
+    - ``quantity``: The new quantity for the product.
+    - ``size``: The size option, if applicable.
+
+    **Template**
+    :template: No specific template (redirects after the operation).
     """
     product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
@@ -138,8 +169,16 @@ def adjust_bag(request, item_id):
 
 
 def remove_from_bag(request, item_id):
-    """Remove the item from the shopping bag."""
+    """
+    Removes a product (or a specific size of a product) from the shopping bag.
 
+    **Context**
+    - ``product``: The product being removed from the shopping bag.
+    - ``size``: The size option, if applicable.
+
+    **Template**
+    :template: No specific template (responds with an HTTP response).
+    """
     try:
         product = get_object_or_404(Product, pk=item_id)
         size = None

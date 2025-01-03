@@ -6,6 +6,19 @@ from .forms import ReviewForm, AboutForm
 
 
 def about_page(request):
+    """
+    Displays the 'About' page with information about the company, user reviews, 
+    and a form to submit new reviews for approval.
+
+    **Context**
+    - ``about``: The single instance of the About model, providing information about the company.
+    - ``reviews``: A queryset of approved reviews for the 'About' page.
+    - ``user_reviews``: A list of reviews submitted by the current user, if authenticated.
+    - ``form``: A form to submit a new review.
+
+    **Template**
+    :template: `about/about.html`
+    """
     about = About.objects.first()  # A single "About" entry
     reviews = Review.objects.filter(approved=True, review=about)
     user_reviews = Review.objects.filter(
@@ -34,6 +47,16 @@ def about_page(request):
 
 @login_required
 def edit_review(request, pk):
+    """
+    Allows users to edit their own reviews. The review is set as unapproved upon editing
+    and requires admin approval.
+
+    **Context**
+    - ``form``: A form for editing an existing review.
+
+    **Template**
+    :template: `about/review_form.html`
+    """
     review = get_object_or_404(Review, pk=pk, reviewer=request.user)
 
     if request.method == "POST":
@@ -54,6 +77,15 @@ def edit_review(request, pk):
 
 @login_required
 def delete_review(request, pk):
+    """
+    Allows users to delete their own reviews from the 'About' page.
+
+    **Context**
+    - None, as this function performs a side effect (deletion) and redirects.
+
+    **Template**
+    :template: No specific template used for this action (redirects after deletion).
+    """
     review = get_object_or_404(Review, pk=pk, reviewer=request.user)
     review.delete()
     messages.success(request, "Review deleted.")
@@ -62,6 +94,15 @@ def delete_review(request, pk):
 
 @login_required
 def edit_about(request):
+    """
+    Allows superusers to edit the 'About' page content.
+
+    **Context**
+    - ``form``: A form to edit the 'About' page content.
+
+    **Template**
+    :template: `about/edit_about.html`
+    """
     if not request.user.is_superuser:
         return redirect('about')
 
@@ -82,6 +123,3 @@ def edit_about(request):
         request, "about/edit_about.html", {"form": form}
         )
 
-
-def custom_404(request, exception=None):
-    return render(request, 'about/404.html', status=404)

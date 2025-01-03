@@ -10,7 +10,19 @@ from products.models import Product
 
 @login_required
 def profile(request):
-    """ Display the user's profile. """
+    """
+    Display the user's profile page, including their order history, liked products,
+    and the option to update profile information.
+
+    **Context**
+    - ``form``: The user profile form to update profile information.
+    - ``orders``: The list of orders associated with the user profile.
+    - ``on_profile_page``: A boolean indicating whether the user is on the profile page.
+    - ``liked_products``: List of products the user has liked.
+
+    **Template**
+    :template: `profiles/profile.html`
+    """
     profile = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == 'POST':
@@ -40,6 +52,17 @@ def profile(request):
 
 
 def order_history(request, order_number):
+    """
+    Display the details of a specific past order.
+
+    **Context**
+    - ``order``: The order instance being displayed.
+    - ``from_profile``: Boolean showing the order was accessed
+    from the user's profile.
+
+    **Template**
+    :template: `checkout/checkout_success.html`
+    """
     order = get_object_or_404(Order, order_number=order_number)
 
     messages.info(request, (

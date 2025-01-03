@@ -16,6 +16,18 @@ import json
 
 @require_POST
 def cache_checkout_data(request):
+    """
+    Caches the checkout data in the Stripe PaymentIntent metadata. This is used to save
+    information about the shopping bag, the user, and whether the user wants to save
+    their information for future orders.
+
+    **Context**
+    - ``pid``: The Stripe PaymentIntent ID.
+    - ``request.POST``: Contains the client secret, save_info flag, and user information.
+
+    **Template**
+    :template:  HTTP response.
+    """
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -32,6 +44,19 @@ def cache_checkout_data(request):
 
 
 def checkout(request):
+    """
+    Displays the checkout page where the user can review their order details
+    and submit their shipping information. Processes the payment via Stripe and
+    creates an order in the database.
+
+    **Context**
+    - ``order_form``: A form containing the user's shipping information.
+    - ``stripe_public_key``: The Stripe public key for client-side integration.
+    - ``client_secret``: The client secret from Stripe used to confirm the payment.
+
+    **Template**
+    :template: `checkout/checkout.html`
+    """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
@@ -139,7 +164,15 @@ def checkout(request):
 
 def checkout_success(request, order_number):
     """
-    Handle successful checkouts
+    Displays the success page after a successful checkout. The order number is
+    shown.
+
+    **Context**
+    - ``order``: The order object containing all the details of the order.
+    - ``save_info``: Whether the user wants to save their profile information for future orders.
+
+    **Template**
+    :template: `checkout/checkout_success.html`
     """
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)

@@ -11,7 +11,22 @@ from .forms import ProductForm
 
 
 def all_products(request):
-    """ A view to show all products, including sorting and search queries """
+    """
+    A view to show all products with filtering, sorting, and search functionalities.
+
+    **Context**
+    - ``products``: A list of products filtered by the user's selection (category, brand, search query).
+    - ``search_term``: The user's search term if any.
+    - ``current_categories``: Categories the user has filtered by.
+    - ``current_sort``: Current sorting method.
+    - ``is_paginated``: Boolean indicating if pagination is applied.
+    - ``page_obj``: The paginated list of products.
+    - ``prev_url``: URL for the previous page in pagination (if exists).
+    - ``next_url``: URL for the next page in pagination (if exists).
+
+    **Template**
+    :template: `products/products.html`
+    """
 
     products = Product.objects.all()
     query = None  # prevents error when loading the pages, without a query
@@ -97,6 +112,19 @@ def all_products(request):
 
 
 def product_detail(request, product_id):
+    """
+    Displays the detailed view of a specific product.
+
+    **Context**
+    - ``product``: The product instance.
+    - ``product_in_bag``: Boolean indicating whether the product is in the user's shopping bag.
+    - ``drum_kit_details``: Drum kit details if the product is a drum kit.
+    - ``allow_quantity_input``: Boolean indicating whether the user can input quantity for the product.
+    - ``user_liked``: Boolean indicating whether the user has liked the product.
+
+    **Template**
+    :template: `products/product_detail.html`
+    """
 
     product = get_object_or_404(Product, id=product_id)
     bag = request.session.get('bag', {})  # Bag from session
@@ -124,10 +152,15 @@ def product_detail(request, product_id):
 
 
 
-
 @login_required
 def toggle_like(request, product_id):
-    """Toggle like for a product via AJAX."""
+    """
+    Toggle like status for a product using AJAX.
+
+    **Returns**
+    - ``user_liked``: Boolean indicating if the user has liked the product.
+    - ``like_count``: The total number of likes the product has received.
+    """
     product = get_object_or_404(Product, id=product_id)
 
     # Toggle the like status
@@ -149,7 +182,12 @@ def toggle_like(request, product_id):
 
 @login_required
 def add_product(request):
-    """ Add a product to the store """
+    """
+    Add a new product to the store. Superuser only.
+
+    **Template**
+    :template: `products/add_product.html`
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
@@ -175,7 +213,12 @@ def add_product(request):
 
 @login_required
 def edit_product(request, product_id):
-    """ Edit a product in the store """
+    """
+    Edit an existing product in the store. Superuser only.
+
+    **Template**
+    :template: `products/edit_product.html`
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
@@ -204,7 +247,15 @@ def edit_product(request, product_id):
 
 @login_required
 def delete_product(request, product_id):
-    """ Delete a product from the store """
+    """
+    Delete a product from the store. Superuser only.
+
+    **Redirects**
+    - Redirects to the all products page after deletion.
+
+    **Messages**
+    - Success message indicating the product was deleted.
+    """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
