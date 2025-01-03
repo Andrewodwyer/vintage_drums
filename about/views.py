@@ -109,7 +109,7 @@ def edit_about(request):
     about = About.objects.first()
 
     if request.method == "POST":
-        form = AboutForm(request.POST, instance=about)
+        form = AboutForm(request.POST, request.FILES, instance=about)
         if form.is_valid():
             form.save()
             messages.success(
@@ -122,4 +122,3 @@ def edit_about(request):
     return render(
         request, "about/edit_about.html", {"form": form}
         )
-

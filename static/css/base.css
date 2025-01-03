@@ -611,7 +611,7 @@ input[name='q']::placeholder {
 /* pad the top for smaller screens */
 @media (max-width: 991px) {
     .header-container {
-        padding-top: 66px;
+        padding-top: 80px;
     }
 
     body {

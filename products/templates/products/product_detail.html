@@ -138,7 +138,7 @@
 
                 {% if user.is_authenticated %}
 
-                    <div class="d-flex align-items-center mb-2">
+                    <div class="d-flex mb-2">
                         <form id="like-form" method="POST" action="{% url 'toggle_like' product.id %}">
                             {% csrf_token %}
                             <input type="hidden" name="product_id" value="{{ product.id }}">
