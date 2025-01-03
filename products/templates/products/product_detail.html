@@ -163,7 +163,7 @@
                 
                 {% else %}
                     <div class="row mt-3">
-                        <p class="ml-4"><i class="fa fa-heart-o"></i> Sign in to like this product.</p>
+                        <p class="ml-3"><i class="fa fa-heart-o"></i> Sign in to like this product.</p>
                     </div>
                 {% endif %}
                 
@@ -207,6 +207,12 @@
                         {% endif %}
                     </ul>
                 {% endif %}
+
+                {% if product.link_to_official_page %}
+                <hr>
+                    <p>Link to official page: <a href="{{ product.link_to_official_page }}" target="_blank">{{ product.name }}</a></p>
+                {% endif %}
+
                 {% if request.user.is_superuser %}
                     <small class="ml-3">
                         <a href="{% url 'edit_product' product.id %}">Edit</a> | 

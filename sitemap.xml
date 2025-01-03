@@ -9,227 +9,222 @@
 
 <url>
   <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/accounts/signup/</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/accounts/login/</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/bag/</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?category=drum_kits</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?category=drums</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?category=drum_kits,drums</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?category=hi_hats</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?category=crash_cymbal</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?category=ride_cymbal</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?category=hi_hats,crash_cymbal,ride_cymbal</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?category=stand</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?category=sticks</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?category=stand,sticks</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?brand=DW%20Drums</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?brand=Tama</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?brand=Ludwig</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?brand=Mapex</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?brand=Paiste</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?brand=Pearl</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/about/</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/faq/</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?category=hi_hats</loc>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?category=crash_cymbal</loc>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?category=ride_cymbal</loc>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?category=hi_hats,crash_cymbal,ride_cymbal</loc>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?category=stand</loc>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?category=sticks</loc>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?category=stand,sticks</loc>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?brand=DW-Drums</loc>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?brand=Tama</loc>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?brand=Ludwig</loc>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?brand=Mapex</loc>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?brand=Paiste</loc>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?brand=Pearl</loc>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/about/</loc>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/faq/</loc>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/1/</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/3/</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/6/</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/2/</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/18/</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/7/</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/19/</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/8/</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/faq/privacy-policy/</loc>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/accounts/password/reset/</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/4/</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/5/</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/20/</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?page=2%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20&amp;category=drum_kits,drums</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?page=2&amp;category=drum_kits,drums</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
+  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?category=drum_kits%2Cdrums&amp;page=2</loc>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/14/</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/9/</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/17/</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?page=2</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?page=3</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
+  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/17/</loc>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?page=1%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20&amp;category=drum_kits,drums</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?page=1%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20&amp;category=drum_kits,drums</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
+  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?category=drum_kits%2Cdrums&amp;page=1</loc>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?page=1</loc>
-  <lastmod>2024-12-30T08:32:29+00:00</lastmod>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/?page=3</loc>
+  <lastmod>2025-01-03T10:52:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 
