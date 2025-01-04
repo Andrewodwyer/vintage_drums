@@ -94,41 +94,45 @@
 
     <hr>
 
-    <!-- User Reviews and Add Review Section -->
-    <section class="mt-5">
-        <div class="row">
-            
-            <!-- Your Reviews (left column) -->
-            <div class="col-lg-6 col-md-12">
-                <h3>Your Reviews</h3>
-                {% if user_reviews %}
-                    {% for review in user_reviews %}
-                        <div class="border p-3 mb-3 rounded shadow-sm">
-                            <strong class="text-secondary small-txt">By: {{ review.reviewer }}</strong>
-                            <p class="small-txt">{{ review.body }}</p>
-                            <p class="text-warning">{{ review.rating|render_stars }}</p>
-                            
-                            <!-- Edit and Delete Buttons -->
-                            <a href="{% url 'edit_review' review.id %}" class="btn btn-sm btn-outline-primary">Edit</a>
-                            <a href="{% url 'delete_review' review.id %}" class="btn btn-sm btn-outline-danger">Delete</a>
-                        </div>
-                    {% endfor %}
-                {% else %}
-                    <p>You haven't submitted any reviews yet.</p>
-                {% endif %}
-            </div>
+        <!-- User Reviews and Add Review Section -->
+    {% if user.is_authenticated %}
+        <section class="mt-5">
+            <div class="row">
+                
+                <!-- Your Reviews (left column) -->
+                <div class="col-lg-6 col-md-12">
+                    <h3>Your Reviews</h3>
+                    {% if user_reviews %}
+                        {% for review in user_reviews %}
+                            <div class="border p-3 mb-3 rounded shadow-sm">
+                                <strong class="text-secondary small-txt">By: {{ review.reviewer }}</strong>
+                                <p class="small-txt">{{ review.body }}</p>
+                                <p class="text-warning">{{ review.rating|render_stars }}</p>
+                                
+                                <!-- Edit and Delete Buttons -->
+                                <a href="{% url 'edit_review' review.id %}" class="btn btn-sm btn-outline-primary">Edit</a>
+                                <a href="{% url 'delete_review' review.id %}" class="btn btn-sm btn-outline-danger">Delete</a>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p>You haven't submitted any reviews yet.</p>
+                    {% endif %}
+                </div>
 
-            <!-- Add a Review (right column) -->
-            <div class="col-lg-6 col-md-12">
-                <h3>Add a Review</h3>
-                <form method="post" class="border p-4 rounded shadow-sm">
-                    {% csrf_token %}
-                    {{ form|crispy }}
-                    <button type="submit" class="btn btn-main">Submit Review</button>
-                </form>
-            </div>
+                <!-- Add a Review (right column) -->
+                <div class="col-lg-6 col-md-12">
+                    <h3>Add a Review</h3>
+                    <form method="post" class="border p-4 rounded shadow-sm mb-4">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button type="submit" class="btn btn-main">Submit Review</button>
+                    </form>
+                </div>
 
-        </div>
-    </section>
+            </div>
+        </section>
+    {% else %}
+        <p>Please log in to add a reviews.</p>
+    {% endif %}
 </div>
 {% endblock %}

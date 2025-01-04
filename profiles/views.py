@@ -3,21 +3,21 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import UserProfile
 from .forms import UserProfileForm
-
 from checkout.models import Order
-
 from products.models import Product
+
 
 @login_required
 def profile(request):
     """
-    Display the user's profile page, including their order history, liked products,
-    and the option to update profile information.
+    Display the user's profile page, including their order history,
+    liked products, and the option to update profile information.
 
     **Context**
     - ``form``: The user profile form to update profile information.
     - ``orders``: The list of orders associated with the user profile.
-    - ``on_profile_page``: A boolean indicating whether the user is on the profile page.
+    - ``on_profile_page``: A boolean indicating whether the user is
+    on the profile page.
     - ``liked_products``: List of products the user has liked.
 
     **Template**
@@ -31,7 +31,8 @@ def profile(request):
             form.save()
             messages.success(request, 'Profile updated successfully')
         else:
-            messages.error(request, 'Update failed. Please ensure the form is valid.')
+            messages.error(
+                request, 'Update failed. Please ensure the form is valid.')
     else:
         form = UserProfileForm(instance=profile)
 

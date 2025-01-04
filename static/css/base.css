@@ -250,30 +250,12 @@ input[name='q']::placeholder {
     font-size: 0.9rem;
 }
 
-
-/* -------------------------------- like button */
-
-/* #like-container button {
-    border: none;
-    background: transparent;
-    cursor: pointer;
-}
-
-#like-container i {
-    font-size: 1.5rem;
-    transition: color 0.3s ease;
-} */
-
-
-/* -------------------------------- Media Queries */
-
 /* Slightly larger container on xl screens */
 @media (min-width: 1200px) {
   .container {
     max-width: 80%;
   }
 }
-
 
 /* Allauth form formatting */
 
@@ -377,7 +359,6 @@ input[name='q']::placeholder {
     width: 30px;               /* clickable area larger */
     height: 30px;
 }
-
 
 
 /* ------------------------- about link on home page */
@@ -603,9 +584,6 @@ input[name='q']::placeholder {
     .header-container {
         padding-top: 126px;
     }
-    /* .about-hero-image {
-        height: 30vh;
-    } */
 }
 
 /* pad the top for smaller screens */

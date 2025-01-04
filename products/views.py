@@ -12,10 +12,12 @@ from .forms import ProductForm
 
 def all_products(request):
     """
-    A view to show all products with filtering, sorting, and search functionalities.
+    A view to show all products with filtering, sorting,
+    and search functionalities.
 
     **Context**
-    - ``products``: A list of products filtered by the user's selection (category, brand, search query).
+    - ``products``: A list of products filtered by the user's
+    selection (category, brand, search query).
     - ``search_term``: The user's search term if any.
     - ``current_categories``: Categories the user has filtered by.
     - ``current_sort``: Current sorting method.
@@ -31,7 +33,7 @@ def all_products(request):
     products = Product.objects.all()
     query = None  # prevents error when loading the pages, without a query
     categories = None
-    sort = None 
+    sort = None
     direction = None
 
     if request.GET:
@@ -47,10 +49,14 @@ def all_products(request):
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
-                messages.error(request, "You didn't enter any search criteria!")
+                messages.error(
+                    request, "You didn't enter any search criteria!"
+                )
                 return redirect(reverse('all_products'))
 
-            queries = Q(name__icontains=query) | Q(description__icontains=query)
+            queries = Q(name__icontains=query) | Q(
+                description__icontains=query
+                )
             products = products.filter(queries)
 
         # Sorting by price or rating
@@ -67,7 +73,7 @@ def all_products(request):
                 if direction == 'desc':
                     sortkey = f'-{sortkey}'
             products = products.order_by(sortkey)
-    
+
     current_sorting = f'{sort}_{direction}'
 
     # Pagination setup
@@ -82,8 +88,9 @@ def all_products(request):
 
     # Prepare pagination URLs for previous and next
     base_url = request.path  # current path
-    current_params = request.GET.copy()  # Get existing query parameters from the request
-    
+    current_params = request.GET.copy()
+    # Get existing query parameters from the request
+
     prev_url = None
     next_url = None
 
@@ -117,10 +124,13 @@ def product_detail(request, product_id):
 
     **Context**
     - ``product``: The product instance.
-    - ``product_in_bag``: Boolean indicating whether the product is in the user's shopping bag.
+    - ``product_in_bag``: Boolean indicating whether the product is
+    in the user's shopping bag.
     - ``drum_kit_details``: Drum kit details if the product is a drum kit.
-    - ``allow_quantity_input``: Boolean indicating whether the user can input quantity for the product.
-    - ``user_liked``: Boolean indicating whether the user has liked the product.
+    - ``allow_quantity_input``: Boolean indicating whether the user can
+    input quantity for the product.
+    - ``user_liked``: Boolean indicating whether the user has liked the
+    product.
 
     **Template**
     :template: `products/product_detail.html`
@@ -128,16 +138,19 @@ def product_detail(request, product_id):
 
     product = get_object_or_404(Product, id=product_id)
     bag = request.session.get('bag', {})  # Bag from session
-    
-    restricted_categories = ['sticks', 'stand']
-    
-    product_category = product.category.name.lower()
-    product_in_bag = str(product_id) in bag  # Check if product is already in bag
-    allow_quantity_input = product_category in restricted_categories  # Check if category allows quantity input
 
-    drum_kit_details = getattr(product, 'drumkit_detail', None) 
-    
-    user_liked = request.user.is_authenticated and Like.objects.filter(product=product, user=request.user).exists()
+    restricted_categories = ['sticks', 'stand']
+
+    product_category = product.category.name.lower()
+    product_in_bag = str(product_id) in bag
+    # Check if product is already in bag
+    allow_quantity_input = product_category in restricted_categories
+    # Check if category allows quantity input
+
+    drum_kit_details = getattr(product, 'drumkit_detail', None)
+
+    user_liked = request.user.is_authenticated and Like.objects.filter(
+        product=product, user=request.user).exists()
 
     context = {
         'product': product,
@@ -149,7 +162,6 @@ def product_detail(request, product_id):
     }
 
     return render(request, 'products/product_detail.html', context)
-
 
 
 @login_required
@@ -164,7 +176,8 @@ def toggle_like(request, product_id):
     product = get_object_or_404(Product, id=product_id)
 
     # Toggle the like status
-    like, created = Like.objects.get_or_create(user=request.user, product=product)
+    like, created = Like.objects.get_or_create(
+        user=request.user, product=product)
     if not created:
         like.delete()  # Unlike the product
         user_liked = False
@@ -199,10 +212,13 @@ def add_product(request):
             messages.success(request, 'Successfully added product!')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
-            messages.error(request, 'Failed to add product. Please ensure the form is valid.')
+            messages.error(
+                request,
+                'Failed to add product. Please ensure the form is valid.'
+            )
     else:
         form = ProductForm()
-        
+
     template = 'products/add_product.html'
     context = {
         'form': form,
@@ -231,7 +247,10 @@ def edit_product(request, product_id):
             messages.success(request, 'Successfully updated product!')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
-            messages.error(request, 'Failed to update product. Please ensure the form is valid.')
+            messages.error(
+                request,
+                'Failed to update product. Please ensure the form is valid.'
+            )
     else:
         form = ProductForm(instance=product)
         messages.info(request, f'You are editing {product.name}')
