@@ -56,7 +56,7 @@ This site is designed to provide a luxurious and user-friendly shopping experien
 4. [Technologies Used](#languages)
     * [BootStrap](#bootstrap)
 5. [Libraries](#libraries)
-6. [Testing](#user-testing)
+6. [Validator Testing](#validator-testing)
 7. [Bugs](#bugs)
 8. [Deployment](#deployment)
 9. [Credits](#credits)
@@ -810,86 +810,9 @@ Bootstrap was used in the app to create a responsive, mobile-first websites quic
 - Crispy-forms: making it easier to work with forms, providing better rendering and handling.
 - Crispy-bootstrap5==0.7 - A Crispy Forms template pack for Bootstrap 5
 
-### Manual Testing user stories
-
-<a name="user-testing"></a>
-
-User Story |  Test | Pass
---- | --- | :---:
-As a Site Admin I can view comments on an individual post so that I can read the conversation | In admin panel click on comments tab and select comment | &check;
-As admin I can mark addevent and comment requests as read so that I know which ones I've seen | In admin panel click on comments tab and select box at the start of the comment | &check;
-As the Admin I can view event request and comment requests, so that I can review and approve them | In admin panel click on comments tab or Add events tab and select item event or comment you'd like to review and approve | &check;
-As a Registered User, I want to indicate my attendance to events so that others know I’m planning to go. | Login, select event, click on the attending icon | &check;
-As a user/event organiser I can view all the events I've created so that I can manage them | login, in the nav bar click My Events, select one of your events | &check;
-As a user I can see the nav-bar so that I can easily go back to the home screen | Only when events are no longer available, past events that are moved to draft or deleted | &check;
-As a user I can log in to my account so that I can add events | log in, click the link Create an Event, fill in form and submit | &check;
-As a site user I can create, update and delete events | Once logged in, click on My Events page, select the event to edit or delete. Once in the details page, press the edit or delete button, delete button will display a modal to confirm delete. Edit button will bring you to a form page with the current input information. Edit event details and submit. If selecting delete, a bootstrap modal is shown with two buttons, close and delete. Close, closes the modal, delete deletes the event| &check;
-As a Registered User, I want to comment on events so that I can share my opinions or ask questions. | login, select the event you'd like to comment or ask a question to, and click submit | &check;
-As site user I can view events in a paginated way so that I can select one that interests me. | on the home page, category page or my events page, you'll see a button under the events. The button is numbered relating to current page and an arrow for next or previous | &check;
-As a user I can open a event listing from the calendar so that see more details of the event | Click on the Calendar button on the nav-bar, select the date that has a event listed by title. Click title and you'll be brought to that event details page | &check;
-As a User, I want to browse and search for events by category so that I can find events that interest me. | User chooses a category from the category tab. Choose one of the four buttons. User sees a new listing of filtered events by that category| &check;
-Sign up prompt. As a non-registered user I can register for an account so that I add events, write comments & show attendance | Non logged in users will be directed to the sign in page when click create an event, my events or indicate attendance | &check;
-As a user/ site visitor, I want to browse events without needing to register so that I can see what’s happening in my area. | all users can see the events by all, category and calendar | &check;
-
-### User registration, sign in and log out
-![User registration, sign in and log out](static/readme-img/UX/Sign-Up-sign-in-sign-out.webp)
-
-### Manual Testing features
-
-| Feature | Action | Status | 
-|:-------:|:--------| :--------|
-| Register | Selected Register on the nav menu, input Username, Email(optional), password, password again to confirm they are identical, click sign up. Redirected to home page if correctly done. Message to show what additional steps if not successful | &check; |
-| Login | Select Login from the nav menu, input username and password, click Sign in button. Redirected to home page if no issues. A message "The username and/or password you specified are not correct." if you are a new user or inputs are incorrect | &check; |
-| Logout | Select logout from nav menu, click sign out, redirected to home page | &check; |
-| Filling in create event form | Registered users click create an event button, Fill in the required fields in the form, submit event. There is a message to indicate that the event was successfully created. If there is an issue with the required fields, a message will be displayed to show the issues | &check; |
-| Add a comment to an event | In the event details page under the event description is a comment field. Make a comment and click the button submit. The user will be returned to that event page and a message will be displayed so the user knows the comment has been sent to be reviewed before being published | &check; |
-| Edit and delete comment | This created comment can be edited or deleted by the comment writer. They will see two buttons, edit and delete. Clicking edit will display the previously submitted commend in the comment field to be edited and submitted again. Clicking delete will bring up a bootstrap modal to confirm delete. Two buttons are displayed on the modal. close or delete | &check; |
-| Social media links| links in the footer takes the user to the relevant websites | &check; |
-| Admin panel view | add /admin to the end of the home url to see admin panel. Admin panel is only available to the admin and not a regular user | &check; |
-| Admin Display | Once in the admin panel, they will be able to view 3 columns, first for options, middle for description and right for filter | &check; |
-| Link to events page added in form, available in event details | The link can be added to the field in the form and the link is available in the event details page. The link is to open a new tab with the link | &check; |
-| Image Upload | In the Create an Events form a image can be uploaded to cloudinary and available to display on the events details page and event card | &check; |
-
-
-![Delete modal](static/readme-img/UX/delete-event-modal-bootstrap.png)
-
-### User flow test, Happy path for new user
-A happy path covers the core functionality and user experience of the event app, ensuring smooth navigation, registration, and interaction with events.
-
-
-| Action | Expectation | Pass | 
-|:-------:|:--------| :--------|
-| The user navigates to the home page of the events website | All upcoming events are displayed in a list. Category filter buttons (e.g., “Music,” “Art,” etc.) are clearly visible in the navigation bar. | &check; |
-| The user clicks the “Music” category button to filter the events | The list of events updates to show only music-related events. The user sees events related to the “Music” category. | &check; |
-| The user clicks on an event that interests them to view more details. | The user is taken to the event detail page. Information about the event (title, date, time, location, description) is displayed. A prompt to log in or register is visible for users who want to indicate attendance. | &check; |
-| The user navigates to the calendar page, as they want to check events on a specific date. | A calendar view is displayed, showing events for the current month (October). Events are marked on the calendar with clickable dates. | &check; |
-| The user changes the month to November and clicks on the 1st. | The calendar updates to show events in November. The user sees the “Urban Art Expo” event listed on November 1st at 11 AM | &check; |
-| The user clicks on the “Urban Art Expo” to view the event details. | The user is taken to the event detail page for the “Urban Art Expo.” The event’s full details are displayed (title, date, time, location, description). | &check; |
-| The user clicks the “Register” button to create an account. | The user is directed to the registration form. Fields for username, email, and password (with confirmation) are visible | &check; |
-| The user fills in the registration form, username: “John” and submits it. | The user is redirected to the home page. A notification appears saying “Successfully signed in as John.” | &check; |
-| The user navigates back to the “Urban Art Expo” event and clicks the attendance button/icon. | The attendance icon turns green. A visual confirmation, a message and a change in the icon’s appearance, shows that the user has successfully indicated attendance. | &check; |
-| The user scrolls down to the comment section and types the question: “Will this event be appropriate for children?” | The comment form is visible, and the user can submit the comment. After submitting, the page reloads with a message saying, “Comment submitted and awaiting approval” | &check; |
-| The user sees a mistake in the text and want to change it | The user clicks the edit button. The current text displays in the form. The text is updated. User submits the form. After submitting, the page reloads with a message saying, “Comment Updated!” | &check; |
-| The user sees the confirmation message for the comment and decides to leave. | The user is satisfied with the process and expects their comment to be reviewed. They leave the site, planning to return later to check for responses. | &check; |
-
-### User flow test, Happy path for event creator
-
-| Action | Expectation | Pass |
-|:-------:|:--------| :--------|
-| The user clicks the "Login" button. | The login form is displayed, and the user logs in successfully. | &check; |
-| The user navigates to the "My Events" page. | The user sees a list of their current event listings. | &check; |
-| The user clicks the "Create an Event" button. | The user is taken to the event creation form with empty fields. | &check; |
-| The user fills out the event form but enters the wrong end date (before start date). | The form reloads, and an error message appears under the "End date" field saying, "The end date & time must be after the start date & time." | &check; |
-| The user corrects the end date and submits the form. | The user is redirected to the home page with a notification: "Add event request received! It will be reviewed within 2 days." | &check; |
-| The user goes back to the "My Events" page. | The newly created event is listed but faded with a message saying, "This event is in drafts. Click to update." | &check; |
-| The user clicks on the draft event to review it. | The user sees the event details and how it will look when published. | &check; |
-| The user decides to edit the price and clicks "Edit Event." | The user is taken back to the event form with pre-filled details from the previous submission. | &check; |
-| The user scrolls down, changes the price to 30, and clicks "Submit." | The event is updated, and the new price is reflected in the event details. | &check; |
-| The user checks the event status the next day. | The event is now live and visible to all users, no longer faded in the "My Events" page. | &check; |
-| The user marks their intention to attend their own event. | The attendance icon turns green, and a visual confirmation is shown that the action was successful. | &check; |
-| The user leaves the site. | All actions were completed successfully, and the event is live. | &check; |
 
 ### Validator Testing 
+<a name="validator-testing"></a>
 
 ### HTML
 
@@ -1038,25 +961,73 @@ The 4 lines in setting.py that are too long is the AUTH_PASSWORD_VALIDATORS. The
 
 [CI Python Linter](https://pep8ci.herokuapp.com/) was used to check the validity of python files.
 
+### Chrome inspect window showed warning regarding Third party cookies. 
+- As this is to do with chrome and not the website and code I have decided not to resolve it at this time. Here is the warning 
+```
+Cookies with the SameSite=None; Secure and not Partitioned attributes that operate in cross-site contexts are third-party cookies. Chrome is moving towards a new experience that allows users to choose to browse without third-party cookies.
+```
+
 ### Google's Lighthouse Performance
 <a name="lighthouse"></a>
-I checked the app for Performance, Accessibility, SEO and Best Practices using google's Lighthouse
-Over all I was please with the results:
-- Accessibility: 100%
+I checked the app for Performance, Accessibility, SEO and Best Practices using google's Lighthouse.
+Over all I was please with the results for the desktop, however the mobile version can be improved.
+Desktop Lighthouse:
+- Accessibility: 86% - 94%
   - Accessible to screen readers
-  - Sufficient colour contract for readability
+  - Colour contract for readability can be improved. However I think these colour suit the design.
 - SEO: 100%
   - Properly structured data, mobile optimization, and fast loading times
-- Performance: 99% & 93%
-  - Fast performance
-  - Image sizing
-- Best Practice: 79%
-  - Third party warnings because of using cloudinary for the images. Google Chrome indicates issues with web standard and future-proofing of the site. "Support for third-party cookies will be removed in a future version of Chrome".
-  - This will be something to resolve in the future but for now cloudinary is the best option for users to upload images to their event. 
-  - It would not be an option to not use cloudinary as without the ability to use images to make their events stand out and be immediately visable with brand recognition, user would not engage with the site fully. They could see less rewards for their time.
+- Performance: 86%
+  - Not the best but want to display good quality images
+- Best Practice: 100%
 
 
-![Lighthouse Performance](static/readme-img/code-validated/lighthouse-score.png)
+Desktop Lighthouse:
+- Accessibility: 86% - 94%
+  - Accessible to screen readers
+  - Colour contract for readability can be improved on the Home page. However I think these colour suit the design. All other pages score high.
+- SEO: 100%
+  - Properly structured data, mobile optimization, and fast loading times
+- Performance: 64% - 72%
+  - This should be improved in the future.
+- Best Practice: 100%
+
+<details><summary><b>Desktop home page lighthouse score</b></summary>
+
+![Desktop home page lighthouse score](media/readme-images/Desktop_home_lighthouse.png)
+
+</details>
+
+<details><summary><b>Desktop product page lighthouse score</b></summary>
+
+![Desktop product page lighthouse score](media/readme-images/Desktop_product_lighthouse.png)
+
+</details>
+
+<details><summary><b>Desktop about page lighthouse score</b></summary>
+
+![Desktop about page lighthouse score](media/readme-images/Desktop_about_lighthouse.png)
+
+</details>
+
+<details><summary><b>Mobile home page lighthouse score</b></summary>
+
+![Mobile home page lighthouse score](media/readme-images/mobile_home_lighthouse.png)
+
+</details>
+
+<details><summary><b>Mobile product page lighthouse score</b></summary>
+
+![Mobile product page lighthouse score](media/readme-images/mobile_product_lighthouse.png)
+
+</details>
+
+<details><summary><b>Mobile about page lighthouse score</b></summary>
+
+![Mobile about page lighthouse score](media/readme-images/mobile_about_lighthouse.png)
+
+</details>
+
 
 
 ### Browser Compatibility
