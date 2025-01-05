@@ -13,11 +13,11 @@
 <hr>
 The Vintage Drum E-Commerce site is a premium online platform tailored for drum enthusiasts, musicians, and collectors seeking exceptional drums, cymbals, and accessories.
 
-Every product is showcased with photographs and accompanied by sound recordings, enabling users to see and hear the unique characteristics of each item before purchasing.
+Product are showcased with photographs and accompanied by sound recordings, enabling users can see and hear the unique characteristics of each Drum and Cymbal before purchasing.
 
 For customers purchasing full drum kits, the site offers a premium delivery and installation service by professional sound engineers, ensuring optimal setup and performance. Additionally, free delivery is available on orders over €500 for other products.
 
-This site is designed to provide a luxurious and user-friendly shopping experience. Shoppers can browse products by entering key words in a search bar, by category or brands, and enjoy secure checkout processes. Registered users gain access to personalised profiles with features like order history and liked products.
+This site is designed to provide a luxurious and user-friendly shopping experience. Shoppers can browse products by entering key words in a search bar, by category or brands, and enjoy secure checkout processes. Registered users gain access to personalised profiles with features like, order history and liked products.
 
 ## Table Of Contents:
 1. [UX & User-Centred Design](#ux)
@@ -70,12 +70,12 @@ This site is designed to provide a luxurious and user-friendly shopping experien
 ### User-Centred Design Approach for planning and design.
 <a name="user-centred-design"></a>
 
-The primary goal in the planning and design of the Vintage Drum Store website is to create an intuitive, user-friendly shopping experience tailored to drum enthusiasts, musicians, and collectors. Every design decision is made with the customer in mind, focusing on showcasing the products in a way that is both functional and enjoyable to explore. From browsing drums and cymbals to secure checkout and personalised profiles, the site is crafted to offer a seamless and engaging experience at every step.
+The primary goal in the planning and design of the Vintage Drum Store website is to create an intuitive, user-friendly shopping experience tailored to drum enthusiasts, musicians, and collectors. Every design decision is made with the customer in mind, focusing on showcasing the products in a way that is both functional and enjoyable to explore. From browsing drums and cymbals to secure checkout and personalised profiles, the site is designed to offer a seamless and engaging experience.
 
 #### Target Audience
 <a name="target-audience"></a>
 
-The Vintage Drum Store is designed for musicians, collectors, and drum enthusiasts who appreciate high-quality, preowned drum kits, cymbals, and accessories. The platform serves a wide range of users, from professional drummers, seasoned musicians and collectors.
+ The platform serves a wide range of users, from professional drummers, seasoned musicians and collectors.
 
 #### User Information:
 
@@ -117,8 +117,8 @@ Regular users who create an account to track their favorite products, view order
   5. Enter their email to subscribe to an newsletter.
   6. Follow links to the social media pages
 
-- Registers Users
-  - They will have the same abilities as the none registered users plus the following.
+- Registers Users:
+  They will have the same abilities as the none registered users plus the following.
 
   7. Personalised Profile Page: Users can create and manage their own accounts to track past orders and save favorite products.
   8. Leave Reviews: Registered users can leave review on the "About Page". The reviews have CRUD functionality. Users can add, read, edit and delete their own reviews. 
@@ -168,6 +168,8 @@ For Owner/superuser:
 ### User Stories
 <a name="user-story"></a>
 The user stories are available on the kanban board and some will be discussed in the EPICs below.
+[View Kanban Board here](https://github.com/users/Andrewodwyer/projects/7)
+
 There as three main users
 - Admin/Superuser: These are the site owner that will have full control over the website.
 - Registered Users: User who are logged in, allowing for more functionality 
@@ -180,27 +182,7 @@ One of the first steps in producing this app was to design and implement custom 
 
 An entity relationship diagram was created for planning these custom models.
 
-As you can see from the ERD, the relationships plays a important role in how the information will be stored and accessed. Here are the main relationship and you'll also be able to view them in this Diagram
-
-- Category model:
-   - One-to-Many: A category can have many events (AddEvent model), but each event belongs to one category.
-
-- AddEvent model:
-  - One-to-Many: A single category can be associated with multiple events.
-  - One-to-Many: A single user can create multiple events, but each event has one organiser.
-  - One-to-Many: An event can have multiple comments, but each comment is linked to one event.
-
-- Comments model:
-  - One-to-Many: A single event can have many comments, but each comment is linked to one event.
-  - One-to-Many: A single user can write many comments, but each comment is linked to one user.
-
-- Attending model:
-	- Many-to-Many: A user can attend multiple events, and an event can have many attendees.
-
-- User:
-  - One-to-Many: A single user can create multiple events.
-  - One-to-Many: A single user can comment on multiple events.
-  - Many-to-Many: A user can attend multiple events, and events can have multiple attendees.
+As you can see from the ERD, the relationships plays a important role in how the information will be stored and accessed. 
 
 
 ![ER Diagram](media/readme-images/ERD.png)
@@ -253,7 +235,7 @@ Below is a description of each epic:
 
 #### Epic 1: Product Browsing (Shopper)
 
-This epic is focused on providing a seamless experience for shoppers exploring the products on the site. The features here prioritize discoverability, ensuring that users can easily find and learn about the products they are interested in.
+This epic is focused on providing a seamless experience for shoppers exploring the products on the site. The features here prioritise discoverability, ensuring that users can easily find and learn about the products they are interested in.
 
 - Abilities:
   -	View products by category and view product details to easily navigate and understand the product range.
@@ -469,9 +451,9 @@ These are modern style fonts that work well with the clean, minimal design.
 
 #### There is 4 main categories of products and each category will desplay different information.
 
-#### Common information would be Name, Price, Category, Material (if added), Image, Description and link to offical page. All categories will be able to add sound recording but only the drums and cymbals will require it.
+#### Common information would be Name, Price, Category, Material (if added), Image, Description and link to offical page. All categories will have the ability to add sound recording but only the drums and cymbals will require it.
 
-#### The Vinateg Drum store will likely only have one of each product (except for stands and sticks). There is no quantity option available for prooducts except for drum-sticks and drum-stands. 
+#### The Vintage Drum store will likely only have one of each product (except for stands and sticks). There is no quantity option available for prooducts except for drum-sticks and drum-stands. 
 
 #### A message will indicate if the product is already in your basket. I thought this was useful for all products, including drum-stick and drum stands
 
@@ -674,7 +656,7 @@ The SEO strategy targeted **specific, long-tail keywords** (ideal for more niche
     - Keywords are highlighted using semantic HTML tags like `<strong>` to emphasize key product terms. This not only visually draws attention to important words but also signals their relevance to search engines.
     - For example, on the product page for the **Tama Starclassic - Vintage Drum Kit**, keywords such as **"Vintage Drum Kit"** and **"Tama Starclassic"** are included in both product titles and descriptions, helping to ensure high visibility in related searches.
 
-4. **Image Optimization:**
+4. **Image Optimisation:**
     - Images of **drum kits** and **cymbals** are tagged with **alt text** that includes relevant keywords. For example:
       ```html
       <img src="tama-starclassic.jpg" alt="Tama Starclassic vintage drum kit">
@@ -692,8 +674,8 @@ The SEO strategy targeted **specific, long-tail keywords** (ideal for more niche
     - **External backlinks** 
     - **external links** have the `rel="noopener nofollow"` attribute.
   
-7. **Mobile Optimization and Responsive Design:**
-    - **Mobile optimization** is crucial for SEO, as Google uses mobile-first indexing. Vintage Drums ensures that its website is fully responsive, providing a seamless experience for mobile users, which is a ranking factor for search engines.
+7. **Mobile Optimisation and Responsive Design:**
+    - **Mobile optimisation** is crucial for SEO, as Google uses mobile-first indexing. Vintage Drums ensures that its website is fully responsive, providing a seamless experience for mobile users, which is a ranking factor for search engines.
 
 8. **Sitemap and Robots.txt:**
     - A **sitemap.xml** is generated and submitted to Google Search Console to guide search engine crawlers through the site's content and ensure proper indexing.
@@ -746,6 +728,9 @@ By integrating SEO best practices into the design and content strategy of the **
 
 ## CRUD
 <a name="crud"></a>
+
+CRUD functionality within the project:
+
 | **Entity**           | **Create**                                                    | **Read**                                                       | **Update**                                                  | **Delete**                                                   |
 |----------------------|---------------------------------------------------------------|---------------------------------------------------------------|------------------------------------------------------------|-------------------------------------------------------------|
 | **Products**         | Superuser can add new products to the site.                  | All users can view product details and related items.         | Superuser can update product details (e.g., name, price, description, images). | Superuser can delete products from the site.                 |
@@ -806,9 +791,85 @@ Bootstrap was used in the app to create a responsive, mobile-first websites quic
 ### Libraries
 <a name="libraries"></a>
 
-- Django-cloudinary-storage: handling the images
-- Crispy-forms: making it easier to work with forms, providing better rendering and handling.
-- Crispy-bootstrap5==0.7 - A Crispy Forms template pack for Bootstrap 5
+#### Core Libraries
+
+1. Django
+  - Purpose: The main web framework used to build web applications in Python.
+  -	Version: 4.2.7
+2. asgiref
+  -	Purpose: ASGI (Asynchronous Server Gateway Interface) reference implementation, providing async support for Django.
+  -	Version: 3.8.1
+3.	pytz
+  -	Purpose: Timezone definitions and support for Python. Ensures accurate datetime handling across different time zones.
+  -	Version: 2024.2
+
+#### Django Extensions (Third-Party)
+4.	django-allauth
+  -	Purpose: Handles user authentication, registration, and third-party social logins (Google, Facebook, etc.).
+  -	Version: 0.50.0
+5.	django-countries
+  -	Purpose: Provides country fields for models and forms in Django. Useful for dropdowns and internationalization.
+  -	Version: 7.6
+6.	django-crispy-forms
+  -	Purpose: Simplifies form rendering in Django, allowing easy integration with Bootstrap and other CSS frameworks.
+  -	Version: 1.14.0
+7.	django-filter
+  -	Purpose: Adds filtering capabilities to Django querysets. Useful for creating search and filtering interfaces.
+  -	Version: 24.3
+8.	dj-database-url
+  -	Purpose: Configures database connections from a URL string. Helps manage different database environments.
+  -	Version: 0.5.0
+9.	django-js-asset
+  -	Purpose: Manages JavaScript assets in Django templates. Simplifies handling and loading of JS files.
+  -	Version: 3.0.1
+10.	django-storages
+  -	Purpose: Provides storage backends for Django, supporting AWS S3, Google Cloud Storage, and others.
+  -	Version: 1.14.4
+
+#### AWS and Cloud Services
+11.	boto3
+  -	Purpose: AWS SDK for Python, allowing interaction with S3, EC2, DynamoDB, and other AWS services.
+  -	Version: 1.35.84
+12.	botocore
+  -	Purpose: Core library that powers boto3. It contains low-level utilities for AWS service communication.
+  -	Version: 1.35.84
+13.	s3transfer
+  -	Purpose: Assists in high-level file transfers to and from AWS S3. A dependency for boto3.
+  -	Version: 0.10.4
+
+#### Authentication and Security
+14.	oauthlib
+  -	Purpose: Implements OAuth 1 and 2, providing secure access delegation (login via Google, Facebook, etc.).
+  -	Version: 3.2.2
+15.	requests-oauthlib
+  -	Purpose: Combines requests (HTTP for Python) with oauthlib to simplify OAuth requests.
+  -	Version: 2.0.0
+16.	python3-openid
+  -	Purpose: Implements OpenID authentication for user sign-ins. Often used with django-allauth.
+  -	Version: 3.2.0
+17.	PyJWT
+  -	Purpose: Creates and verifies JSON Web Tokens (JWT), commonly used for secure API authentication.
+  -	Version: 2.10.0
+
+#### Database Connectivity
+18.	psycopg2
+  -	Purpose: PostgreSQL adapter for Python. Essential for Django projects that use PostgreSQL as their database.
+  -	Version: 2.9.10
+
+#### Deployment and Production
+19.	gunicorn
+  -	Purpose: A WSGI HTTP server for running Django (or other Python apps) in production.
+  -	Version: 23.0.0
+
+#### Image and Media Handling
+20.	pillow
+  -	Purpose: Python Imaging Library (PIL) fork, used for image processing (resizing, cropping, etc.) in Django.
+  -	Version: 11.0.0
+
+#### Payment Integration
+21.	stripe
+  -	Purpose: Stripe API library for handling online payments within Django applications.
+  -	Version: 11.3.0
 
 
 ### Validator Testing 
@@ -1308,7 +1369,7 @@ Vintage Drums utilizes Stripe as its primary payment gateway to securely process
 
 ### GMAIL 
 
-Vinateg Drums uses Gmail to manage email communications with users, including account verifications and purchase order confirmations. Integrating Gmail ensures reliable and secure delivery of transactional emails to enhance the customer experience.
+Vintage Drums use Gmail to manage email communications with users, including account verifications and purchase order confirmations. Integrating Gmail ensures reliable and secure delivery of transactional emails to enhance the customer experience.
 
 **Steps for Gmail Integration:**
 
