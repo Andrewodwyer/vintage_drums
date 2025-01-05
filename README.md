@@ -43,7 +43,10 @@ This site is designed to provide a luxurious and user-friendly shopping experien
     * [Home page](#home-page)
     * [Products Page](#products-page)
     * [About Us](#about-us)
-    * [My Events](#my-events)
+    * [FAQ](#faq)
+    * [Profile Page](#profile-page)
+    * [Checkout](#checkout)
+    * [Order Confirmation](#order-confirmation)
     * [CRUD](#crud)
     * [DRY principles](#dry-principles)
     * [Authentication and Authorisation](#authentication-authorisation)
@@ -458,50 +461,88 @@ These are modern style fonts that work well with the clean, minimal design.
 - Pagination button, to navigate to the next or previous page
 - Sort by: This option on right of the screen allows the user to choose if they like to sort by price or rating
 - A button at the top of the products indicates which category they are viewing
+- Registered users can like and unlike a product. These liked products will be added to the users profile page to consider later for purchase.
 
 ### About Us
 <a name="about-us"></a>
-- A form for the user to add their event details
-- Displayed using Crispy-form
-- Image upload using cloudinay
-- Once the event is submitted, a message displays to indicate to the user that the event has been submitted.
+- Hero image with clear 'About Us" text
+- Business Description 
+- Approved customers reviews displayed 3 at a time and move as a carousel to the next 3 reviews. Left and right button also allow the user to move the reviews on.
+
+Registered User can do the following:
+- Write a review and give a rating out of 5
+- Review forms are displayed using Crispy-form
+- Once the review is submitted, a message displays to indicate to the user that the review has been submitted.
 - If the form is missing required information or if it has not been filled out correctly, a message will display regarding the issue to correct.
+- Registered user will be able to see all their reviews and edit or delete them. If the review was approved and then later edited, the review will be marked as not approved. This is done to make sure every review is seen before published on the site.
+
+Superusers
+- Superusers can edit the about text from this page. If the user is a superuser a button is displayed. Image below shows this. The button is only visable to superusers. This link takes you to the Edit About page that contains the form to update title and body.
+
+<details><summary><b>Edit About Section Button</b></summary>
+
+![Edit About Section Button](media/readme-images/Superuser-edit-about-page-button.png)
+
+</details>
+
+<br>
 
 
-### My Events
-<a name="my-events"></a>
-- A grid display of your events as cards, like the home page
-- Events that are not published/ in drafts have a transparent element over then to indicate that it is not published. Image below
-- Both published and draft events can be clicked on and edited/deleted
-- If the user is not logged in, they will be brought to the sign in page
+![Edit About Form](media/readme-images/edit-about-html.png)
 
-![My Event Draft Display](static/readme-img/UX/draft-event.png)
 
+### FAQ
+<a name="faq"></a>
+- Display of Questions.
+- User clicks on the question and a dropdown answer is displayed.
+- Admin can update this when required
+
+### Profile Page
+<a name="profile-page"></a>
+
+The page provides a personalised user profile section for logged in user, featuring a sidebar with quick links to manage account information, view order history, access the liked items. The main content displays personal details and shipping information, with options to edit both. Users can update their first name, last name under personal details, as well as their phone number, address, and country under shipping information. The layout is clean, with an intuitive design that makes it easy for users to manage their profiles.
+
+- The order history functionality allows users to view a list of their previous orders, displaying key details such as order numbers, dates and total amounts. For each order, users can click on a button to view more detailed information in a order page. This detailed view includes the items purchased, quantities, prices, delivery and billing addresses, as well as payment details like order total, delivery cost, and grand total.
+
+- The Liked Products section allows users to view their liked products. Each product is displayed in a grid format, showing essential details like title and price.
 
 ### Register
 - Sign up page if the user does not have an account
-- A form page that requires: username, email(optional) password and password confirmation. Details regarding passwords are displayed
+- A form page that requires: email and email confirmation, username, password and password confirmation.
 - A message will be displayed if the there is an error with the form.
-- When registered, the user will then be redirected to the home page with a message "Successfully signed in as USERNAME."
+- When registered, the user will then be brought to the Confirm email page. The user will be instructed to Verify their E-mail Address
+"We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. Please contact us if you do not receive it within a few minutes."
+The link in the email will bring the user to the sign-in page to sign in.
 
 ### Log out
 - This page contains a message "Are you sure you want to sign out?" and a button
 - The user is redirected to home page after signing out
 
 ### log in
-- Message displayed in a container
-- Container with form for username and password.
+- login page
+- Page with form for username and password.
 - Sign in button will direct the user to the home page if the form is correctly filled out.
 
 ### 404
-- I created a 404 page in the event templates. As it was not in the app directory but in templates it would be displayed if there was an 404 error. This is a built in django feature. I used the base.html template, an image and a message to allow the user to navigate back to the home page.
+- The 404 page would be displayed if there was an 404 error. I used the base.html template, an image and a message to allow the user to navigate back to the home page.
 
 <details><summary><b>404 page</b></summary>
 
-![404 page](static/readme-img/UX/404-page.png)
+![404 page](media/readme-images/404-page.png)
 
 </details>
 
+### Checkout
+<a name="checkout"></a>
+
+- It allows customers to review their order, including product details, pricing, delivery fees, and total payment. The page also lets users input their delivery information and securely enter their payment details through Stripe, a payment processing service. Customers can see a breakdown of costs and choose to save their delivery information for future purchases.
+
+### Order Confirmation
+<a name="order-confirmation"></a>
+
+- Order confirmation page includes the order number, date, details of the products purchased, and delivery addresses. The page also shows payment information, including the order total, delivery costs, and the grand total. Lastly, it offers the customer a button to continue shopping, "Check Out These Drum Kits!" button.
+
+![Order Confirmation](media/readme-images/Order-success-page.png)
 
 
 ## CRUD
@@ -528,58 +569,25 @@ Template inheritance goes hand in hand with DRY principles - Don't Repeat Yourse
 
 This extends tag {% extends "base.html" %}  tells each .html that it is a child template of base.html. Unique html to each page is injected into the base.
 
-I use this base.html for all pages to create the same look and feel for all our pages. The base.html template however is not the only one that can be reused. After writing each pages Html I saw there was other pages that could reuse code. There pages were
-- index.html (home page)
-- events_by_category.html
-- my_events.html
+I use this base.html for all pages to create the same look and feel for all our pages.
 
 #### Pagination:
 Pagination, meaning "divide up into pages”.
 paginate_by = 6,  tells Django to display 6 posts at a time.
-is_paginated is a boolean (set to true) more than the paginate number that was set to 6, add pagination. paginate number was set in the app view.py
-    template_name = "event/index.html"
-    paginate_by = 6
-I first used this just on the index.html (home) page. As the same pagination would be used on 3 html pages (index.html, events_by_category.html and my_events.html) I decided to place the pagination in its own template called pagination.html and include it in those 3 pages using the {%include%} tag.        
-{% include "event/pagination.html" with page_obj=page_obj %}. 
-The page_obj contains the current page’s events and pagination details if there is a next or previous
 
-#### Event Card Display
-Like the Pagination on these pages the majority of the code was the same. The only major difference was the h3 element at the start of the page and a message that displays at the end of the page {%if%} statement
-The card_display.html template was created in response to this. This template used the code that was duplicated on each page. These pages are free of clutter and the card design need only be changed once in the event-card.html and would apply on all the relevant pages that had the {% include "event/event_card.html" with event=event %} tag.
-
-![Pagination cards and buttons](static/readme-img/UX/pagination-6-card-and-button.png)
-
-
-### Cards
-- In keeping with the dark background the cards are white to standout, indicating importance. 
-- The card displays an image with text under it. There is a "Learn more" link element that is a "signifier" to click to view more information. I saw this style link on apples website. The classic blue style link is a perfect signifier, separating itself from the other text.
-- I have made the whole card a link even though it looks like the blue "Learn more" is the link. This was done to make it easier for the user to move to the next page. All designed with the user in mind. 
-- There is a slight drop shadow on the cards as well to elevate it.
-
+Pagination was used on the products page. If the page had more than 6 products, the user could click the "next" button to see the next 6 results. There is also a previous button when the user is on the second page and so on. 
 
 ### Buttons and Icons
 <a name="buttons-and-icons"></a>
-The action buttons like sign up, edit, delete and next/previous are solid colours when inactive and white with colour text and border when hovered over.
-This was due to the type of button is was. Once clicked they were gone. 
-- The icon buttons for the categories and attending buttons are differnet however. 
-  - The categories are on a white bar and would be distracting if they were block colours initially. Once a category is active its colour needs to inform the user of their location with a obvious sign. A quote from Steve Krug from his book "don't make me think" 
-    - “The fact that the people who built the site didn’t care enough to make things obvious—and easy—can erode our confidence in the site and the organization behind it.”
-  - Icons provide a visual shortcut
+The action buttons like sign up, edit and delete are solid colours with white font when inactive and darker in colour when hovered over. The and next/previous buttons are white button and light grey when hovered over.
+
+- The icon buttons and links on the footer as white and change to gold when hovered over.
+  - Icons provide a visual shortcut that the user will recognise intuitively 
 
 - The icons are from [fontawesome](https://fontawesome.com/)
 <hr>
 
-![Category buttons](static/readme-img/UX/category-button.png)
-
-
-![Action button with edit:hover](static/readme-img/UX/edit-button-hover.png)
-
-
-### Design familiarity
-  - Attending button: Just like the categories buttons, this had to be obvious. There are many apps with this idea of liking or attending. This grey to green concept is intuitive. This leverages the users prior experiences, making it feel familiar and natural.
-  <hr>
-
-![Attending Button](static/readme-img/UX/attending-icon.png)
+![Buttons](media/readme-images/buttons.png)
 
 
 ### Authentication-Authorisation, User Interaction with messages & signafiers
@@ -901,13 +909,6 @@ The Following Browsers were checked:
 
 On all browsers the site performed smoothly with consistent functionality and appearance. All features were tested and worked as expected.
 
-### Responsiveness
-<a name="responsiveness"></a>
-The app is responsive on all screen sizes. The event card display using bootstrap is shown above (at the start of the read me) and the calendar view (in the calendar description).
-The image below will show the event details page and create events form.
-
-![Responsiveness](static/readme-img/code-validated/Responsive_test.png)
-
 
 ## Languages
 <a name="languages"></a>
@@ -916,6 +917,13 @@ The image below will show the event details page and create events form.
 - [CSS3](https://en.wikipedia.org/wiki/CSS) - Provides the styling for the website.
 - [JavaScript](https://en.wikipedia.org/wiki/JavaScript) - Provides interactive elements of the website
 
+### Payment Service
+
+- [Stripe](https://stripe.com/en-gb-nl) was used to process all online payments transactions.
+
+### Cloud Storage
+
+- [Amazon Web Service S3](https://aws.amazon.com/s3/) was used to store all static and media files in production. 
 
 ## Frameworks & Software
 <a name="frameworks-software"></a>
@@ -951,22 +959,6 @@ The image below will show the event details page and create events form.
 - Open database link in your email
 - Paste dabase URL in your DATABASE_URL variable in env.py file and in Heroku config vars
 
-### Cloudinary
-<a name="cloudinary"></a>
-- Navigate to https://cloudinary.com/ and log in to your account.
-- Navigate to dashboard/console https://console.cloudinary.com/console/  copy API Enviroment variable starting with "cloudinary://".
-- Paste copied url CLOUDINARY_URL variable in env.py file and in Heroku config vars
-- Update settings.py
-
-### Django secret key
-
-You need to include you Django secret key that you can generate using any of the Django secret keys generators online.
-In order to protect django app secret key it was set as an enviroment variable and stored in env.py.
-
-```
-os.environ.setdefault(
-    "SECRET_KEY", "your secret key")
-```
 
 ## Bugs:
 <a name="bugs"></a>
@@ -1041,38 +1033,18 @@ os.environ.setdefault(
 <a name="future-features"></a>
 There is a number of additions that could be made to the app to increase it’s potential and appeal to users. 
 
-- ### Develop the My_Events page to be more a profile page with more features:
-  Currently the page shows the events created by the user/organiser. An added feature would be for a devision in this page. I column for created event  and a separate one for the events they’ve shown interest in, reserved seats for, shared events etc
+- ### Add Customisation if buying full drum kit
+  - Ability to add customisation to bass drum if buying the full kit so that shoppers can have their initials on the bass drum.
 
-- ### Reserve tickets:
-  Similar to restaurant booking app, registers users could reserve a table or seat for an event. This feature would work well with most events, like workshops, seats at a concert etc
-
-- ### Search bar:
-  Add a search bar in the navigation menu to allow users to search for events using key words, some examples would be a venue name, a sub category, or event organiser. The search for organiser would be useful as they could be a venue that would have a number of events each week. This functionality not only saves time but also increases the likelihood of user satisfaction and retention.
-
-- ### Sharing icon:
-  Social Sharing & Friend Invites: Let users see what events their friends are attending and invite friends to join events, boosting community engagement.
-
-- ### Favorites/Wish List: 
-  Enable users to mark events as “favourites” or add them to a wish list. The user will be able to track these events on a personal page
-
-- ### User Convenience: 
-  Users can visually browse events based on proximity to their location.
-
-- ### Event Reminders: 
-  Reminders and calendar integration to help users remember to attend events they’ve indicated attendance.
-
-- ### Share user comments: 
-  As well as the share events, users can share their comments relation to an event.
-
-- ### Event Reviews and Ratings:
-  Allow attendees to leave a review and rating for the past event
+- ### Deals and Special Offers
+  - Show special offers and coupon codes
+  - Deal badge on products
 
 
 ## Deployment
 <a name="deployment"></a>
 ### Heroku Deployment
-This site was deployed to and is currently [hosted on the Heroku platform](https://astroshare-blog-6a7ca9d34749.herokuapp.com/). The steps for deploying to Heroku, using PostgreSQL as the database host, are as follows:
+This site was deployed to and is currently [hosted on the Heroku platform](https://vintage-drum-store-6ce105a1b74f.herokuapp.com/). The steps for deploying to Heroku, using PostgreSQL as the database host, are as follows:
 
 1. Create a list of requirements in the requirements.txt file by using the command pip3 freeze > requirements.txt
 2. Log in (or sign up) to Heroku
@@ -1106,61 +1078,53 @@ This site was deployed to and is currently [hosted on the Heroku platform](https
 
 1. Make sure to set DEBUG = False.
 
-
 ## Credits
 <a name="credits"></a>
 
 #### Resources Used
-- Code Institute walkthrough videos in modules 'Hello Django' and 'I think therefore I blog'
+- Code Institute walkthrough videos
 
 - Django 5 by example, Antonio Melé
 
-- [Pictures](https://www.purecork.ie/whats-on)
-- [event pictures](https://www.corkoperahouse.ie/) 
-- [band picture](https://cosmopolite.no/en/program/cosmopolite/2024/september/orchestra-baobab)
+-[Colormind Colour palette](http://colormind.io/bootstrap/)
 
-- [Center Align Navbar video](https://www.youtube.com/watch?v=1quNxUhmZNQ)
-- [Stackoverflow bootstrap navbar](https://stackoverflow.com/questions/20024463/bootstrap-3-how-do-i-place-the-brand-in-the-center-of-the-navbar)
-- [Stackoverflow:](https://stackoverflow.com/questions/19733447/bootstrap-navbar-with-left-center-or-right-aligned-items)
-- [Django Documentation Making queries:](https://docs.djangoproject.com/en/5.1/topics/db/queries/)
-- [Django filter Documentation Getting started:](https://django-filter.readthedocs.io/en/stable/guide/usage.html)
-- [Django QuerySet](https://docs.djangoproject.com/en/3.0/ref/models/querysets/#exclude)
-- [Django Aggregation](https://docs.djangoproject.com/en/1.10/topics/db/aggregation/#generating-aggregates-for-each-item-in-a-queryset)
-- [Model instance reference in Django](https://docs.djangoproject.com/en/5.1/ref/models/instances/)
-- [Django request and response](https://docs.djangoproject.com/en/5.1/ref/request-response/#module-django.http)
-- [Django request.FILES](https://stackoverflow.com/questions/3111779/how-can-i-get-the-file-name-from-request-files)
-- [Django .get_or_create()](https://stackoverflow.com/questions/1941212/how-to-use-get-or-create-in-django)
-- [Bootstrap Nav:](https://getbootstrap.com/docs/4.0/components/navs/)
-- [Bootstrap Nav Customisation](https://stackoverflow.com/questions/61396714/i-cant-change-the-font-size-or-family-in-my-bootstrap-4-navbar)
-- [Bootstrap Footer](https://getbootstrap.com/docs/5.2/examples/footers/)
-- [Bootstrap borders:](https://getbootstrap.com/docs/4.0/utilities/borders/)
-- [Bootstrap Spacing](https://getbootstrap.com/docs/4.0/utilities/spacing/d)
-- [Bootstrap pagination](https://getbootstrap.com/docs/4.0/components/pagination/)
-- [CSS borders:](https://www.w3schools.com/css/css3_borders.asp)
-- [FullCalender Getting started:](https://fullcalendar.io/docs/getting-started)
-- [Django QuerySet:](https://docs.djangoproject.com/en/4.2/ref/models/querysets/#first)
-- [Django Built-in class-based generic views](https://docs.djangoproject.com/fr/2.2/topics/class-based-views/generic-display/)
-- [Google Font](https://fonts.google.com/selection/embed)
-- [favicon.io](https://favicon.io/favicon-generator/)
-- [blog.hubspot for entering an image with HTML and CSS](https://blog.hubspot.com/website/center-an-image-in-html#:~:text=Inside%20the%20curly%20brackets%2C%20I,container%20to%20a%20proportionate%20height.)
-- [Center image in a div freeCodeCamp](https://www.freecodecamp.org/news/how-to-center-an-image-in-a-div-css/)
-- [Bootstrap close-button](https://getbootstrap.com/docs/5.0/components/close-button/)
-- [Sorting events by date vintasoftware](https://www.vintasoftware.com/blog/advanced-django-querying-sorting-events-date)
-- [Django Conditional Expressions in Queries](https://micropyramid.com/blog/django-conditional-expression-in-queries)
-- [Difference between the__lte and __gte in Django stack overflow](https://stackoverflow.com/questions/64309821/difference-between-the-lte-and-gte-in-django)
-- [Python slugify](https://pypi.org/project/python-slugify/)
-- [Bootstrap hover customisation](https://stackoverflow.com/questions/25923623/change-hover-color-on-a-button-with-bootstrap-customization)
-- [Bootstrap flex](https://getbootstrap.com/docs/4.0/utilities/flex/)
-- [Bootstrap remove margin under <p>](https://stackoverflow.com/questions/67309695/how-to-remove-the-margins-added-by-bootstrap)
-- [Centering element css bootstrap](https://stackoverflow.com/questions/42388989/bootstrap-centering-elements-vertically-and-horizontally)
-- [Django filter date and time](https://stackoverflow.com/questions/1317714/how-can-i-filter-a-date-of-a-datetimefield-in-django)
-- [Django user auth for edit and delete](https://stackoverflow.com/questions/40506827/django-how-to-allow-only-the-owner-of-a-new-post-to-edit-or-delete-the-post)
-- [Django calendar options](https://www.reddit.com/r/django/comments/1dowgs1/django_calendar_options/)
-- [Vanilla Calendar research](https://vanilla-calendar.pro/docs/learn/getting-started/installation)
-- [CSS semi transparent background](https://stackoverflow.com/questions/4790563/how-do-i-make-a-semi-transparent-background)
-- [Markdown checkbox ](https://stackoverflow.com/questions/47344571/how-to-draw-checkbox-or-tick-mark-in-github-markdown-table)
-- [404 Page setup for Django](https://www.youtube.com/watch?v=06Ae9FVnEOI)
-- [Confirm Delete modal Youtube](https://www.youtube.com/watch?v=cufh9cOs-A4)
-- [Confirm Delete](https://www.youtube.com/watch?v=3RPGYPKeXFo)
-- [enctype=“multipart/form-data for image POST](https://www.w3schools.com/tags/att_form_enctype.asp)
-- [enctype=“multipart/form-data](https://www.geeksforgeeks.org/what-does-enctypemultipart-form-data-mean-in-an-html-form/)
+-[Google Font to CSS link](www.youtube.com/watch?v=iIqgW-stZmE)
+-[Bootstrap text ](https://getbootstrap.com/docs/4.0/content/typography/)
+-[Bootstrap buttons](https://getbootstrap.com/docs/5.1/components/buttons/#block-buttons)
+-[Font awesome ](https://fontawesome.com/kits/e371815a5a/setup)
+-[Function based views Pagination ](https://testdriven.io/blog/django-pagination/)
+-[DTL for sorting label](https://stackoverflow.com/questions/58405731/option-if-condition-condition-selectedendif-option-not)
+-[Django Doc](https://docs.djangoproject.com/en/4.0/ref/request-response/#django.http.QueryDict)
+-[Type hidden html](https://www.w3schools.com/tags/att_input_type_hidden.asp#:~:text=The%20%3Cinput%20type%3D%22hidden,when%20the%20form%20is%20submitted.)
+-[ordering in views and sort key](https://stackoverflow.com/questions/42698197/is-there-django-list-view-model-sort)
+-[Filtering in Django](www.youtube.com/watch?v=EMsxxkkVDiI)
+-[Sorting, filter and pagination](www.youtube.com/watch?v=woNkXcyjrn0)
+-[Django template language for pagination in html](https://stackoverflow.com/questions/11372177/how-to-use-if-else-condition-on-django-templates)
+-[onchange=“this.form.submit()” for updating the form with the the sorting option](https://stackoverflow.com/questions/7231157/how-to-submit-form-on-change-of-dropdown-list)
+-[Like button](https://dev.to/radualexandrub/how-to-add-like-unlike-button-to-your-django-blog-5gkg)
+-[<select> for loop <option=“{data.id}”>](https://stackoverflow.com/questions/58405731/option-if-condition-condition-selectedendif-option-not)
+-[Previous commit](https://stackoverflow.com/questions/4114095/how-do-i-revert-a-git-repository-to-a-previous-commit)
+-[Django 4.2.7 older version to support django countries](https://docs.djangoproject.com/en/5.1/releases/4.2.7/)
+-[Django specific version](https://stackoverflow.com/questions/77595193/how-to-install-django-specific-version)
+-[Bootstrap input groups](https://getbootstrap.com/docs/4.0/components/input-group/)
+-[Privacy Policy Generator](https://www.privacypolicygenerator.info/#wizard)
+-[Favicon Generator](https://favicon.io/favicon-generator/)
+-[Sitemaps](https://www.xml-sitemaps.com/)
+-[Wordtracker SEO](https://www.wordtracker.com/domain?query=reverb.com&from_search=true)
+-[Am I Responsive](https://ui.dev/amiresponsive)
+-[DW Drums](https://www.dwdrums.com/)
+-[Zildjian](https://zildjian.com/)
+-[Mapex](https://mapexdrums.com/mapex-international/products/drums/drum-sets/black-panther-design-lab/versatus)
+-[Django secret key generator](https://djecrety.ir/)
+-[pixabay for recordings](https://pixabay.com/sound-effects/search/crash-cymbal/)
+-[Thomann music store](https://www.thomann.de/ie/index.html)
+-[Lucidchart](https://www.lucidchart.com)
+-[stackoverflow](https://stackoverflow.com/questions/11372177/how-to-use-if-else-condition-on-django-templates)
+-[Filters in search bar](www.youtube.com/watch?v=PXhYjiKm3-k)
+-[W3schools](https://www.w3schools.com/tags/att_input_type_hidden.asp#:~:text=The%20%3Cinput%20type%3D%22hidden,when%20the%20form%20is%20submitted.)
+-[Model field name changes](https://stackoverflow.com/questions/18515545/change-field-name-in-django-admin)
+-[Stripe docs for web hooks](https://docs.stripe.com/payments/handling-payment-events?lang=python)
+-[diffchecker](https://www.diffchecker.com/text-compare/)
+
+
+

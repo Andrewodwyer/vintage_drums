@@ -618,6 +618,10 @@ input[name='q']::placeholder {
         font-size: 1.3rem; 
     }
 
+    .hero-image {
+        max-height: 600px;
+    }
+
 }
 
 /* --------------- image size for checkout */
