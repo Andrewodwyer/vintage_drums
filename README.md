@@ -42,11 +42,14 @@ This site is designed to provide a luxurious and user-friendly shopping experien
     * [Footer](#footer)
     * [Home page](#home-page)
     * [Products Page](#products-page)
+    * [Product Details](#product-details)
+    * [Shopping Bag](#shopping-bag)
     * [About Us](#about-us)
     * [FAQ](#faq)
     * [Profile Page](#profile-page)
     * [Checkout](#checkout)
     * [Order Confirmation](#order-confirmation)
+    * [E-Commerce Business Model](#e-commerce-model)
     * [CRUD](#crud)
     * [DRY principles](#dry-principles)
     * [Authentication and Authorisation](#authentication-authorisation)
@@ -149,6 +152,7 @@ For Shoppers:
 - Users primarily visit The Vintage Drum Store to discover high-quality, preowned drums, cymbals, and accessories.
 - They want a streamlined way to browse products.
 - They expect a smooth and secure checkout experience, with options to view product details, listen to sound recordings, and check delivery options.
+- Product specific options: If Drum-Kit, display All drum sizes in description. If Drum-stick or Drum-stand, allow quantity to be added. If Drum-stick, also allow stick size.
 - They want the convenience of tracking their order history, and liking their favourite items for future purchases.
 - Write reviews for other shoppers and be able to edit or delete them.
 
@@ -394,7 +398,6 @@ The UI design for the app was to be a modern, clean and userfriendly. Balancing 
   - The colour gets attention without overwhelming the design, and it works well with the neutral tones of the background.
 - Hover Button: Copper-Gold (#B0882F) on the Dark Charcoal Footer.
   - Giving a premium, tactile feel.
-- 
 
 <hr>
 
@@ -424,8 +427,6 @@ These are modern style fonts that work well with the clean, minimal design.
   - On desktop, the navigation bar is horizontally aligned across the top of the page, ensuring that users can quickly and easily access each section of the site. The dropdown menus are simple and clear with subtle hover effects that indicate interactivity. The My Account dropdown dynamically changes depending on the logged-in status of the user (superuser or registered user). The shopping bag icon is prominently displayed on the right, ensuring users can easily access their cart at any time.
 
   - Icons for shopping cart and user makes it easy for users to navigate.
-
-![Navbar](static/readme-img/UX/navbar-desktop-mobile.png)
 
 - Navbar on Mobile:
   - On mobile devices, the navbar is designed with responsiveness in mind, ensuring that users can still easily navigate the site on smaller screens.
@@ -463,11 +464,99 @@ These are modern style fonts that work well with the clean, minimal design.
 - A button at the top of the products indicates which category they are viewing
 - Registered users can like and unlike a product. These liked products will be added to the users profile page to consider later for purchase.
 
+### Product Details
+<a name="product-details"></a>
+
+#### There is 4 main categories of products and each category will desplay different information.
+
+#### Common information would be Name, Price, Category, Material (if added), Image, Description and link to offical page. All categories will be able to add sound recording but only the drums and cymbals will require it.
+
+#### The Vinateg Drum store will likely only have one of each product (except for stands and sticks). There is no quantity option available for prooducts except for drum-sticks and drum-stands. 
+
+#### A message will indicate if the product is already in your basket. I thought this was useful for all products, including drum-stick and drum stands
+
+### The 4 categories
+1. Drum-kits: 
+  - Drum-kits will have an additional value: Drum Kit Size. 
+  Drum kits will contain a number of drums, snare, bass, toms. A field in the drum-kit model will store these value to be displayed on the Drum-kit details page.
+  - Quantity limited to one in product detail page and bag page.
+  - Sound recording will be added for this product.
+
+2. Cymbals:
+  - No additional values for the cymbal category.
+  - Quantity limited to one in product detail page and bag page.
+  - Sound recording will be added for this product.
+
+3. Drum Sticks:
+  - User can add quantity to drum sticks in product details page and bag page.
+  - Drum sticks will have a number of different size options to choose from. The Drum stick category is the only category that users can select a size.
+
+4. Drum Stands:
+  - Like drum stick, the drum stands category allows users to select quantity. 
+
+#### Please view the attached images to see the different product detail pages for each category
+
+Image shows All Drum sizes using the fields in DrumKitDetail model
+This product was placed in the basket and the message "This item is already in your bag." is shown.
+<details><summary><b>Drum Kit Details Page Image</b></summary>
+
+![Drum Kit Details Page](media/readme-images/category-drum-kit.png)
+
+</details>
+
+<br>
+
+Sound Recording Button
+<details><summary><b>Cymbal Details Page Image</b></summary>
+
+![Cymbal Details Page](media/readme-images/category-cymbal.png)
+
+</details>
+
+<br>
+
+Quantity and size options/inputs are shown
+<details><summary><b>Drum Stick Details Page Image</b></summary>
+
+![Drum Stick Details Page](media/readme-images/category-drum-stick.png)
+
+</details>
+
+<br>
+
+Quantity options/inputs are shown
+<details><summary><b>Drum Stand Details Page Image</b></summary>
+
+![Drum Stand Details Page](media/readme-images/category-stand.png)
+
+</details>
+
+### Shopping Bag
+<a name="shopping-bag"></a>
+
+The Shopping Bag page provides a clear overview of the items a customer has added. It displays each product's image, name, price, quantity if in drum-stick or drum-stand category (with adjustable options), size if in stick category and total price. Customers can easily update quantities or remove items from the bag. The right side of the page features an order summary section. This contains subtotal and delivery price if under €500. Customers are reminded of free shipping for orders over €500. There’s also a button to proceed to checkout.
+
+#### Shipping fees
+Shipping fees are based of the type of product. If there is a number of Items in the shopping bag, the shipping fee will be the product with the highest shipping cost eg. bag with sticks and a stand. The shipping for this would be €30, as this is the largest amount. 
+
+DELIVERY_RATES:
+  - 'sticks': €5
+  - 'hi_hats': €25
+  - 'crash_cymbal': €25
+  - 'ride_cymbal': €30
+  - 'drums': €40
+  - 'stand': €30
+  - 'drum-kit': free delivery
+
+![Shopping Bag with a number of items from 2 categories](media/readme-images/Shopping-bag-drum-kit-and-sticks.png)
+
 ### About Us
 <a name="about-us"></a>
 - Hero image with clear 'About Us" text
 - Business Description 
 - Approved customers reviews displayed 3 at a time and move as a carousel to the next 3 reviews. Left and right button also allow the user to move the reviews on.
+
+![Carousel Button & Logged in User Reviews Section](media/readme-images/Reviews-carousel-button-review-form.png)
 
 Registered User can do the following:
 - Write a review and give a rating out of 5
@@ -544,16 +633,126 @@ The link in the email will bring the user to the sign-in page to sign in.
 
 ![Order Confirmation](media/readme-images/Order-success-page.png)
 
+## E-Commerce Business Model
+<a name="e-commerce-model"></a>
+
+### Search Engine Optimisation (SEO) for Vintage Drums
+
+To enhance **Vintage Drums'** visibility and ranking on search engines like Google, SEO was utilised. By identifying relevant keywords for meta tags, headings, product descriptions, and content elements.
+
+The SEO strategy targeted **specific, long-tail keywords** (ideal for more niche searches) and **broader keywords** (for attracting larger, more general traffic). The following keywords were chosen for meta tags, product descriptions, and throughout the website content:
+
+- **Vintage drum kits**
+- **Classic cymbals**
+- **Rare drum sets**
+- **Drum installation service**
+- **Retro percussion**
+- **Old school drums**
+- **Analogue drum kits**
+- **Premium cymbals**
+- **Drum kits for collectors**
+- **Buy vintage drums online**
+- **Vintage drum shop**
+
+### SEO Strategies
+
+1. **Meta Tags Optimization:**
+    - The title, meta description, and meta keywords are used to target high-value terms such as **"vintage drum kits," "classic cymbals,"** and **"drum installation services"**. These are directly embedded in the meta tags of the base HTML structure. By strategically incorporating these terms, we ensure that search engines can easily identify the site’s purpose and products.
+    
+    **Example:**
+    ```html
+    <meta name="description" content="Curated premium vintage drums, cymbals, and drum kits. Shop authentic vintage percussion instruments with expert installation.">
+    <meta name="keywords" content="vintage drum kits, classic cymbals, rare drum sets, drum installation service, retro percussion, old school drums, analogue drum kits">
+    ```
+
+2. **Effective Use of Headings:**
+    - Clear, concise headings are used throughout the site with relevant keywords. For instance, the homepage features the phrase **"Curated collection of premium vintage drum kits"**, aligning with searches for **"vintage drum kits"**.
+    - The `<h1>` tag on the homepage is centered around the primary keyword **"Vintage Drums"**, helping to reinforce the focus of the page.
+    - Secondary headings (`<h2>`, `<h3>`) emphasize more specific terms like **"vintage cymbals"** and **"drum kits for collectors."**
+
+3. **Keyword Emphasis in Content:**
+    - Keywords are highlighted using semantic HTML tags like `<strong>` to emphasize key product terms. This not only visually draws attention to important words but also signals their relevance to search engines.
+    - For example, on the product page for the **Tama Starclassic - Vintage Drum Kit**, keywords such as **"Vintage Drum Kit"** and **"Tama Starclassic"** are included in both product titles and descriptions, helping to ensure high visibility in related searches.
+
+4. **Image Optimization:**
+    - Images of **drum kits** and **cymbals** are tagged with **alt text** that includes relevant keywords. For example:
+      ```html
+      <img src="tama-starclassic.jpg" alt="Tama Starclassic vintage drum kit">
+      ```
+    - Descriptive **file names** and **alt tags** ensure that search engines can index the images properly and provide an additional SEO boost, especially in image-based searches.
+
+5. **Internal Linking and URL Structure:**
+    - The website uses **clean and descriptive URLs** for all product pages, such as:
+      ```
+      /drums/tama-starclassic-vintage-drum-kit
+      ```
+    - Internal links between relevant categories (like **Drum Kits**, **Cymbals**, **Accessories**) also help search engines understand the structure of the website and improve the overall crawling and indexing process.
+
+6. **External Linking & Backlinks:**
+    - **External backlinks** 
+    - **external links** have the `rel="noopener nofollow"` attribute.
+  
+7. **Mobile Optimization and Responsive Design:**
+    - **Mobile optimization** is crucial for SEO, as Google uses mobile-first indexing. Vintage Drums ensures that its website is fully responsive, providing a seamless experience for mobile users, which is a ranking factor for search engines.
+
+8. **Sitemap and Robots.txt:**
+    - A **sitemap.xml** is generated and submitted to Google Search Console to guide search engine crawlers through the site's content and ensure proper indexing.
+    - The use of a **robots.txt** file helps manage how search engine bots crawl specific parts of the site. This is especially useful for preventing indexing of pages like the admin panel or duplicate content.
+
+9. **Template Blocks for Dynamic Meta Descriptions:**
+    - Using `{% block metadesc %}` in Django templates ensures that dynamic meta descriptions are easily integrated across pages. This allows for unique and optimized descriptions for different sections or product pages, without affecting the site’s overall structure.
+    ```html
+    <meta name="description" content="{% block metadesc %} Vintage drum kits, cymbals, and more {% endblock %}">
+    ```
+
+### Social Media Strategy
+
+To further enhance SEO and brand visibility, Vintage Drums will leverage social media platforms like **Facebook**, **Instagram**, and **YouTube** to engage with its audience and promote products.
+
+1. **Content Sharing**: 
+    - Regular posts on social platforms featuring new products, behind-the-scenes looks, special offers, and customer stories. 
+    - Encouraging user-generated content (e.g., photos or videos of customers using their purchased drum kits).
+
+2. **Community Engagement**:
+    - Engage with followers by responding to comments and messages quickly. Building relationships can drive organic word-of-mouth referrals and boost SEO indirectly.
+
+3. **Promotions & Campaigns**:
+    - Run targeted campaigns on Facebook and Instagram to drive traffic to specific product pages. This will not only increase sales but can lead to higher engagement metrics, which Google considers in ranking.
+
+4. **User Reviews**:
+    - Showcase positive user reviews and drum performances via social media to enhance credibility and brand trust, which can increase click-through rates and improve SEO rankings.
+
+5. **YouTube**:
+    - Create videos such as **product demonstrations**, **unboxings**, and **tutorials** to engage a wider audience. Optimizing these videos with relevant keywords and embedding them into product pages will further improve SEO.
+
+6. **Facebook**:
+  - By regularly posting engaging content and interacting with followers, the Facebook page will help build an active, loyal community around Vintage Drums
+
+<details><summary><b>Facebook Page 1</b></summary>
+
+![Facebook page 1](media/readme-images/Facebook_page_1.png)
+
+</details>
+
+<details><summary><b>Facebook Page 2</b></summary>
+
+![Facebook page 2](media/readme-images/Facebook_page_2.png)
+
+</details>
+
+By integrating SEO best practices into the design and content strategy of the **Vintage Drums** website, we can increase visibility, drive organic traffic, and improve search engine rankings for key terms.
+
+
 
 ## CRUD
 <a name="crud"></a>
-The Events App’s CRUD functionalities for events, comments, and attending are designed to give logged in users control over their interactions with the app.
-The list below has CRUD abilities for the registered user
-| **Entity**    | **Create**                               | **Read**                                   | **Update**                               | **Delete**                               |
-|---------------|------------------------------------------|--------------------------------------------|------------------------------------------|------------------------------------------|
-| **Events**    | Event organisers can submit new events.   | Users can view event lists and details.     | Organisers can edit their own events.    | Organisers can delete their own events.  |
-| **Comments**  | Logged-in users can post comments.        | All users can view approved comments.       | Logged-in users can edit their own comments.       | Logged-in users or admins can delete comments.     |
-| **Attending** | Logged-in users can RSVP to an event.               | Logged-in users can view attendance.   | Logged-in users can change their RSVP status.      | Logged-in users can remove their RSVP.             |
+| **Entity**           | **Create**                                                    | **Read**                                                       | **Update**                                                  | **Delete**                                                   |
+|----------------------|---------------------------------------------------------------|---------------------------------------------------------------|------------------------------------------------------------|-------------------------------------------------------------|
+| **Products**         | Superuser can add new products to the site.                  | All users can view product details and related items.         | Superuser can update product details (e.g., name, price, description, images). | Superuser can delete products from the site.                 |
+| **Shopping Bag**     | All users can add products to the bag.                       | All users can view their shopping bag and its contents.       | Logged-in users can update the quantity of products in the bag. | Logged-in users can remove products from the bag.            |
+| **Likes**            | Logged-in users can like a product (add to "Liked Products" list). | All users can view whether a product is liked (via visual cue). | Logged-in users can unlike a product (remove from "Liked Products" list). | Not applicable as "unliking" is an update action, not a delete. |
+| **Reviews**          | Logged-in users can add a review for a product on the product details page. | All users can read approved reviews for products.              | Logged-in users can update their own review (edit content or rating). | Logged-in users can delete their own review. Admins can delete any review. |
+| **Admin Tools**      | Superuser can add new products and manage all content.       | Superuser can view all products, orders, and customer interactions. | Superuser can update any product, customer details, or orders. | Superuser can delete any product, order, or user review.    |
 
 ## DRY principles
 <a name="dry-principles"></a>
@@ -598,55 +797,10 @@ The action buttons like sign up, edit and delete are solid colours with white fo
 - Authorization defines what a user is allowed to do once authenticated. In this app, different actions are available based on whether the user is logged in and whether they've created the event, wrote the comment or RSVPed.
 
 - Information/Messages: When an action is preformed, like creating a comment or event, a relevant message displays to the user. These are styled to blend smoothly into the page without overwhelming the user.
-- Authentication Indicators: Users are reminded whether they are logged in or not through a simple text message displayed to the left of the screen near the header.
-
-![Messages and signafiers](static/readme-img/UX/Message-signafiers.png)
 
 ### Bootstrap
 <a name="bootstrap"></a>
 Bootstrap was used in the app to create a responsive, mobile-first websites quickly and efficiently using it's library. Bootstrap provides a collection of pre-designed HTML, CSS, and JavaScript components, like buttons, forms, navigation bars, and grid layouts. By using Bootstrap, I was able to build a visually consistent app without writing extensive custom code. It was easy to customise and it adapted to all screen sizes without having to write additional media queries. Saying this, I did customise the css and added js in this build.
-
-
-### Additional App Features
-<a name="additional-features"></a>
-1. Event Browsing and Filtering 
-- Filter by category
-- Filter by calendar view. Events are displayed in the calendar dates
-- View the events you've created
-
-2. User Authentication
-- Users can register, sign in and sign out
-- Registered users have additional benefits: add events, comments and indicate attendance
-
-3. Create Events
-- This feature encourages users to actively contribute on the app, creating a sense of community and ownership. 
-
-4. Category Icon:
-- Discuss earlier
-
-5. Interactive Calendar View
-- Users can see upcoming events on a specific date
-- Clicking the event title (link) brings the user the event details page
-- Beneficial for users that only want to see events by date that they're available for.
-
-![Calendar View](static/readme-img/UX/calendar-view-desktop-mobile.png)
-
-6. Event Interaction
-- Mark as Attending
-- The click icon turning from grey to green provides a sense of accomplishment and interaction enhancing the user experience
-
-7. Comments
-- Organiser can update the event with a comment.
-- A user can ask a question or comment.
-- Benefits to the user as they feel more connected to the event
-
-8. Social Media
-- Links to social media were the app and event can be more visible 
-
-9. Image display. 
-- The organiser when creating the event can add their own image. 
-
-10. Additional information from the Organiser aids to better Search Engine Optimisation
 
 
 ### Libraries
@@ -654,7 +808,6 @@ Bootstrap was used in the app to create a responsive, mobile-first websites quic
 
 - Django-cloudinary-storage: handling the images
 - Crispy-forms: making it easier to work with forms, providing better rendering and handling.
-- Django-summernote: Handling text
 - Crispy-bootstrap5==0.7 - A Crispy Forms template pack for Bootstrap 5
 
 ### Manual Testing user stories
@@ -740,113 +893,21 @@ A happy path covers the core functionality and user experience of the event app,
 
 ### HTML
 
-All pages have been passed through the W3C validator. The only page that had an error was the the sign-up page
-Django Summernote issue: It's a known bug that adds extra paragraph tags to the body content in the posts.
-I’m aware of the issue/bug coming from Django Summernote.
+All pages have been passed through the W3C validator.
 
-[W3C validation](https://validator.w3.org/#validate_by_input) was used to check the markup validity of html file.
-
-<details><summary><b>Home page, passed</b></summary>
-
-![Home page](static/readme-img/code-validated/Home-index-html-checker.png)
-
-</details>
-
-<details><summary><b>Add/Create an Events page, passed</b></summary>
-
-![Create an event](static/readme-img/code-validated/Add-event-html-checker.png)
-
-</details>
-
-<details><summary><b>Events Details, passed</b></summary>
-
-![Event details](static/readme-img/code-validated/Event-details-html-checker.png)
-
-</details>
-
-<details><summary><b>Events Details with description fields containing a number of paragraphs, passed.</b>No errors but some warnings relating to paragraphs in larger description fields when the entry contained a number of paragraphs. This is a know summernote warning. The paragraph elements are in a 'article' element so they do not produce and error.</summary>
-
-![Event details](static/readme-img/code-validated/event-details-warning-paragraphs.png)
-
-</details>
-
-<details><summary><b>Calendar page, passed</b></summary>
-
-![Calendar page](static/readme-img/code-validated/Calendar-page-html-checker.png)
-
-</details>
-
-<details><summary><b>Events by category page, passed</b>Events by category page, passed</summary>
-
-![Events by Category page](static/readme-img/code-validated/categories-html-checker.png)
-
-</details>
-
-<details><summary><b>My events page, passed</b></summary>
-
-![My events page](static/readme-img/code-validated/my_events-html-checker.png)
-
-</details>
-
-<details><summary><b>Login page, passed</b></summary>
-
-![Login page](static/readme-img/code-validated/Login-html-checker.png)
-
-</details>
-
-<details><summary><b>Sign up, 4 errors. Known summernote issues</b></summary>
-
-![Sign up](static/readme-img/code-validated/Sign-up-html-checker.png)
-
-</details>
-
-<details><summary><b>logout page, passed</b></summary>
-
-![Logout page](static/readme-img/code-validated/logout-html-checker.png)
-
-</details>
 
 
 ### CSS
 
-No CSS issues
+No CSS Issues
+[Jigsaw](https://jigsaw.w3.org/css-validator/validator) was used to check css files
 
-[Jigsaw](https://jigsaw.w3.org/css-validator/#validate_by_input) was used to check css files
-
-<details><summary><b>style.css</b></summary>
-
-![Logout page](static/readme-img/code-validated/css.png)
-
-</details>
 
 ### JavaScript
 
-[Jigsaw](https://jigsaw.w3.org/css-validator/#validate_by_input) was used to check css files
+No JavaScript Issues
+[JSHint](https://jshint.com) was used to check JavaScript files
 
-Calendar.js 
-- When testing the calendar js an error of undefined variable FullCalendar. FullCalendar is a django library. new FullCalendar.Calendar is called to create a new calendar instance,in the html id=calander.
-
-eventsComments.js
-- When testing the eventComments js an error of undefined variable Bootstrap. Bootstrap is a Django library. new Bootstrap.Modal creates a modal instance and provides the functionality to interact with that modal.
-
-
-<details><summary><b>attendance.js</b></summary>
-
-![attendance.js](static/readme-img/code-validated/attendance.js-check.png)
-
-</details>
-
-<details><summary><b>calendar.js</b></summary>
-
-![calendar.js](static/readme-img/code-validated/calendar.js-checker.png)
-
-</details>
-
-<details><summary><b>eventsComments.js</b></summary>
-
-![eventsComments.js](static/readme-img/code-validated/eventsComments.js-check.png)
-
-</details>
 
 ### Python
 
@@ -963,69 +1024,22 @@ On all browsers the site performed smoothly with consistent functionality and ap
 ## Bugs:
 <a name="bugs"></a>
 
-#### Category Migration 
--  I had to roll back the migrations from 0006 to 0003, using the terminal command
-  python3 manage.py migrate events 0003 
-  This was because I had set a default=“music” in the AddEvents model and had made a migration. The default had to be an integer so I checked what ID music had. This was done by using this command in the shell.
-  from event.models import Category
-  music_category = Category.objects.get(id=1)
-  print(music_category.name)
-  The result id was 1.
-  I updated the code to reflect this. Below code, default=‘Music’ is now default=1
-      event_category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='events', default=1)
-  This still didn’t resolve the issue. When trying to make a migration using the integer 1 I was given an error of database is expecting a integer and instead got ‘Music’.
-  I rolled back the migrations, deleted the last 2 migrations and made a new makemigration and migrate. 
-  This resolved all the issues. I did have to set the categories in the admin panel again.
+#### Sorting By Price and Rating & Issue 
+- I wanted to sort the products by rating and by price, ascending and descending in both cases. 
+Instead of a sorting all products by price or rating, I wanted to sort in each categories. 
+This was done in the all_products function view. Like the if statement of “if 'category' in request.GET:” i used a similar “if statement” for ‘sort’.  The products could be “order_by” one of the four option in sort_key ’s list.
 
-#### Load Static bug
--  I had used Django Template Language tag to include the images in the static directory for the events template html file but I didn’t do the same for the index.html file. Once I did this the images loaded as intended.
+#### The html had two issues to resolve:
+1. There was going to be a label to be able to choose a value from. ‘price’, ‘-price’, ‘rating’ and ‘-rating’. This label couldn’t affect the current selection of category (cymbal, drum stand) so the url had to continue to include for example /products/?category=hi_hats. The sorting option would need to go onto the end of this url and not change the category key and it’s value. ‘sort’ and it’s value of ‘price’ or ‘rating’ would need to be added at the end to the category key and value selections. This would also affect pagination on the sorting page.
 
-#### Categories in events bug
--  Fixed the bug in event_by_category.html, the loop was category in categories but it should of been events in events to show the events with the category_id, ie music has a category id of 1
-  I used a function in the view.py called event_list_by_category and it got the Category object from the AddEvents 
+Fix, If the key is not sort in the request.GET.items, 
+skip sort and generates hidden inputs for the other query parameters, hiding the parameters keeps the current parameters like category or q. adding sort='current value’
 
-#### Load Static in events_by_category.html bug
--  The static images on the events_by_category.html file weren’t loading and this gave me an error indicating it was expecting a {%endfor%} tag as it couldn’t see the static folder.
-  This was easily fix by adding the {% load static %} tag at the top of the html file
+2. Pagination Issue
+Adding the option of sorting by price and rating means that the urls would need to be unique so the filter of categories or q would remain in the url and the next and previous pagination would only apply to that search criteria. Using DTL for the href for has previous, page number and next. There was an additional step needed. A number of if statement had to be added for category and sort. ie. If the sort parameter exists in the URL query parameters (GET request), it appends &sort=value(value of price, rating) to preserve the current sorting.
 
-#### Pagination for function based views Bug
--  Pagination for function based views. I was trying to add a function that used paginator = Paginator(events, 6). Because it was a function and not a generic class I had to add page_obj and is_paginated Django tags in a certain sequence. The issue was the page_obj wasn’t properly accessed in the template, which is causing the issue with the pagination displaying "Page of ." with no next or previous buttons. I consulted https://docs.djangoproject.com/en/5.1/topics/pagination/ and tried a number of different options but it didn’t work. In the EventList class the generic ListView automatically handles context variables like page_obj for pagination. I decided to use a generic list view class for the categories html template too.
-  To have a simple class view I needed to set up a function that filtered the events by category and by current and future dates. For the dates I used the class AddEventManager(models.Manager): in the models.py that filtered by time. and set it’s status to 1 (published). Then I used the .filter(event_category=category) that got the category.
-
-#### Loading Image in the index.html and then the addevent_detail.html
--  img src was different for index.html and addevent_details.html. This was because of the for loop {% for event in addevent_list %} in index which took the name addevent_list from the generic.ListView class EventList. While addevent_details.html used the variable name addevent. When I used the variable name addevent in the index.html it didn’t load because or the for loop. I decided to make a note of the issue and review it if needed.
-
-
-#### Model issues: Comments and AddEvents user/organiser field Bug
--  In the AddEvents model I used ‘organiser’ as the field for the user. However in the Comment model the field was ‘user’ for the user and not ‘organiser’. This caused confusion when putting the conditional if and elif statements in the addevent_detail.html. In your template, I was using comment.organiser == user, but in my Comment model, the field that stores the user who created the comment is user, not organiser. To resolve this I replaced comment.organiser with comment.user. replaced comment.organiser  with comment.user.username to display the username of the comment. The edit button was the real issue and the change of comment.user == user so that it checks the user is the comment author.
-
-#### URL pattern matching in urls.py. my-events path matching addevent_detail Bug
--  The path('event/<slug:slug>/', views.addevent_detail, name='addevent_detail') is being matched before path('event/my-events/', views.my_events, name='my_events'). Django matches the URLs in order from top to bottom, so when it saw event/my-events/, it treated "my-events" as a slug and tries to look up a corresponding AddEvent object, leading to the 404 error.
-  To fix the issue I placed the event/my-events/ path before the event/<slug:slug>. So the more specific patterns (event/my-events) should come before less specific one.
-
-#### Mixed Content bug
- - I was getting this error in the Issues section of Chrome inspect.
-  Mixed Content: The page at '<URL>' was loaded over HTTPS, but requested an insecure element '<URL>'. This request was automatically upgraded to HTTPS, For more information see <URL>
-  After researching and seeing a number of different articles, I found a fix on Slack. To fixed the mixed content i did the following. In settings.py file 
-  ensure cloudinary uses https paths
-  import cloudinary
-  cloudinary.config(secure=True,)
-  Thanks to tim_mentor for the code.
-
-#### Summernote w3 validator error for <p> tag bug
--  Error: No p element in scope but a p end tag seen. Django Summernote.
-  tim_mentor regarding issue
-  It's a known bug that it adds extra paragraph tags to the body content in your posts. I think the same for the placeholders error?
-  I’m aware of the issue/bug coming from Django Summernote.
-
-#### My_events tab not Active when selected bug
--  I had added the my_events tab later then the other tabs in the nav as this was a could have in my list. I had added the link, DTL in the 'li' in the nav and the links worked bu the tab didn’t stay active. The issue was that the my_events_url was not defined in the base.html template using {% url ‘my_events” as my_events_url %}. Once I did this, it worked as expected.
-
-#### FullCalendar and Django bug:
--  FullCalendar and Django are expecting different values for times. To resolve this a function was added to AddEventForm so the seconds are rounded down and both the front end and the backend receive the required information. 
-
-#### FullCalendar Displaying all events and not just Published ones bug:
--  The views get_events collected all the events .all(). so it included the draft events that were not published by the admin. I needed to filter this my using the .filter(status=1) so only the status=1(Published) events are selected.
+#### Long order number
+- The order number was going out of the container on smaller devices. To stop this I used     word-break: break-word; in the css to wrap the number to the next line
 
 <hr>
 
@@ -1043,35 +1057,250 @@ There is a number of additions that could be made to the app to increase it’s 
 
 ## Deployment
 <a name="deployment"></a>
+
+### AWS Cloud Service
+
+Vinatge Drums uses Amazon Web Services (AWS) to store static and media files securely in the cloud, ensuring fast and reliable access for our users.
+
+**To integrate AWS, follow steps:**
+
+#### **1. Create and Configure an S3 Bucket**
+
+1.  **Access AWS:**
+    
+    -   Go to [aws.amazon.com](https://aws.amazon.com/) and log in to your AWS Management Console.
+2.  **Create an S3 Bucket:**
+    
+    -   Search for "S3" in the AWS Management Console and create a new bucket.
+    -   Name the bucket to match your Heroku app name and select the region closest to your target audience.
+3.  **Set Public Access and Ownership:**
+    
+    -   Uncheck the "Block all public access" option and acknowledge that the bucket will be public (required for compatibility with Heroku).
+    -   Under "Object Ownership," ensure "ACLs enabled" and "Bucket owner preferred" are selected.
+4.  **Enable Static Website Hosting:**
+    
+    -   In the "Properties" tab, enable static website hosting.
+    -   Set `index.html` as the index document and `error.html` as the error document, then click "Save."
+5.  **Configure CORS (Cross-Origin Resource Sharing):**
+    
+    -   In the "Permissions" tab, add the following CORS configuration:
+    
+    json
+    
+    Copy code
+    
+    `[
+      {
+        "AllowedHeaders": ["Authorization"],
+        "AllowedMethods": ["GET"],
+        "AllowedOrigins": ["*"],
+        "ExposeHeaders": []
+      }
+    ]` 
+    
+    -   Copy your bucket's **ARN** (Amazon Resource Name).
+
+6.  **Add a Bucket Policy:**
+    
+    -   Go to the "Bucket Policy" tab and click on the "Policy Generator" link.
+    -   Configure the policy:
+        -   **Policy Type:** S3 Bucket Policy
+        -   **Effect:** Allow
+        -   **Principal:** *
+        -   **Actions:** `s3:GetObject`
+        -   **ARN:** Paste your bucket's ARN
+    -   Click "Add Statement" and "Generate Policy."
+    -   Copy the generated policy and paste it into the "Bucket Policy Editor":
+    
+    json
+    
+    Copy code
+    
+    ```{
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Principal": "*",
+          "Action": "s3:GetObject",
+          "Resource": "arn:aws:s3:::your-bucket-name/*"
+        }
+      ]
+    }```
+    
+    -   Ensure the `Resource` field ends with `/*` and click "Save."
+7.  **Adjust Access Control List (ACL):**
+    
+    -   In the "Access Control List" (ACL) section, click "Edit" and enable "List" for Everyone (public access). Accept the warning prompt.
+    -   If the edit option is disabled, ensure the "Object Ownership" settings have ACLs enabled.
+
+#### **2. Configure IAM (Identity and Access Management):**
+
+1.  **Create a User Group:**
+    
+    -   Navigate to the IAM service and select "User Groups."
+    -   Click "Create New Group," and name it appropriately (e.g., `group-teacup-tales`).
+2.  **Attach Policies to the Group:**
+    
+    -   Select the newly created group and go to the "Permissions" tab.
+    -   Click "Add Permissions" > "Attach Policies."
+    -   In the "JSON" tab, click "Import Managed Policy" and search for `AmazonS3FullAccess`.
+    -   Import the policy and modify it to limit access to your specific bucket:
+    
+    json
+    
+    Copy code
+    
+    ```{
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Action": "s3:*",
+          "Resource": [
+            "arn:aws:s3:::your-bucket-name",
+            "arn:aws:s3:::your-bucket-name/*"
+          ]
+        }
+      ]
+    }```
+    
+    -   Click "Review Policy" and name it (e.g., `vintage-drum-store-policy`), then click "Create Policy."
+3.  **Add Users and Assign Permissions:**
+    
+    -   Go back to "User Groups," select your group, and click "Attach Policy."
+    -   Select your custom policy (e.g., `vintage-drum-store-policy`) and attach it.
+    -   Click "Add User" and name it appropriately (e.g., `vintage-drum-store`).
+    -   Select "Programmatic Access" and add the user to your group.
+    -   Download the CSV file containing the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
+
+#### **3. Final AWS Setup and Heroku Integration:**
+
+1.  **Update Heroku Configurations:**
+    
+    -   Remove `DISABLE_COLLECTSTATIC` from Heroku Config Vars to enable AWS management of static files.
+2.  **Create Media Directory:**
+    
+    -   Within your S3 bucket, create a new folder named `media`.
+    -   Upload your media files into this folder and set "Public read access."
+3.  **Security Reminder:**
+    
+    -   Ensure all sensitive information (like AWS credentials) is securely stored and not hard-coded into your source code.
+
+
+These steps integrate AWS S3 with your Heroku-hosted application, enabling efficient management of static and media files in a secure and scalable cloud environment. Proper configuration ensures that your content is readily accessible while adhering to best practices in cloud security and management.
+
+
+### Stripe
+
+Vintage Drums utilizes Stripe as its primary payment gateway to securely process e-commerce transactions. Stripe provides a reliable and scalable solution for handling payments, ensuring a seamless checkout experience for our customers.
+
+#### **Steps for Stripe Integration:**
+
+1.  **Create a Stripe Account:**
+    
+    -   Go to [stripe.com](https://stripe.com) and create an account. Log in to your Stripe dashboard.
+2.  **Obtain API Keys:**
+    
+    -   From your Stripe dashboard, locate the "API Keys" section under "Developers."
+    -   Retrieve the following keys:
+        -   **STRIPE_PUBLIC_KEY**: Your Publishable Key (starts with `pk`)
+        -   **STRIPE_SECRET_KEY**: Your Secret Key (starts with `sk`)
+    -   These keys will be used to authenticate your application with Stripe.
+3.  **Configure Webhooks for Payment Events:**
+    
+    -   To handle scenarios where a user may close the payment page prematurely, set up Stripe Webhooks to receive real-time payment updates.
+    -   In your Stripe dashboard:
+        -   Navigate to "Developers" and select "Webhooks."
+        -   Click "Add Endpoint."
+        -   Enter your endpoint URL (e.g., `https://vintage-drum-store-6ce105a1b74f.herokuapp.com/checkout/wh/`).
+        -   Select "Receive all events" to capture all relevant payment events.
+        -   Click "Add Endpoint" to complete the process.
+    -   This will generate a new key:
+        -   **STRIPE_WH_SECRET**: Your Webhook Signing Secret (starts with `wh`).
+
+#### **Testing Stripe Payments:**
+
+1.  **Test Mode:**
+    
+    -   Stripe provides a test mode to simulate payment transactions.
+    -   Use the following test card details for interactive testing:
+        -   **Card Number:** `4242 4242 4242 4242`
+        -   **Expiry Date:** Any valid future date 
+        -   **CVC:** Any three-digit number
+        -   **Other Fields:** Use any value for other fields.
+2.  **Security Reminder:**
+    
+    -   Ensure all Stripe API keys and Webhook Signing Secrets are stored securely, and never hard-code them in your source code.
+
+
+### GMAIL 
+
+Vinateg Drums uses Gmail to manage email communications with users, including account verifications and purchase order confirmations. Integrating Gmail ensures reliable and secure delivery of transactional emails to enhance the customer experience.
+
+**Steps for Gmail Integration:**
+
+1.  **Create and Access Gmail Account:**
+    
+    -   Ensure you have an active Gmail (Google) account. Log in to your account.
+2.  **Enable Two-Factor Authentication (2FA):**
+    
+    -   Go to your Google Account by clicking on your profile icon in the top-right corner and selecting "Manage Your Google Account."
+    -   Navigate to the **Security** tab on the left sidebar.
+    -   Under the "Signing in to Google" section, enable **2-Step Verification**. Follow the prompts to verify your password and activate 2FA.
+3.  **Generate an App Password:**
+    
+    -   After enabling 2FA, stay on the **Security** page and select **App passwords**.
+    -   Re-enter your password if prompted.
+    -   Choose **Mail** as the app type and select **Other (Custom name)** for the device type. Enter a relevant name (e.g., "Vinateg Drums Django App").
+    -   Click **Generate** to create a 16-character app password (API key). **Note:** This password will only be displayed once, so save it securely.
+4.  **Configure Email Settings in Your Application:**
+    
+    -   Update your application's email settings with the following credentials:
+        -   **EMAIL_HOST_USER**: Your Gmail address (e.g., `your-email@gmail.com`)
+        -   **EMAIL_HOST_PASSWORD**: The 16-character app password generated from Gmail.
+
+
 ### Heroku Deployment
 This site was deployed to and is currently [hosted on the Heroku platform](https://vintage-drum-store-6ce105a1b74f.herokuapp.com/). The steps for deploying to Heroku, using PostgreSQL as the database host, are as follows:
 
-1. Create a list of requirements in the requirements.txt file by using the command pip3 freeze > requirements.txt
-2. Log in (or sign up) to Heroku
-3. Click on the New button and select *Create new app*
-4. Give it a unique name and choose the region *Europe*
-5. Click the Settings tab, go to the *Config Vars* section and click on the Reveal Config Vars button
-6. Add all variables from *env.py* to ConfigVars of Heroku
+1.  Navigate to the [Heroku website](https://www.heroku.com/) and log in or sign up for a new account.
+2.  From the dashboard, click the "New" button in the upper right corner and select "Create new App" from the drop-down menu.
+3.  Provide a unique name for your application in the "App name" field.
+    -   Heroku will indicate the name's availability with a green checkmark.
+4.  Select the appropriate region ("United States" or "Europe") from the "Choose a region" dropdown, based on your target user base.
+5.  Click the "Create app" button to proceed.
+6.  On the next screen, navigate to the "Settings" tab located at the top center of the page.
+7.  In the "Config Vars" section, click on the "Reveal config Vars" button to display the environment variable configuration interface.
+8.  Input the necessary environment variables stored in the local `env.py` file. For this deployment, you will need to configure the following variables:
 
-<details><summary><b>Click to view details Config Vars Heroku</b></summary>
+```
+    -   SECRET_KEY: xxxx
+    -   AWS_ACCESS_KEY_ID: xxxx
+    -   AWS_SECRET_ACCESS_KEY: xxxx
+    -   AWS_STORAGE_BUCKET_NAME: xxxx
+    -   EMAIL_HOST_PASS: xxxx
+    -   EMAIL_HOST_USER: xxxx
+    -   DATABASE_URL: xxxx
+    -   STRIPE_PUBLIC_KEY: xxxx
+    -   STRIPE_SECRET_KEY: xxxx
+    -   STRIPE_WH_SECRET: xxxx
+    -   USE_AWS: True
+```
 
-![Config vars](static/readme-img/code/Config-Vars.png)
-</details>
-
-7. Click the *Add* button
-8. Click the *Deploy* tab, go to the *Deployment method section*, select *GitHub* and confirm this selection by clicking on the *Connect to Github* button
-9. Search for the repository name on github *Astro Blog* and click the *Connect* button
-10. Add in the *setting.py* the Heroku app URL into ALLOWED HOSTS
-11. Gather all static files of the project by using the command *python3 manage.py collectstatic* in the terminal
-12. Make sure that DEBUG=FALSE in *settings.py*
-13. Create a *Procfile* in the root directory and add *web: gunicorn astroshare-blog.wsgi*
-14. In Heroku enable the automatic deploy or manually deploy the code from the main branch
+9.  Enter each variable name in the "KEY" field and its corresponding value in the "VALUE" field.
+10.  Return to the top of the page and select the "Deploy" tab.
+11.  In the "Deployment method" section, choose "GitHub."
+12.  Under "Connect to GitHub," click the "Search" button, locate your project repository, and click "Connect."
+13.  Scroll down and click the "Deploy Branch" button to initiate the deployment.
+14.  Enable the automatic deployment option to allow Heroku to deploy your app automatically with each push to the GitHub repository.
+15.  A build log will appear at the bottom of the screen. Upon successful deployment, a link to your application will be provided.
 
 ### Local Deployment
 1. Generate an *env.py* file in the root directory of the project
 2. Configure the environment variables within this file
 3. Create a virtual environment
-4. Install all required dependencies using pip install command into the .venv
+4. Install all required dependencies using pip install command.
 5. Add dependencies to the requirements.txt file using pip3 freeze > requirements.txt command
 
 ### Final Deployment
@@ -1086,45 +1315,45 @@ This site was deployed to and is currently [hosted on the Heroku platform](https
 
 - Django 5 by example, Antonio Melé
 
--[Colormind Colour palette](http://colormind.io/bootstrap/)
+- [Colormind Colour palette](http://colormind.io/bootstrap/)
 
--[Google Font to CSS link](www.youtube.com/watch?v=iIqgW-stZmE)
--[Bootstrap text ](https://getbootstrap.com/docs/4.0/content/typography/)
--[Bootstrap buttons](https://getbootstrap.com/docs/5.1/components/buttons/#block-buttons)
--[Font awesome ](https://fontawesome.com/kits/e371815a5a/setup)
--[Function based views Pagination ](https://testdriven.io/blog/django-pagination/)
--[DTL for sorting label](https://stackoverflow.com/questions/58405731/option-if-condition-condition-selectedendif-option-not)
--[Django Doc](https://docs.djangoproject.com/en/4.0/ref/request-response/#django.http.QueryDict)
--[Type hidden html](https://www.w3schools.com/tags/att_input_type_hidden.asp#:~:text=The%20%3Cinput%20type%3D%22hidden,when%20the%20form%20is%20submitted.)
--[ordering in views and sort key](https://stackoverflow.com/questions/42698197/is-there-django-list-view-model-sort)
--[Filtering in Django](www.youtube.com/watch?v=EMsxxkkVDiI)
--[Sorting, filter and pagination](www.youtube.com/watch?v=woNkXcyjrn0)
--[Django template language for pagination in html](https://stackoverflow.com/questions/11372177/how-to-use-if-else-condition-on-django-templates)
--[onchange=“this.form.submit()” for updating the form with the the sorting option](https://stackoverflow.com/questions/7231157/how-to-submit-form-on-change-of-dropdown-list)
--[Like button](https://dev.to/radualexandrub/how-to-add-like-unlike-button-to-your-django-blog-5gkg)
--[<select> for loop <option=“{data.id}”>](https://stackoverflow.com/questions/58405731/option-if-condition-condition-selectedendif-option-not)
--[Previous commit](https://stackoverflow.com/questions/4114095/how-do-i-revert-a-git-repository-to-a-previous-commit)
--[Django 4.2.7 older version to support django countries](https://docs.djangoproject.com/en/5.1/releases/4.2.7/)
--[Django specific version](https://stackoverflow.com/questions/77595193/how-to-install-django-specific-version)
--[Bootstrap input groups](https://getbootstrap.com/docs/4.0/components/input-group/)
--[Privacy Policy Generator](https://www.privacypolicygenerator.info/#wizard)
--[Favicon Generator](https://favicon.io/favicon-generator/)
--[Sitemaps](https://www.xml-sitemaps.com/)
--[Wordtracker SEO](https://www.wordtracker.com/domain?query=reverb.com&from_search=true)
--[Am I Responsive](https://ui.dev/amiresponsive)
--[DW Drums](https://www.dwdrums.com/)
--[Zildjian](https://zildjian.com/)
--[Mapex](https://mapexdrums.com/mapex-international/products/drums/drum-sets/black-panther-design-lab/versatus)
--[Django secret key generator](https://djecrety.ir/)
--[pixabay for recordings](https://pixabay.com/sound-effects/search/crash-cymbal/)
--[Thomann music store](https://www.thomann.de/ie/index.html)
--[Lucidchart](https://www.lucidchart.com)
--[stackoverflow](https://stackoverflow.com/questions/11372177/how-to-use-if-else-condition-on-django-templates)
--[Filters in search bar](www.youtube.com/watch?v=PXhYjiKm3-k)
--[W3schools](https://www.w3schools.com/tags/att_input_type_hidden.asp#:~:text=The%20%3Cinput%20type%3D%22hidden,when%20the%20form%20is%20submitted.)
--[Model field name changes](https://stackoverflow.com/questions/18515545/change-field-name-in-django-admin)
--[Stripe docs for web hooks](https://docs.stripe.com/payments/handling-payment-events?lang=python)
--[diffchecker](https://www.diffchecker.com/text-compare/)
+- [Google Font to CSS link](www.youtube.com/watch?v=iIqgW-stZmE)
+- [Bootstrap text ](https://getbootstrap.com/docs/4.0/content/typography/)
+- [Bootstrap buttons](https://getbootstrap.com/docs/5.1/components/buttons/#block-buttons)
+- [Font awesome ](https://fontawesome.com/kits/e371815a5a/setup)
+- [Function based views Pagination ](https://testdriven.io/blog/django-pagination/)
+- [DTL for sorting label](https://stackoverflow.com/questions/58405731/option-if-condition-condition-selectedendif-option-not)
+- [Django Doc](https://docs.djangoproject.com/en/4.0/ref/request-response/#django.http.QueryDict)
+- [Type hidden html](https://www.w3schools.com/tags/att_input_type_hidden.asp#:~:text=The%20%3Cinput%20type%3D%22hidden,when%20the%20form%20is%20submitted.)
+- [ordering in views and sort key](https://stackoverflow.com/questions/42698197/is-there-django-list-view-model-sort)
+- [Filtering in Django](www.youtube.com/watch?v=EMsxxkkVDiI)
+- [Sorting, filter and pagination](www.youtube.com/watch?v=woNkXcyjrn0)
+- [Django template language for pagination in html](https://stackoverflow.com/questions/11372177/how-to-use-if-else-condition-on-django-templates)
+- [onchange=“this.form.submit()” for updating the form with the the sorting option](https://stackoverflow.com/questions/7231157/how-to-submit-form-on-change-of-dropdown-list)
+- [Like button](https://dev.to/radualexandrub/how-to-add-like-unlike-button-to-your-django-blog-5gkg)
+- [for loop](https://stackoverflow.com/questions/58405731/option-if-condition-condition-selectedendif-option-not)
+- [Previous commit](https://stackoverflow.com/questions/4114095/how-do-i-revert-a-git-repository-to-a-previous-commit)
+- [Django 4.2.7 older version to support django countries](https://docs.djangoproject.com/en/5.1/releases/4.2.7/)
+- [Django specific version](https://stackoverflow.com/questions/77595193/how-to-install-django-specific-version)
+- [Bootstrap input groups](https://getbootstrap.com/docs/4.0/components/input-group/)
+- [Privacy Policy Generator](https://www.privacypolicygenerator.info/#wizard)
+- [Favicon Generator](https://favicon.io/favicon-generator/)
+- [Sitemaps](https://www.xml-sitemaps.com/)
+- [Wordtracker SEO](https://www.wordtracker.com/domain?query=reverb.com&from_search=true)
+- [Am I Responsive](https://ui.dev/amiresponsive)
+- [DW Drums](https://www.dwdrums.com/)
+- [Zildjian](https://zildjian.com/)
+- [Mapex](https://mapexdrums.com/mapex-international/products/drums/drum-sets/black-panther-design-lab/versatus)
+- [Django secret key generator](https://djecrety.ir/)
+- [pixabay for recordings](https://pixabay.com/sound-effects/search/crash-cymbal/)
+- [Thomann music store](https://www.thomann.de/ie/index.html)
+- [Lucidchart](https://www.lucidchart.com)
+- [stackoverflow](https://stackoverflow.com/questions/11372177/how-to-use-if-else-condition-on-django-templates)
+- [Filters in search bar](www.youtube.com/watch?v=PXhYjiKm3-k)
+- [W3schools](https://www.w3schools.com/tags/att_input_type_hidden.asp#:~:text=The%20%3Cinput%20type%3D%22hidden,when%20the%20form%20is%20submitted.)
+- [Model field name changes](https://stackoverflow.com/questions/18515545/change-field-name-in-django-admin)
+- [Stripe docs for web hooks](https://docs.stripe.com/payments/handling-payment-events?lang=python)
+- [diffchecker](https://www.diffchecker.com/text-compare/)
 
 
 
