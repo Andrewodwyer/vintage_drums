@@ -18,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
-DEBUG = 'DEVELOPMENT' in os.environ
+DEBUG = True #'DEVELOPMENT' in os.environ
 
 ALLOWED_HOSTS = [
     '8000-andrewodwye-vintagedrum-l1ai7dd3ptj.ws.codeinstitute-ide.net',
