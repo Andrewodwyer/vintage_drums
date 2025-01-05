@@ -894,7 +894,25 @@ A happy path covers the core functionality and user experience of the event app,
 ### HTML
 
 All pages have been passed through the W3C validator.
+All pages were checked as logged in users and none logged in users (where required)
 
+| **File Name / Page**   | **Pass** | **Link to Page** |
+|------------------------|----------|-----------|
+| Home                   | ✅        | [View Source](https://vintage-drum-store-6ce105a1b74f.herokuapp.com/) |
+| Products               | ✅        | [View Source](https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/) |
+| About Us               | ✅        | [View Source](https://vintage-drum-store-6ce105a1b74f.herokuapp.com/about/) |
+| FAQ                    | ✅        | [View Source](https://vintage-drum-store-6ce105a1b74f.herokuapp.com/faq/) |
+| Product Details        | ✅        | [View Source](https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/1/) |
+| Bag Page               | ✅        | [View Source](https://vintage-drum-store-6ce105a1b74f.herokuapp.com/bag/) |
+| Checkout Page          | ✅        | [View Source](https://vintage-drum-store-6ce105a1b74f.herokuapp.com/bag/) |
+| Profile                | ✅        | [View Source](https://vintage-drum-store-6ce105a1b74f.herokuapp.com/profile/) |
+| Logout                 | ✅        | [View Source](https://vintage-drum-store-6ce105a1b74f.herokuapp.com/accounts/logout/) |
+| Signup                 | ✅        | [View Source](https://vintage-drum-store-6ce105a1b74f.herokuapp.com/accounts/signup/) |
+| Login                  | ✅        | [View Source](https://vintage-drum-store-6ce105a1b74f.herokuapp.com/accounts/login/) |
+| 404 Page               | ✅        | [View Source](https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/20/j) |
+| Add Product            | ✅        | [View Source](https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/add/) |
+| Edit About             | ✅        | [View Source](https://vintage-drum-store-6ce105a1b74f.herokuapp.com/about/edit_about/) |
+| Edit Review            | ✅        | [View Source](https://vintage-drum-store-6ce105a1b74f.herokuapp.com/about/edit/1/) |
 
 
 ### CSS
@@ -914,24 +932,107 @@ No JavaScript Issues
 #### PIP8 Compliant
 
 
-| File                   | Result |
-|------------------------|--------|
-| settings.py            | Pass AUTH_PASSWORD_VALIDATORS line too long|
-| urls.py                | Pass   |
-| admin.py               | Pass   |
-| manage.py              | Pass   |
-| apps.py                | Pass   |
-| forms.py               | Pass|
-| models.py              | Pass   |
-| Project urls.py        | Pass   |
-| wsgi.py                | Pass   |
-| asgi.py                | Pass   |
-| Models.py              | Pass   |
+### Python Code Validation Table
+
+#### About App:
+| **File Name**        | **Pass** | **Notes** |
+|----------------------|----------|-----------|
+| admin.py             | ✅        |           |
+| apps.py              | ✅        |           |
+| forms.py             | ✅        |           |
+| models.py            | ✅        |           |
+| urls.py              | ✅        |           |
+| views.py             | ✅        |           |
+
+#### Bag App:
+| **File Name**        | **Pass** | **Notes** |
+|----------------------|----------|-----------|
+| apps.py              | ✅        |           |
+| contexts.py          | ✅        |           |
+| urls.py              | ✅        |           |
+| views.py             | ✅        |           |
+
+#### Checkout App:
+| **File Name**        | **Pass** | **Notes** |
+|----------------------|----------|-----------|
+| admin.py             | ✅        |           |
+| apps.py              | ✅        |           |
+| forms.py             | ✅        |           |
+| models.py            |         | Three E501 errors, lines too long and unable to shorten. |
+| signals.py           | ✅        |           |
+| urls.py              | ✅        |           |
+| views.py             |         | One E501 error on line 102. lines too long and unable to shorten. |
+| webhook_handler.py   |         | One E501 error on line 43. lines too long and unable to shorten. |
+| webhooks.py          | ✅        |           |
+
+#### FAQ App:
+| **File Name**        | **Pass** | **Notes** |
+|----------------------|----------|-----------|
+| admin.py             | ✅        |           |
+| apps.py              | ✅        |           |
+| urls.py              | ✅        |           |
+| views.py             | ✅        |           |
+
+#### Home App:
+| **File Name**        | **Pass** | **Notes** |
+|----------------------|----------|-----------|
+| apps.py              | ✅        |           |
+| urls.py              | ✅        |           |
+| views.py             | ✅        |           |
+
+#### Products App:
+| **File Name**        | **Pass** | **Notes** |
+|----------------------|----------|-----------|
+| admin.py             | ✅        |           |
+| apps.py              | ✅        |           |
+| forms.py             | ✅        |           |
+| models.py            | ✅        |           |
+| urls.py              | ✅        |           |
+| views.py             | ✅        |           |
+| widgets.py           | ✅        |           |
+
+#### Profiles App:
+| **File Name**        | **Pass** | **Notes** |
+|----------------------|----------|-----------|
+| apps.py              | ✅        |           |
+| forms.py             | ✅        |           |
+| models.py            | ✅        |           |
+| urls.py              | ✅        |           |
+| views.py             | ✅        |           |
+
+#### Project:
+| **File Name**        | **Pass** | **Notes** |
+|----------------------|----------|-----------|
+| settings.py          | ✅     | The 4 lines in `settings.py` (AUTH_PASSWORD_VALIDATORS) are automatically generated and can be left as is. |
+| urls.py              | ✅        |           |
+| views.py             | ✅        |           |
+| wigs.py              | ✅        |           |
+| custom_storages.py   | ✅        |           |
+| manage.py            | ✅        |           |
+
 
 The 4 lines in setting.py that are too long is the AUTH_PASSWORD_VALIDATORS. There are automatically generated and can be left. All other python files passed.
 <details><summary><b>Settings.py CI Linter result</b></summary>
 
-![Settings.py CI Linter](static/readme-img/code-validated/settings.py-ci-linter.png)
+![Settings.py CI Linter](media/readme-images/settings-E501.png)
+
+</details>
+
+<details><summary><b>Checkout Model CI Linter result</b></summary>
+
+![Checkout Model CI Linter](media/readme-images/checkout-models-E501.png)
+
+</details>
+
+<details><summary><b>Checkout views CI Linter result</b></summary>
+
+![Checkout views CI Linter](media/readme-images/checkout-views-E501.png)
+
+</details>
+
+<details><summary><b>Checkout webhooks CI Linter result</b></summary>
+
+![Checkout webhooks CI Linter](media/readme-images/checkout-webhooks-E501.png)
 
 </details>
 
