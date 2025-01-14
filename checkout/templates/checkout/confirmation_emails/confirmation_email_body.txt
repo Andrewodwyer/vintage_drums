@@ -5,9 +5,9 @@ Thank you for choosing Vintage Drums! We're delighted to confirm your order. Bel
 Order Summary
 Order Number: {{ order.order_number }}
 Order Date: {{ order.date|date:"F j, Y" }}
-Order Total: ${{ order.order_total }}
-Delivery Fee: ${{ order.delivery_cost }}
-Grand Total: ${{ order.grand_total }}
+Order Total: €{{ order.order_total }}
+Delivery Fee: €{{ order.delivery_cost }}
+Grand Total: €{{ order.grand_total }}
 
 Shipping Information
 Your order will be shipped to:
