@@ -939,8 +939,9 @@ All pages were checked as logged in users and none logged in users (where requir
 | 31 | User fills out payment details and proceeds | Checkout success page with success message shown | ✓ |
 | 32 | User checks profile page | Profile page includes the placed order | ✓ |
 | 33 | User clicks on order number | User is brought to the order history page for that order | ✓ |
-| 34 | Shopper logs out | Logout page with options to “Sign out” or “Cancel” | ✓ |
-| 35 | User clicks “Sign out” | Home page is displayed with success message confirming logout | ✓ |
+| 34 | User decide to subscribe and enters their email in the footer. | message is shown under indicate success | ✓ |
+| 35 | Shopper logs out | Logout page with options to “Sign out” or “Cancel” | ✓ |
+| 36 | User clicks “Sign out” | Home page is displayed with success message confirming logout | ✓ |
 
 
 ### CSS

@@ -25,7 +25,6 @@ def bag_contents(request):
                 'item_id': item_id,
                 'quantity': item_data,
                 'product': product,
-                'size': None,  # Ensure size key exists
                 'total_price': item_data * product.price,
             })
         elif 'items_by_size' in item_data:
