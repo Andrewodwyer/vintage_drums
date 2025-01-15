@@ -57,6 +57,7 @@ This site is designed to provide a luxurious and user-friendly shopping experien
     * [BootStrap](#bootstrap)
 5. [Libraries](#libraries)
 6. [Validator Testing](#validator-testing)
+    * [Happy Path Testing](#happy-path-testing)
 7. [Bugs](#bugs)
 8. [Deployment](#deployment)
 9. [Credits](#credits)
@@ -892,11 +893,54 @@ All pages were checked as logged in users and none logged in users (where requir
 | Profile                | ✅        | [View Source](https://vintage-drum-store-6ce105a1b74f.herokuapp.com/profile/) |
 | Logout                 | ✅        | [View Source](https://vintage-drum-store-6ce105a1b74f.herokuapp.com/accounts/logout/) |
 | Signup                 | ✅        | [View Source](https://vintage-drum-store-6ce105a1b74f.herokuapp.com/accounts/signup/) |
+| confirm-email          | ✅        | [View Source](https://vintage-drum-store-6ce105a1b74f.herokuapp.com/accounts/confirm-email/) |
+| checkout_success       | ✅        | [View Source](vintage-drum-store-6ce105a1b74f.herokuapp.com/checkout/checkout_success/183BB58AE4D74BFD9C708875FDC21076) |
 | Login                  | ✅        | [View Source](https://vintage-drum-store-6ce105a1b74f.herokuapp.com/accounts/login/) |
 | 404 Page               | ✅        | [View Source](https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/20/j) |
 | Add Product            | ✅        | [View Source](https://vintage-drum-store-6ce105a1b74f.herokuapp.com/products/add/) |
 | Edit About             | ✅        | [View Source](https://vintage-drum-store-6ce105a1b74f.herokuapp.com/about/edit_about/) |
 | Edit Review            | ✅        | [View Source](https://vintage-drum-store-6ce105a1b74f.herokuapp.com/about/edit/1/) |
+
+### Happy path Testing 
+<a name="happy-path-testing"></a>
+
+| **Step** | **Action** | **Expected Outcome** | **Result** |
+|----------|------------|----------------------|------------|
+| 1 | User navigates to the home page | Home page displays with a list of products, a search bar, and navigation links | ✓ |
+| 2 | User uses the search bar to look for a product (e.g., “snare”) | Results page displays matching products with images, names, prices, category, and “star rating” | ✓ |
+| 3 | User clicks on the image to go to the product details page | Product page displays image, name, price, category, material, description, sound recording, drum kit sizes (if applicable), and external link | ✓ |
+| 4 | User clicks the play button to hear product | Audio is played | ✓ |
+| 5 | User clicks the external link to find out more on the official site | User is brought to the official product page in a new tab | ✓ |
+| 6 | User adds product to their bag | Pop-up message shows success, displaying the item’s details with “GO TO SECURE CHECKOUT” button | ✓ |
+| 7 | User decides to carry on shopping and clicks “X” | Pop-up message disappears | ✓ |
+| 8 | User uses category nav bar and selects “Accessories” | Dropdown menu shows: Drum Stands, Drum Sticks, All Accessories | ✓ |
+| 9 | User selects “Drum Sticks” | Products in the drum sticks category are displayed with images, names, prices, categories, and ratings | ✓ |
+| 10 | User wants to sort the sticks by Rating: High to Low | Sticks are arranged in the selected order | ✓ |
+| 11 | User selects Zidjian sticks | Product details page for Zidjian sticks is displayed | ✓ |
+| 12 | User selects size and quantity (5B, 2 pairs) | Size dropdown allows selection, quantity can be increased | ✓ |
+| 13 | User adds selected sticks to the bag | Success message displayed with product details updated | ✓ |
+| 14 | User clicks “Proceed to Checkout” | Checkout page is displayed with user details on the left and order summary on the right | ✓ |
+| 15 | User fills in the details and presses “Complete Order” | Checkout success page shows order details and success message | ✓ |
+| 16 | User checks their email | Email with subject “Vintage Drums Confirmation for Order Number [order number]” is received | ✓ |
+| 17 | Shopper goes back to website and clicks on “Check out these drum kits” | User is brought to the products page for drum kits | ✓ |
+| 18 | Shopper selects “Register” from My Account dropdown | Sign-up page displayed asking for email, username, and password | ✓ |
+| 19 | User fills out information and presses “Sign Up” | User is directed to a confirm email page with an alert message | ✓ |
+| 20 | User checks email for confirmation link | Email with link to confirm account is received | ✓ |
+| 21 | User follows the link to the confirm-email page | Confirm-email page is displayed | ✓ |
+| 22 | User presses confirm button | User is brought to the login page | ✓ |
+| 23 | User logs in with their details | User is logged in successfully | ✓ |
+| 24 | User likes a product | "Like?" text changes to “Liked!” and turns green; likes count increases | ✓ |
+| 25 | User likes multiple products and goes to their profile page | Profile page displays delivery details, order history, and liked products | ✓ |
+| 26 | User updates delivery details | Success message confirming saved details | ✓ |
+| 27 | User clicks on a liked product | User is brought to the product details page | ✓ |
+| 28 | User adds liked product to bag | Success message displayed with updated product details | ✓ |
+| 29 | User clicks “Go to secure checkout” | Bag page with products displayed | ✓ |
+| 30 | User clicks “Proceed to Checkout” | Checkout page displayed with user profile details | ✓ |
+| 31 | User fills out payment details and proceeds | Checkout success page with success message shown | ✓ |
+| 32 | User checks profile page | Profile page includes the placed order | ✓ |
+| 33 | User clicks on order number | User is brought to the order history page for that order | ✓ |
+| 34 | Shopper logs out | Logout page with options to “Sign out” or “Cancel” | ✓ |
+| 35 | User clicks “Sign out” | Home page is displayed with success message confirming logout | ✓ |
 
 
 ### CSS
@@ -1090,7 +1134,6 @@ Desktop Lighthouse:
 </details>
 
 
-
 ### Browser Compatibility
 <a name="browser"></a>
 The Following Browsers were checked:
@@ -1102,6 +1145,7 @@ The Following Browsers were checked:
 - Microsoft Edge
 
 On all browsers the site performed smoothly with consistent functionality and appearance. All features were tested and worked as expected.
+
 
 
 ## Languages
