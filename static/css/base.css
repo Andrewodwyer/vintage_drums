@@ -39,7 +39,7 @@ form {
 
 .input-group .btn {
     width: 36px;
-    /* height: 38px; */
+    height: 38px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -359,6 +359,35 @@ input[name='q']::placeholder {
     height: 30px;
 }
 
+/* ------------------------- Featured card on home page */
+
+.first-featured-img {
+    max-width: 100%; /* Ensures image doesn't overflow */
+    height: auto;
+}
+
+.left-side {
+    max-width: 50%;
+}
+
+.card-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+
+@media (max-width: 767px) {
+    .left-side {
+        max-width: 100%;
+    }
+
+    .right-side {
+        max-width: 100%;
+        text-align: center;
+    }
+}
+
 
 /* ------------------------- about link on home page */
 .links-hover {
@@ -374,6 +403,13 @@ input[name='q']::placeholder {
 .links-hover:active {
     color: #8b6914 !important;  /* Darker gold when clicked */
 }
+
+/* ------------------------- footer logo */
+.footer-logo {
+    font-size: 1.4rem;
+    line-height: 1.2;
+}
+
 
 
 /* ------------------------- error-image */
@@ -446,10 +482,17 @@ input[name='q']::placeholder {
     }
 }
 
-/* ------------------------- long numer break */
+/* ------------------------- long number break */
 .order-number {
     word-break: break-word;
     font-weight: bold;
+}
+
+/* ------------------ footer link */
+
+.nav-link-footer {
+    font-size: small;
+    padding: .2rem !important;
 }
 
 /* ------------------ mailchimp */
@@ -542,7 +585,6 @@ input[name='q']::placeholder {
 }
 
 
-
 /* Hover State for Buttons */
 .allauth-form-inner-content button:hover,
 .allauth-form-inner-content input[type='submit']:hover {
@@ -570,8 +612,8 @@ input[name='q']::placeholder {
     text-decoration: underline; /* Underline on hover */
 }
 
-/* fixed top navbar only on medium and up */
 @media (min-width: 992px) {
+    /* fixed top navbar only on medium and up */
     .fixed-top-desktop-only {
         position: fixed;
         top: 0;
@@ -605,7 +647,7 @@ input[name='q']::placeholder {
     }
 
     .nav-link i.fa-lg {
-        font-size: 1rem;
+        font-size: .5rem;
     }
 
     .navbar-toggler {

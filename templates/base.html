@@ -82,7 +82,7 @@
 							<a class="text-black nav-link" href="#" id="user-options-desktop" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false">
 								<div class="text-center">
-									<div><i class="fas fa-user fa-lg"></i></div>
+									<div><i class="fas fa-user"></i></div>
 									<p class="my-0">My Account</p>
 								</div>
 							</a>
@@ -120,7 +120,7 @@
 			</div>
 
 			<!-- Navbar -->
-			<nav class="navbar navbar-expand-lg navbar-light w-100 py-0">
+			<nav class="navbar navbar-expand-lg navbar-light w-100 p-0">
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -163,38 +163,54 @@
 		<!-- Footer -->
 		<footer class="bg-dark text-white py-4">
 			<div class="container">
+				<!-- 4 Sections in the Footer -->
 				<div class="row">
-					<!-- Information Section -->
-					<div class="col-12 col-md-4 text-center text-md-start mb-3 mb-md-0">
+					<!-- Logo Section (3 Columns) -->
+					<div class="col-12 col-md-3 d-flex align-items-center text-center">
+						<a href="{% url 'home' %}" class="text-decoration-none">
+							<h1 class="footer-logo text-white mb-2">VintageDrums</h1>
+						</a>
+					</div>
+
+					<!-- Information Section (3 Columns) -->
+					<div class="col-12 col-md-3">
 						<h5 class="text-decoration-underline"><strong>Information</strong></h5>
 						<ul class="list-unstyled">
-							<li><a href="{% url 'about' %}" class="nav-link text-white links-hover">About Us</a></li>
-							<li><a href="{% url 'faq_list' %}" class="nav-link text-white links-hover">FAQ</a></li>
-							<li><a href="{% url 'privacy_policy' %}" class="nav-link text-white links-hover">Privacy Policy</a></li>
+							<li class="d-flex align-items-center">
+								<i class="fas fa-map-marker-alt small mr-2"></i>
+								<p class="nav-link-footer text-white links-hover mb-0">123 Drum Street, Vintage City, VC 12345</p>
+							</li>
+							<li class="d-flex align-items-center">
+								<i class="fas fa-envelope small mr-2"></i>
+								<a href="mailto:contact@vintagedrums.com" class="nav-link-footer text-break text-white links-hover mb-0">contact@vintagedrums.com</a>
+							</li>
+							<li class="d-flex align-items-center">
+								<i class="fas fa-phone small mr-2"></i>
+								<a href="tel:+1234567890" class="nav-link-footer text-white links-hover mb-0">+1 (234) 567-890</a>
+							</li>
+							<li><a href="{% url 'about' %}" class="nav-link-footer text-white links-hover">About Us Page</a></li>
+							<li><a href="{% url 'faq_list' %}" class="nav-link-footer text-white links-hover">FAQ Page</a></li>
+							<li><a href="{% url 'privacy_policy' %}" class="nav-link-footer text-white links-hover">Privacy Policy</a></li>
 						</ul>
 					</div>
 
-					<!-- Social Media Section -->
-					<div class="col-12 col-md-4 text-center mb-3 mb-md-0">
+					<!-- Follow Us Section (3 Columns) -->
+					<div class="col-12 col-md-3 text-center">
 						<h5 class="text-decoration-underline"><strong>Follow Us</strong></h5>
 						<ul class="list-inline">
 							<li class="list-inline-item">
-								<a href="https://www.facebook.com/people/Vintage-Drums/61571638551755/" 
-								target="_blank" class="text-white links-hover" rel="noopener noreferrer">
-								<i class="fab fa-facebook fa-lg"></i>
+								<a href="https://www.facebook.com/people/Vintage-Drums/61571638551755/" target="_blank" class="text-white links-hover" rel="noopener noreferrer">
+									<i class="fab fa-facebook fa-lg"></i>
 								</a>
 							</li>
-							<li class="list-inline-item"><a href="https://twitter.com" target="_blank" class="text-white links-hover"
-									rel="noopener noreferrer"><i class="fab fa-twitter fa-lg"></i></a></li>
-							<li class="list-inline-item"><a href="https://instagram.com" target="_blank" class="text-white links-hover"
-									rel="noopener noreferrer"><i class="fab fa-instagram fa-lg"></i></a></li>
-							<li class="list-inline-item"><a href="https://linkedin.com" target="_blank" class="text-white links-hover"
-									rel="noopener noreferrer"><i class="fab fa-linkedin fa-lg"></i></a></li>
+							<li class="list-inline-item"><a href="https://twitter.com" target="_blank" class="text-white links-hover" rel="noopener noreferrer"><i class="fab fa-twitter fa-lg"></i></a></li>
+							<li class="list-inline-item"><a href="https://instagram.com" target="_blank" class="text-white links-hover" rel="noopener noreferrer"><i class="fab fa-instagram fa-lg"></i></a></li>
+							<li class="list-inline-item"><a href="https://linkedin.com" target="_blank" class="text-white links-hover" rel="noopener noreferrer"><i class="fab fa-linkedin fa-lg"></i></a></li>
 						</ul>
 					</div>
 
-					<!-- Newsletter Section -->
-					<div class="col-12 col-md-4 text-center text-md-end">
+					<!-- Subscribe Section (3 Columns) -->
+					<div class="col-12 col-md-3 text-center text-md-end">
 						<h5 class="text-decoration-underline"><strong>Subscribe to our newsletter for the latest stock</strong></h5>
 						<div id="mc_embed_shell" class="transparent-shell">
 							<link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
@@ -223,9 +239,11 @@
 						</div>
 					</div>
 				</div>
+
+				<!-- Copyright Section -->
 				<div class="row mt-3">
 					<div class="col text-center">
-						<p class="mb-0">&copy; <span id="current-year">2024</span> Vintage Drums. All rights reserved.</p>
+						<p class="mb-0 small">&copy; <span id="current-year">2024</span> Vintage Drums. All rights reserved.</p>
 					</div>
 				</div>
 			</div>

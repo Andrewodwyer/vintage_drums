@@ -435,7 +435,10 @@ These are modern style fonts that work well with the clean, minimal design.
 
 - Logo displaying the brand, immediate recognition of the app. Users feel more comfortable when they are reassured by the brand.
 - Hero section. Image of a drum kits and text "Uncover the Soul of Vintage Drums" and "Curated collection of premium vintage drum kits and cymbals for musicians and collectors." Highlights the purpose of the app
+- Featured Drums and Featured Cymbal section displays 4 of the most recently added products. They are displayed from most recently added. There is one main featured product that takes the full width of the page on large and medium screens. The product card has the name price, description and "View Details" on right and the image on the left. On small devices the information in displayed under the image. The first image will be the only one with a description. The next 3 featured products will take up 4 column each on large and medium devices and full width on small devices. All done with bootstrap4.
 - Category & Links discussed earlier
+
+![Featured Section](media/readme-images/featured-section.png)
 
 
 ### Products Page

@@ -62,13 +62,33 @@
 
 
  
-    <!-- Featured Drum Kits Section -->
+    <!-- Featured Drum Kits Section, Featured is newest product first-->
     <section class="py-5">
         <div class="container">
             <h2 class="text-center">Featured Drum Kits</h2>
             <div class="row mt-4">
-                {% for product in featured_drum_kits %}
-                <div class="col-12 col-md-6 col-lg-3 mb-4">
+                <!-- First Featured Drum Kit takes full width on medium/large screens, featured is in order of new products -->
+                <div class="col-12 col-md-12 col-lg-12 mb-4">
+                    <div class="card d-flex flex-column flex-md-row align-items-center h-100 bg-light">
+                        <!-- Left Side: Image -->
+                        <div class="right-side mt-4 mt-md-0 ml-md-4">
+                            <img src="{{ featured_drum_kits.0.image.url }}" class="first-featured-img img-fluid" alt="{{ featured_drum_kits.0.name }}">
+                        </div>
+                
+                        <!-- Right Side: Information -->
+                        <div class="card-body left-side d-flex flex-column justify-content-center pr-md-4">
+                            <h5 class="card-title">{{ featured_drum_kits.0.name }}</h5>
+                            <p class="card-text">{{ featured_drum_kits.0.description }}</p>
+                            <p class="card-price">€{{ featured_drum_kits.0.price }}</p>
+                            <a href="{% url 'product_detail' featured_drum_kits.0.id %}" class="btn btn-main">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <!-- Remaining Drum Kits 3 in row on large, 2 medium, 1 small -->
+                {% for product in featured_drum_kits|slice:"1:" %}
+                <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
                         <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }} - Vintage Drum Kit">
                         <div class="card-body">
@@ -79,7 +99,7 @@
                     </div>
                 </div>
                 {% empty %}
-                <div class="col-12 col-md-6 col-lg-3 mb-4">
+                <div class="col-12 col-md-6 col-lg-4 mb-4">
                     <div class="card h-100">
                         <div class="card-body">
                             <p class="card-title">No Featured Drums Available at the moment</p>
@@ -112,13 +132,32 @@
         </div>
     </section>
 
-    <!-- Featured Cymbals Section -->
+    <!-- Featured Cymbals Section, Featured is newest product first-->
     <section class="py-5">
         <div class="container">
             <h2 class="text-center">Featured Cymbals</h2>
             <div class="row mt-4">
-                {% for product in featured_cymbals %}
-                <div class="col-12 col-md-6 col-lg-3 mb-4">
+                <!-- First Featured Cymbal takes full width on medium/large screens, featured is in order of new products-->
+                <div class="col-12 col-md-12 col-lg-12 mb-4">
+                    <div class="card d-flex flex-column flex-md-row align-items-center h-100 bg-light">
+                        <!-- Left Side: Image -->
+                        <div class="right-side mt-4 mt-md-0 ml-md-4">
+                            <img src="{{ featured_cymbals.0.image.url }}" class="first-featured-img img-fluid" alt="{{ featured_drum_kits.0.name }}">
+                        </div>
+                
+                        <!-- Right Side: Information -->
+                        <div class="card-body left-side d-flex flex-column justify-content-center pr-md-4">
+                            <h5 class="card-title">{{ featured_cymbals.0.name }}</h5>
+                            <p class="card-text">{{ featured_cymbals.0.description }}</p>
+                            <p class="card-price">€{{ featured_cymbals.0.price }}</p>
+                            <a href="{% url 'product_detail' featured_cymbals.0.id %}" class="btn btn-main">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Remaining Cymbals 3 in row on large 2 medium, 1 small-->
+                {% for product in featured_cymbals|slice:"1:" %}
+                <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
                         <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
                         <div class="card-body">
@@ -129,7 +168,7 @@
                     </div>
                 </div>
                 {% empty %}
-                <div class="col-12 col-md-6 col-lg-3 mb-4">
+                <div class="col-12 col-md-6 col-lg-4 mb-4">
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">No Featured Cymbals Available</h5>
