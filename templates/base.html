@@ -1,4 +1,6 @@
 {% load static %}
+{% load bag_tools %}
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -107,7 +109,7 @@
 									<div><i class="fa-solid fa-cart-flatbed-suitcase"></i></div>
 									<p class="my-0">
 										{% if grand_total %}
-											€{{ grand_total|floatformat:2 }}
+											€{{ grand_total | formatted_price }}
 										{% else %}
 											€0.00
 										{% endif %}

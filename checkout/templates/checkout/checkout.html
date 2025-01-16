@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="col-7">
                                     <p class="mb-1"><strong>{{ item.product.name }}</strong></p>
-                                    <p class="mb-0 small">Size: {% if item.product.has_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
+                                    <p class="mb-0 small">Size: {% if item.size  %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
                                     <p class="mb-0 small text-muted">Qty: {{ item.quantity }}</p>
                                 </div>
                                 <div class="col-3 text-end">
@@ -73,9 +73,9 @@
                                 <p class="mb-0">Grand Total:</p>
                             </div>
                             <div class="col-6 text-end">
-                                <p class="mb-0">€{{ total | floatformat:2 }}</p>
-                                <p class="mb-0">€{{ delivery | floatformat:2 }}</p>
-                                <p class="mb-0"><strong>€{{ grand_total | floatformat:2 }}</strong></p>
+                                <p class="mb-0">€{{ total | formatted_price }}</p>
+                                <p class="mb-0">€{{ delivery | formatted_price }}</p>
+                                <p class="mb-0"><strong>€{{ grand_total | formatted_price }}</strong></p>
                             </div>
                         </div>
                     </div>
@@ -142,7 +142,7 @@
                             <span class="icon">
                                 <i class="fas fa-exclamation-circle"></i>
                             </span>
-                            <span>Your card will be charged <strong>€{{ grand_total|floatformat:2 }}</strong></span>
+                            <span>Your card will be charged <strong>€{{ grand_total| formatted_price }}</strong></span>
                         </p>
                     </div>
                 </form>

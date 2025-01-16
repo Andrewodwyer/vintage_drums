@@ -47,7 +47,7 @@
                             <span class="text-black">
                                 {{ item.product.name }}{% if item.size_option %} - Size {{ item.size_option|upper }}{% endif %}
                             </span>
-                            <span class="text-muted">{{ item.quantity }} × €{{ item.product.price }}</span>
+                            <span class="text-muted">{{ item.quantity }} × €{{ item.product.formatted_price }}</span>
                         </div>
                         {% endfor %}
                     </div>

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from django.contrib.humanize.templatetags.humanize import intcomma
 
 
 # only there audio files can be used
@@ -69,6 +70,12 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    def formatted_price(self):
+        """
+        Returns the price with commas (e.g., '2,123.00')
+        """
+        return f"{intcomma(self.price)}"
 
 
 class DrumKitDetail(models.Model):
