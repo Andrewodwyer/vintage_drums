@@ -79,7 +79,7 @@
                         <div class="card-body left-side d-flex flex-column justify-content-center pr-md-4">
                             <h5 class="card-title">{{ featured_drum_kits.0.name }}</h5>
                             <p class="card-text">{{ featured_drum_kits.0.description }}</p>
-                            <p class="card-price">€{{ featured_drum_kits.0.price }}</p>
+                            <p class="card-price">€{{ featured_drum_kits.0.formatted_price }}</p>
                             <a href="{% url 'product_detail' featured_drum_kits.0.id %}" class="btn btn-main">View Details</a>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                         <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }} - Vintage Drum Kit">
                         <div class="card-body">
                             <h5 class="card-title">{{ product.name }}</h5>
-                            <p class="card-text">€{{ product.price }}</p>
+                            <p class="card-text">€{{ product.formatted_price }}</p>
                             <a href="{% url 'product_detail' product.id %}" class="btn btn-main">View Details</a>
                         </div>
                     </div>
@@ -149,7 +149,7 @@
                         <div class="card-body left-side d-flex flex-column justify-content-center pr-md-4">
                             <h5 class="card-title">{{ featured_cymbals.0.name }}</h5>
                             <p class="card-text">{{ featured_cymbals.0.description }}</p>
-                            <p class="card-price">€{{ featured_cymbals.0.price }}</p>
+                            <p class="card-price">€{{ featured_cymbals.0.formatted_price }}</p>
                             <a href="{% url 'product_detail' featured_cymbals.0.id %}" class="btn btn-main">View Details</a>
                         </div>
                     </div>
@@ -162,7 +162,7 @@
                         <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ product.name }}</h5>
-                            <p class="card-text">€{{ product.price }}</p>
+                            <p class="card-text">€{{ product.formatted_price }}</p>
                             <a href="{% url 'product_detail' product.id %}" class="btn btn-main">View Details</a>
                         </div>
                     </div>
