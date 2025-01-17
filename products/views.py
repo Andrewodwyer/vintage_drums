@@ -7,7 +7,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models.functions import Lower
 from .models import Product, Category, Like, DrumKitDetail
 from bag.contexts import bag_contents
-from .forms import ProductForm
+from .forms import ProductForm, DrumKitDetailForm
 
 
 def all_products(request):
@@ -193,75 +193,97 @@ def toggle_like(request, product_id):
     })
 
 
+# View for adding a product
+# View for adding a product
 @login_required
 def add_product(request):
     """
     Add a new product to the store. Superuser only.
-
-    **Template**
-    :template: `products/add_product.html`
     """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
 
     if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES)
-        if form.is_valid():
-            product = form.save()
+        product_form = ProductForm(request.POST, request.FILES)
+        drumkit_form = None
+
+        # Check if the product form is valid
+        if product_form.is_valid():
+            product = product_form.save()
+
+            # If the product is a drum kit, save the drum kit details
+            if product.category and product.category.name == 'drum_kits':
+                drumkit_form = DrumKitDetailForm(request.POST)
+                if drumkit_form.is_valid():
+                    drumkit_detail = drumkit_form.save(commit=False)
+                    drumkit_detail.product = product
+                    drumkit_detail.save()
+
             messages.success(request, 'Successfully added product!')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
-            messages.error(
-                request,
-                'Failed to add product. Please ensure the form is valid.'
-            )
+            messages.error(request, 'Failed to add product!')
     else:
-        form = ProductForm()
+        product_form = ProductForm()
 
-    template = 'products/add_product.html'
+        # If the category is 'drum_kits', prepare the drumkit form for rendering
+        drumkit_form = DrumKitDetailForm()  # Initial empty form
+
     context = {
-        'form': form,
+        'product_form': product_form,
+        'drumkit_form': drumkit_form,
     }
 
-    return render(request, template, context)
+    return render(request, 'products/add_product.html', context)
 
 
+# View for editing an existing product
 @login_required
 def edit_product(request, product_id):
     """
     Edit an existing product in the store. Superuser only.
-
-    **Template**
-    :template: `products/edit_product.html`
     """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
 
     product = get_object_or_404(Product, pk=product_id)
+    drumkit_detail = None
+    if product.category.name == 'drum_kits':
+        drumkit_detail = product.drumkit_detail
+
     if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES, instance=product)
-        if form.is_valid():
-            form.save()
+        product_form = ProductForm(
+            request.POST, request.FILES, instance=product)
+        if product_form.is_valid():
+            product = product_form.save()
+
+            # If the product is a drum kit, handle the DrumKitDetail form
+            if product.category.name == 'drum_kits':
+                drumkit_form = DrumKitDetailForm(
+                    request.POST, instance=drumkit_detail)
+                if drumkit_form.is_valid():
+                    drumkit_form.save()
+            else:
+                drumkit_form = None  # No form needed for non-drum kit products
+
             messages.success(request, 'Successfully updated product!')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
-            messages.error(
-                request,
-                'Failed to update product. Please ensure the form is valid.'
-            )
+            messages.error(request, 'Failed to update product. ')
     else:
-        form = ProductForm(instance=product)
-        messages.info(request, f'You are editing {product.name}')
+        product_form, drumkit_form = ProductForm(instance=product), None
+        if product.category.name == 'drum_kits':
+            drumkit_form = DrumKitDetailForm(instance=drumkit_detail)
 
-    template = 'products/edit_product.html'
     context = {
-        'form': form,
+        'product_form': product_form,
+        'drumkit_form': drumkit_form if product.category.name == 'drum_kits' else None,
         'product': product,
     }
 
-    return render(request, template, context)
+    return render(request, 'products/edit_product.html', context)
 
 
 @login_required

@@ -25,13 +25,27 @@
         <div class="col-12 col-md-6">
             <form method="POST" action="{% url 'add_product' %}" class="form mb-2" enctype="multipart/form-data">
                 {% csrf_token %}
-                {% for field in form %}
+                
+                <!-- Render the product form fields -->
+                {% for field in product_form %}
                     {% if field.name != 'image' %}
                         {{ field | as_crispy_field }}
                     {% else %}
                         {{ field }}
                     {% endif %}
                 {% endfor %}
+
+                <!-- Render the drum kit details form, but hidden by default -->
+                <div id="drumkit-form" style="display: none;">
+                    <hr>
+                    <h5 class="text-muted">Drum Kit Details</h5>
+                    {% if drumkit_form %}
+                        {{ drumkit_form.as_p }}  <!-- Render the drum kit form -->
+                    {% else %}
+                        <p>No Drum Kit details to show.</p>
+                    {% endif %}
+                </div>
+
                 <div class="text-right">
                     <a class="btn btn-outline-black" href="{% url 'all_products' %}">Cancel</a>
                     <button class="btn btn-main" type="submit">Add Product</button>
@@ -45,9 +59,27 @@
 {% block postloadjs %}
     {{ block.super }}
     <script>
+        // JS for handling image file input preview
         $('#new-image').change(function() {
             var file = $('#new-image')[0].files[0];
             $('#filename').text(`Image will be set to: ${file.name}`);
         });
+
+        // Simplified JS to show/hide the drumkit form based on category selection
+        document.getElementById('id_category').addEventListener('change', function() {
+            const drumkitForm = document.getElementById('drumkit-form');
+            
+            // If "Drum Kits" is selected, display the drumkit form
+            if (this.value === '6') {  // Assuming '6' is the value for "Drum Kits"
+                drumkitForm.style.display = 'block';
+            } else {
+                drumkitForm.style.display = 'none';
+            }
+        });
+
+        // Trigger the function on page load to check the initial category
+        window.onload = function() {
+            document.getElementById('id_category').dispatchEvent(new Event('change'));
+        };
     </script>
 {% endblock %}

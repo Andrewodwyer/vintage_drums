@@ -1205,6 +1205,12 @@ On all browsers the site performed smoothly with consistent functionality and ap
 ## Bugs:
 <a name="bugs"></a>
 
+#### The drumkit_form wasn't available initially in the template
+- When rendering the add_product page, the drumkit_form was only initialized after the product was saved. This meant that the drum kit form would not be available when the page first loaded, which prevented JavaScript from triggering its visibility based on the selected category. To resolve this, I needed to ensure that the drumkit_form is initialized as None in the view, so it is available to the template immediately. Then, JavaScript can toggle the visibility of the form based on the category selected. 
+
+#### Triggering the Form Based on Category Selection
+- The category dropdown had numeric values (assigned by the database), and I needed to find the correct value for "Drum Kits" to trigger the form visibility. The numric value was based on the order the categories were added, "Drum Kits" was the 6th and so had a value of 6. I added a JavaScript event listener to the category dropdown, checking for this value to show or hide the drumkit form. The drumkit_form only displays when value is 6.
+
 #### Sorting By Price and Rating & Issue 
 - I wanted to sort the products by rating and by price, ascending and descending in both cases. 
 Instead of a sorting all products by price or rating, I wanted to sort in each categories. 
