@@ -227,7 +227,7 @@ def add_product(request):
     else:
         product_form = ProductForm()
 
-        # If the category is 'drum_kits', prepare the drumkit form for rendering
+        # If the category is 'drum_kits', show drumkit form
         drumkit_form = DrumKitDetailForm()  # Initial empty form
 
     context = {
@@ -279,7 +279,9 @@ def edit_product(request, product_id):
 
     context = {
         'product_form': product_form,
-        'drumkit_form': drumkit_form if product.category.name == 'drum_kits' else None,
+        'drumkit_form': (
+            drumkit_form if product.category.name == 'drum_kits' else None
+        ),
         'product': product,
     }
 

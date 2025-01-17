@@ -18,7 +18,7 @@ class DrumKitDetailForm(forms.ModelForm):
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = '__all__'  # Includes all fields from the Product model
+        fields = '__all__'
 
     # Custom image field with specific widget for file input
     image = forms.ImageField(
