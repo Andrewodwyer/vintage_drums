@@ -19,6 +19,8 @@ def bag_contents(request):
         product = get_object_or_404(Product, pk=item_id)
         category = product.category.name.lower()  # Ensure case-insensitivity
 
+        product_size = product.size if hasattr(product, 'size') else None
+
         if isinstance(item_data, int):
             total += item_data * product.price
             product_count += item_data
@@ -26,6 +28,7 @@ def bag_contents(request):
                 'item_id': item_id,
                 'quantity': item_data,
                 'product': product,
+                'size': product_size,
                 'total_price': item_data * product.price,
             })
         elif 'items_by_size' in item_data:
@@ -36,7 +39,7 @@ def bag_contents(request):
                     'item_id': item_id,
                     'quantity': quantity,
                     'product': product,
-                    'size': size,
+                    'size': size,  # Size for stick category items
                     'total_price': quantity * product.price,
                 })
 
