@@ -946,6 +946,18 @@ All pages were checked as logged in users and none logged in users (where requir
 | 35 | Shopper logs out | Logout page with options to “Sign out” or “Cancel” | ✓ |
 | 36 | User clicks “Sign out” | Home page is displayed with success message confirming logout | ✓ |
 
+### Happy path Testing for Superuser adding products
+
+| **Step** | **Action** | **Expected Outcome** | **Result** |
+|----------|------------|----------------------|------------|
+| 1 | Superuser logs in | Home page displays with a list of products, a search bar, navigation links, and a success message confirming sign-in | ✓ |
+| 2 | Superuser selects **Product Management** from the **My Account** drop-down | Add Product page is displayed with fields to be filled in | ✓ |
+| 3 | Superuser adds details for a product that is not a drum kit and selects the **Add Product** button | New Product page is displayed | ✓ |
+| 4 | Superuser edits the product, realizing it is a full drum kit and not a single drum. They click the **Edit** button | Edit Product page for that product is displayed | ✓ |
+| 5 | Superuser sees the previous details and selects **Drum Kits** from the category options | Additional fields are shown for drum sizes | ✓ |
+| 6 | Superuser adds sizes for snare, toms, and bass drums, then clicks the **Update Product** button | Page redirects to the Product Details page with the updated details | ✓ |
+| 7 | Superuser verifies the product is in the correct category by selecting **All Drum Kits** from the dropdown menu | Newly added product is displayed in the list | ✓ |
+| 8 | Superuser selects the product to confirm its details | Product details are shown correctly | ✓ |
 
 ### CSS
 
