@@ -194,7 +194,6 @@ def toggle_like(request, product_id):
 
 
 # View for adding a product
-# View for adding a product
 @login_required
 def add_product(request):
     """
@@ -241,50 +240,64 @@ def add_product(request):
 # View for editing an existing product
 @login_required
 def edit_product(request, product_id):
-    """
-    Edit an existing product in the store. Superuser only.
-    """
+    # Check if the user is a superuser (store owner)
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
-        return redirect(reverse('home'))
+        return redirect(reverse('home'))  # Redirect to home
 
-    product = get_object_or_404(Product, pk=product_id)
+    product = get_object_or_404(Product, id=product_id)
+
+    # Fetch or create the associated DrumKitDetail for the product
     drumkit_detail = None
-    if product.category.name == 'drum_kits':
-        drumkit_detail = product.drumkit_detail
+    if product.category.id == 6:  # If the product is a "Drum Kit"
+        drumkit_detail, created = DrumKitDetail.objects.get_or_create(
+            product=product)
 
     if request.method == 'POST':
         product_form = ProductForm(
             request.POST, request.FILES, instance=product)
-        if product_form.is_valid():
-            product = product_form.save()
 
-            # If the product is a drum kit, handle the DrumKitDetail form
-            if product.category.name == 'drum_kits':
+        # Create or update the drumkit form only if the product is a drum kit
+        if product.category.id == 6:
+            if drumkit_detail:  # If a drumkit detail already exists
                 drumkit_form = DrumKitDetailForm(
                     request.POST, instance=drumkit_detail)
-                if drumkit_form.is_valid():
-                    drumkit_form.save()
             else:
-                drumkit_form = None  # No form needed for non-drum kit products
-
-            messages.success(request, 'Successfully updated product!')
-            return redirect(reverse('product_detail', args=[product.id]))
+                drumkit_form = DrumKitDetailForm(request.POST)
         else:
-            messages.error(request, 'Failed to update product. ')
+            drumkit_form = DrumKitDetailForm(request.POST)
+
+        if product_form.is_valid() and drumkit_form.is_valid():
+            # Check if the category is changing
+            old_category_id = product.category.id
+            product_form.save()
+
+            # If no longer a drum kit, delete drumkit detail
+            if product.category.id != 6 and drumkit_detail:
+                drumkit_detail.delete()
+
+            # If the product is still a drum kit, save or update
+            if product.category.id == 6:
+                if drumkit_detail:  # If drumkit detail exists, update it
+                    drumkit_form.save()
+                else:  # If no drumkit detail exists, create it
+                    drumkit_detail = drumkit_form.save(commit=False)
+                    drumkit_detail.product = product
+                    drumkit_detail.save()
+
+            return redirect('product_detail', product.id)  # Redirect
+
     else:
-        product_form, drumkit_form = ProductForm(instance=product), None
-        if product.category.name == 'drum_kits':
-            drumkit_form = DrumKitDetailForm(instance=drumkit_detail)
+        product_form = ProductForm(instance=product)
+        drumkit_form = DrumKitDetailForm(
+            instance=drumkit_detail
+            ) if drumkit_detail else DrumKitDetailForm()
 
     context = {
         'product_form': product_form,
-        'drumkit_form': (
-            drumkit_form if product.category.name == 'drum_kits' else None
-        ),
+        'drumkit_form': drumkit_form,
         'product': product,
     }
-
     return render(request, 'products/edit_product.html', context)
 
 

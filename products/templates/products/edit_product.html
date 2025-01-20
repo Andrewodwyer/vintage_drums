@@ -25,6 +25,8 @@
         <div class="col-12 col-md-6">
             <form method="POST" action="{% url 'edit_product' product.id %}" class="form mb-2" enctype="multipart/form-data">
                 {% csrf_token %}
+                
+                <!-- Render the product form fields -->
                 {% for field in product_form %}
                     {% if field.name != 'image' %}
                         {{ field | as_crispy_field }}
@@ -33,12 +35,16 @@
                     {% endif %}
                 {% endfor %}
 
-                {% if drumkit_form %}
-                    <!-- Render the drumkit form if it exists -->
-                    <hr>
-                    <h5 class="text-muted">Edit Drum Kit Details</h5>
-                    {{ drumkit_form.as_p }}
-                {% endif %}
+                <!-- Drumkit form container (initially hidden) -->
+                <div id="drumkit-form" style="display: none;">
+                    {% if drumkit_form %}
+                        <hr>
+                        <h5 class="text-muted">Edit Drum Kit Details</h5>
+                        {{ drumkit_form.as_p }}
+                    {% else %}
+                        <p>No Drum Kit details to show.</p>
+                    {% endif %}
+                </div>
 
                 <div class="text-right">
                     <a class="btn btn-outline-black" href="{% url 'all_products' %}">Cancel</a>
@@ -57,5 +63,31 @@
             var file = $('#new-image')[0].files[0];
             $('#filename').text(`Image will be set to: ${file.name}`);
         });
+        
+        document.getElementById('id_category').addEventListener('change', function() {
+            const drumkitForm = document.getElementById('drumkit-form');
+            
+            // Check if the drumkit form exists in the DOM before trying to modify its display style
+            if (drumkitForm) {
+                // If "Drum Kits" is selected (value is '6'), display the drumkit form
+                if (this.value === '6') {  
+                    drumkitForm.style.display = 'block';
+                } else {
+                    drumkitForm.style.display = 'none';
+                }
+            }
+        });
+
+        // Trigger the function on page load to check the initial category
+        window.onload = function() {
+            const categoryValue = '{{ product.category.id }}';  // Get the current product's category ID
+            const categoryDropdown = document.getElementById('id_category');
+            
+            // Ensure the category dropdown exists and has the correct value
+            if (categoryDropdown) {
+                categoryDropdown.value = categoryValue;  // Set the initial value of the category dropdown
+                categoryDropdown.dispatchEvent(new Event('change'));  // Trigger the change event to show/hide the form
+            }
+        };
     </script>
 {% endblock %}

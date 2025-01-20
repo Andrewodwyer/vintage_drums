@@ -49,7 +49,6 @@ def add_to_bag(request, item_id):
     quantity = int(request.POST.get('quantity', 1))
     redirect_url = request.POST.get('redirect_url')
     size = request.POST.get('size_option', None)
-    # size_option is enabled
 
     # Get or initialize the shopping bag from the session
     bag = request.session.get('bag', {})
@@ -97,7 +96,6 @@ def add_to_bag(request, item_id):
         if item_id in bag:
             if isinstance(bag[item_id], dict):
                 # Handle items with size/material options,
-                # retain the dictionary structure
                 if category in allowed_categories:
                     bag[item_id]['quantity'] += quantity
                 else:
