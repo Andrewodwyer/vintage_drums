@@ -395,7 +395,7 @@ These are modern style fonts that work well with the clean, minimal design.
 ### Logo
 - Vintage Drums
 
-- I used favicon.io to create the “VD” icon for the website. The colour and font matching the design.
+- I used favicon.io to create the “V” icon for the website.
 
 ### Favicon
 
