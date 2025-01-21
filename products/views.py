@@ -285,6 +285,10 @@ def edit_product(request, product_id):
                     drumkit_detail.product = product
                     drumkit_detail.save()
 
+            messages.success(
+                request,
+                f'Product has been successfully updated.'
+            )
             return redirect('product_detail', product.id)  # Redirect
 
     else:

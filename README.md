@@ -82,9 +82,9 @@ The primary goal in the planning and design of the Vintage Drum Store website is
 
 - Age:
 
-  - Professional musicians (typically 25–50 years old)
+  - Professional musicians (25–50 years old)
   - Drum enthusiasts and hobbyists of all ages.
-  - Collectors of vintage and high-end musical instruments, often aged 30–60, who value sound quality and craftsmanship
+  - Collectors of vintage and high-end musical instruments, aged 30–60, who value sound quality and craftsmanship
 
 - User Demographics:
 
@@ -230,7 +230,7 @@ For this project I created a Kansan board in GitHub to display the stages and st
 ## Epics
 <a name="epics"></a>
 
-In a Kanban board, an epic is a large body of work that can be broken down into multiple smaller user stories and tasks. The user stories have been grouped into 5 epics based on core functionalities for different user types and areas of the platform. The purpose of dividing them this way is to ensure that each set of features aligns with specific user journeys, from product browsing to checkout and administration.
+In a Kanban board, an epic is a large body of work that can be broken down into multiple smaller user stories and tasks. The user stories have been grouped into 5 epics based on core functionalities. The purpose of dividing them this way is to ensure that each set of features aligns with specific user journeys, from product browsing to checkout and administration.
 
 Below is a description of each epic:
 
@@ -435,7 +435,7 @@ These are modern style fonts that work well with the clean, minimal design.
 
 - Logo displaying the brand, immediate recognition of the app. Users feel more comfortable when they are reassured by the brand.
 - Hero section. Image of a drum kits and text "Uncover the Soul of Vintage Drums" and "Curated collection of premium vintage drum kits and cymbals for musicians and collectors." Highlights the purpose of the app
-- Featured Drums and Featured Cymbal section displays 4 of the most recently added products. They are displayed from most recently added. There is one main featured product that takes the full width of the page on large and medium screens. The product card has the name price, description and "View Details" on right and the image on the left. On small devices the information in displayed under the image. The first image will be the only one with a description. The next 3 featured products will take up 4 column each on large and medium devices and full width on small devices. All done with bootstrap4.
+- Featured Drums and Featured Cymbal section displays 4 products that have the highest star rating. There is one main featured product that takes the full width of the page on large and medium screens. The product card has the name price, description and "View Details" on right and the image on the left. On small devices the information in displayed under the image. The first image will be the only one with a description. The next 3 featured products will take up 4 column each on large and medium devices and full width on small devices. All done with bootstrap4.
 - Category & Links discussed earlier
 
 ![Featured Section](media/readme-images/featured-section.png)
@@ -679,7 +679,7 @@ The SEO strategy targeted **specific, long-tail keywords** (ideal for more niche
     - **external links** have the `rel="noopener nofollow"` attribute.
   
 7. **Mobile Optimisation and Responsive Design:**
-    - **Mobile optimisation** is crucial for SEO, as Google uses mobile-first indexing. Vintage Drums ensures that its website is fully responsive, providing a seamless experience for mobile users, which is a ranking factor for search engines.
+    - **Mobile optimisation** is crucial for SEO, as Google uses mobile-first indexing. Vintage Drums is fully responsive, providing a seamless experience for mobile users, which is a ranking factor for search engines.
 
 8. **Sitemap and Robots.txt:**
     - A **sitemap.xml** is generated and submitted to Google Search Console to guide search engine crawlers through the site's content and ensure proper indexing.
@@ -795,83 +795,73 @@ Bootstrap was used in the app to create a responsive, mobile-first websites quic
 ### Libraries
 <a name="libraries"></a>
 
-#### Core Libraries
-
 1. Django
   - Purpose: The main web framework used to build web applications in Python.
   -	Version: 4.2.7
-2. asgiref
-  -	Purpose: ASGI (Asynchronous Server Gateway Interface) reference implementation, providing async support for Django.
-  -	Version: 3.8.1
-3.	pytz
-  -	Purpose: Timezone definitions and support for Python. Ensures accurate datetime handling across different time zones.
-  -	Version: 2024.2
-
-#### Django Extensions (Third-Party)
-4.	django-allauth
+2.	django-allauth
   -	Purpose: Handles user authentication, registration, and third-party social logins (Google, Facebook, etc.).
   -	Version: 0.50.0
-5.	django-countries
+3.	django-countries
   -	Purpose: Provides country fields for models and forms in Django. Useful for dropdowns and internationalization.
   -	Version: 7.6
-6.	django-crispy-forms
+4.	django-crispy-forms
   -	Purpose: Simplifies form rendering in Django, allowing easy integration with Bootstrap and other CSS frameworks.
   -	Version: 1.14.0
-7.	django-filter
+5.	django-filter
   -	Purpose: Adds filtering capabilities to Django querysets. Useful for creating search and filtering interfaces.
   -	Version: 24.3
-8.	dj-database-url
+6.	dj-database-url
   -	Purpose: Configures database connections from a URL string. Helps manage different database environments.
   -	Version: 0.5.0
-9.	django-js-asset
+7.	django-js-asset
   -	Purpose: Manages JavaScript assets in Django templates. Simplifies handling and loading of JS files.
   -	Version: 3.0.1
-10.	django-storages
+8.	django-storages
   -	Purpose: Provides storage backends for Django, supporting AWS S3, Google Cloud Storage, and others.
   -	Version: 1.14.4
 
 #### AWS and Cloud Services
-11.	boto3
+9.	boto3
   -	Purpose: AWS SDK for Python, allowing interaction with S3, EC2, DynamoDB, and other AWS services.
   -	Version: 1.35.84
-12.	botocore
+10.	botocore
   -	Purpose: Core library that powers boto3. It contains low-level utilities for AWS service communication.
   -	Version: 1.35.84
-13.	s3transfer
+11.	s3transfer
   -	Purpose: Assists in high-level file transfers to and from AWS S3. A dependency for boto3.
   -	Version: 0.10.4
 
 #### Authentication and Security
-14.	oauthlib
+12.	oauthlib
   -	Purpose: Implements OAuth 1 and 2, providing secure access delegation (login via Google, Facebook, etc.).
   -	Version: 3.2.2
-15.	requests-oauthlib
+13.	requests-oauthlib
   -	Purpose: Combines requests (HTTP for Python) with oauthlib to simplify OAuth requests.
   -	Version: 2.0.0
-16.	python3-openid
+14.	python3-openid
   -	Purpose: Implements OpenID authentication for user sign-ins. Often used with django-allauth.
   -	Version: 3.2.0
-17.	PyJWT
+15.	PyJWT
   -	Purpose: Creates and verifies JSON Web Tokens (JWT), commonly used for secure API authentication.
   -	Version: 2.10.0
 
 #### Database Connectivity
-18.	psycopg2
+16.	psycopg2
   -	Purpose: PostgreSQL adapter for Python. Essential for Django projects that use PostgreSQL as their database.
   -	Version: 2.9.10
 
 #### Deployment and Production
-19.	gunicorn
+17.	gunicorn
   -	Purpose: A WSGI HTTP server for running Django (or other Python apps) in production.
   -	Version: 23.0.0
 
 #### Image and Media Handling
-20.	pillow
+18.	pillow
   -	Purpose: Python Imaging Library (PIL) fork, used for image processing (resizing, cropping, etc.) in Django.
   -	Version: 11.0.0
 
 #### Payment Integration
-21.	stripe
+19.	stripe
   -	Purpose: Stripe API library for handling online payments within Django applications.
   -	Version: 11.3.0
 
@@ -1234,11 +1224,11 @@ This was done in the all_products function view. Like the if statement of “if 
 Fix, If the key is not sort in the request.GET.items, 
 skip sort and generates hidden inputs for the other query parameters, hiding the parameters keeps the current parameters like category or q. adding sort='current value’
 
-2. Pagination Issue
+2. Pagination Issue:
 Adding the option of sorting by price and rating means that the urls would need to be unique so the filter of categories or q would remain in the url and the next and previous pagination would only apply to that search criteria. Using DTL for the href for has previous, page number and next. There was an additional step needed. A number of if statement had to be added for category and sort. ie. If the sort parameter exists in the URL query parameters (GET request), it appends &sort=value(value of price, rating) to preserve the current sorting.
 
 #### Long order number
-- The order number was going out of the container on smaller devices. To stop this I used     word-break: break-word; in the css to wrap the number to the next line
+- The order number was going out of the container on smaller devices. To stop this I used  overflow-wrap: break-word; in the css to wrap the number to the next line
 
 <hr>
 
